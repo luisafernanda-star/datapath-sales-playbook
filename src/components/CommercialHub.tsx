@@ -16,10 +16,12 @@ export function CommercialHub() {
   const [editing, setEditing] = useState<CommercialProgram | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [accessMode, setAccessMode] = useState<"sales" | "admin">("sales");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState("");
   const adminEmail = import.meta.env.VITE_ADMIN_EMAIL?.toLowerCase();
+  const salesEmail = import.meta.env.VITE_SALES_EMAIL;
   const isAdmin = Boolean(session && adminEmail && session.email.toLowerCase() === adminEmail);
 
   const loadPrograms = async () => {
@@ -45,7 +47,11 @@ export function CommercialHub() {
 
   const signIn = async (event: React.FormEvent) => {
     event.preventDefault(); setMessage(""); setLoading(true);
-    try { setSession(await commercialService.signIn(email, password)); setPassword(""); }
+    const loginEmail = accessMode === "sales" ? salesEmail : email;
+    try {
+      if (!loginEmail) throw new Error("El acceso del equipo aún no está configurado.");
+      setSession(await commercialService.signIn(loginEmail, password)); setPassword("");
+    }
     catch (error) { setMessage(error instanceof Error ? error.message : "No fue posible iniciar sesión."); }
     finally { setLoading(false); }
   };
@@ -61,9 +67,13 @@ export function CommercialHub() {
     <section className="commercial-page narrow">
       <div className="commercial-hero"><p className="eyebrow">DATAPATH COMMERCIAL HUB</p><h1>Links de pago y cupones, en un solo lugar.</h1><p>Inicia sesión con tu cuenta del equipo para consultar la información vigente.</p></div>
       <form className="login-card" onSubmit={signIn}>
-        <h2>Ingresar</h2><label>Correo<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></label>
+        <h2>{accessMode === "sales" ? "Acceso para vendedoras" : "Acceso de administración"}</h2>
+        {accessMode === "sales" ? <p className="login-help">Ingresa la clave compartida del equipo comercial.</p> : <label>Correo<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></label>}
         <label>Contraseña<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required /></label>
         {message && <p className="form-message">{message}</p>}<button className="primary-button" disabled={loading}>{loading ? "Ingresando…" : "Ingresar al hub"}</button>
+        <button type="button" className="access-switch" onClick={() => { setAccessMode((mode) => mode === "sales" ? "admin" : "sales"); setMessage(""); setPassword(""); }}>
+          {accessMode === "sales" ? "¿Eres administradora? Ingresa con tu correo" : "Volver al acceso de vendedoras"}
+        </button>
       </form>
     </section>
   );
