@@ -5,6 +5,7 @@ import { ProfileContent } from "./components/ProfileContent";
 import { ProgramsView } from "./components/ProgramsView";
 import { ObjectionsView } from "./components/ObjectionsView";
 import { ManualView } from "./components/ManualView";
+import { CommercialHub } from "./components/CommercialHub";
 import { contentService } from "./services/contentService";
 import type { Profile } from "./data/playbookData";
 import { Menu, Sparkles, ShieldCheck } from "lucide-react";
@@ -124,6 +125,10 @@ function App() {
           onClearHighlight={handleClearHighlight}
         />
       );
+    }
+
+    if (activeTab === "commercial") {
+      return <CommercialHub />;
     }
 
     if (activeTab === "objections") {

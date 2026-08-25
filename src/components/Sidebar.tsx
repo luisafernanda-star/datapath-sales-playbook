@@ -6,6 +6,7 @@ import {
   GraduationCap,
   Building,
   BookOpen,
+  CreditCard,
   Brain,
   Settings,
   X,
@@ -47,6 +48,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { type: "separator" },
     { type: "section-title", label: "Recursos de Venta" },
     { id: "programs", label: "Catálogo de Programas", icon: BookOpen },
+    { id: "commercial", label: "Cursos, links y cupones", icon: CreditCard },
     { id: "objections", label: "Objeciones frecuentes", icon: Brain },
     { id: "settings", label: "Configuración", icon: Settings, disabled: true }
   ];
