@@ -10,7 +10,21 @@ export interface ProgramRecommendation {
   caution?: string;
   edition?: CurriculaEdition;
   format: "Programa" | "Taller" | "Certificación";
+  deliveryMode: "En vivo" | "Asincrónico";
+  showEditionDate: boolean;
 }
+
+const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+const getEditionAvailability = (edition?: CurriculaEdition, referenceDate = new Date()) => {
+  if (!edition) return { deliveryMode: "Asincrónico" as const, showEditionDate: false };
+  const elapsed = referenceDate.getTime() - new Date(edition.startDate).getTime();
+  const showEditionDate = elapsed <= ONE_WEEK_MS;
+  return {
+    deliveryMode: showEditionDate ? "En vivo" as const : "Asincrónico" as const,
+    showEditionDate
+  };
+};
 
 const normalize = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
@@ -76,6 +90,7 @@ export function recommendPrograms(profileId: string, answers: DiagnosticAnswer[]
     if (tagFrequency["short-format"] && !programTags.includes("short-format")) score -= 4;
     if (tagFrequency["full-program"] && programTags.includes("short-format")) score -= 5;
     const edition = curriculaService.getCurrentEdition(program.program);
+    const availability = getEditionAvailability(edition);
     if (edition && new Date(edition.startDate).getTime() >= now) score += 3;
     const reasons = matches.filter((tag) => LABELS[tag]).slice(0, 3).map((tag) => LABELS[tag]);
     const caution = tagFrequency.beginner && programTags.includes("advanced") && !programTags.includes("beginner")
@@ -88,6 +103,7 @@ export function recommendPrograms(profileId: string, answers: DiagnosticAnswer[]
       reasons,
       caution,
       edition,
+      ...availability,
       format: programTags.includes("short-format") ? "Taller" as const : programTags.includes("certification") ? "Certificación" as const : "Programa" as const
     };
   }).sort((a, b) => b.score - a.score || futureTime(a.edition) - futureTime(b.edition));
@@ -107,8 +123,12 @@ export function buildWhatsAppMessage(recommendations: ProgramRecommendation[], a
   if (!primary) return "";
   const interest = answers.find((answer) => answer.questionId === "interest")?.label.toLowerCase();
   const alternatives = recommendations.slice(1).map((item) => item.program).join(" y ");
-  const start = primary.edition ? ` La próxima edición registrada inicia el ${curriculaService.formatStartDate(primary.edition)}.` : "";
-  return `Por lo que me cuentas${interest ? ` y teniendo en cuenta que te interesa ${interest}` : ""}, la ruta que mejor se ajusta a tu objetivo es ${primary.program}. ${primary.reasons.length ? `Te la recomiendo porque ${primary.reasons.join(", ")}.` : "Esta ruta se alinea con el resultado que quieres conseguir."}${start}${alternatives ? ` También podemos revisar como alternativas ${alternatives}.` : ""} ¿Te gustaría que te comparta el contenido y revisemos juntos si encaja con tu disponibilidad?`;
+  const availability = primary.deliveryMode === "Asincrónico"
+    ? " Este programa lo manejamos actualmente en modalidad asincrónica, para que pueda avanzar a su ritmo."
+    : primary.edition && primary.showEditionDate
+      ? ` La edición en vivo registrada ${new Date(primary.edition.startDate) >= new Date() ? "inicia" : "inició recientemente"} el ${curriculaService.formatStartDate(primary.edition)}.`
+      : "";
+  return `Por lo que me cuentas${interest ? ` y teniendo en cuenta que te interesa ${interest}` : ""}, la ruta que mejor se ajusta a tu objetivo es ${primary.program}. ${primary.reasons.length ? `Te la recomiendo porque ${primary.reasons.join(", ")}.` : "Esta ruta se alinea con el resultado que quieres conseguir."}${availability}${alternatives ? ` También podemos revisar como alternativas ${alternatives}.` : ""} ¿Te gustaría que te comparta el contenido y revisemos juntos si encaja con tu disponibilidad?`;
 }
 
 const isPrimaryTag = (tag: string) => ["analytics", "data-engineering", "ai-apps", "agents", "architecture", "automation", "business-ai", "cloud", "aws", "azure", "gcp", "databricks", "fabric"].includes(tag);

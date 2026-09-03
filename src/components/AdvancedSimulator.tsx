@@ -60,11 +60,11 @@ export function AdvancedSimulator({ profileId, onViewProgram }: Props) {
       <div className="results-heading"><Target size={24}/><div><h3>Ruta recomendada</h3><p>La primera opción es la principal. Las otras dos sirven para comparar profundidad o enfoque.</p></div></div>
       {recommendations.length === 0 ? <div className="diagnostic-empty">No encontramos una coincidencia suficiente. Revisa las respuestas o consulta el catálogo completo.</div> : <div className="recommendation-grid">
         {recommendations.map((item, index) => <article key={item.catalogId} className={index === 0 ? "recommendation-result primary" : "recommendation-result"}>
-          <div className="recommendation-rank"><span>{index === 0 ? "Recomendación principal" : `Alternativa ${index}`}</span><small>{item.format}</small></div>
+          <div className="recommendation-rank"><span>{index === 0 ? "Recomendación principal" : `Alternativa ${index}`}</span><small>{item.format} · {item.deliveryMode}</small></div>
           <h4>{item.program}</h4>
           {item.reasons.length > 0 && <ul>{item.reasons.map((reason) => <li key={reason}><Check size={14}/>{reason}</li>)}</ul>}
           {item.caution && <p className="recommendation-caution">Antes de ofrecerlo: {item.caution}</p>}
-          <div className="recommendation-edition">{item.edition ? <><strong>{new Date(item.edition.startDate) >= new Date() ? "Próxima edición" : "Última edición registrada"}</strong><span>{curriculaService.formatStartDate(item.edition)}</span></> : <span>Fecha por confirmar</span>}</div>
+          <div className="recommendation-edition">{item.deliveryMode === "Asincrónico" ? <><strong>Modalidad asincrónica</strong><span>Disponible para avanzar a su propio ritmo.</span></> : item.edition && item.showEditionDate ? <><strong>{new Date(item.edition.startDate) >= new Date() ? "Próxima edición" : "Edición iniciada recientemente"}</strong><span>{curriculaService.formatStartDate(item.edition)}</span></> : null}</div>
           <button className="outline-button" onClick={() => onViewProgram(item.catalogId)}><BookOpen size={15}/> Ver programa</button>
         </article>)}
       </div>}
