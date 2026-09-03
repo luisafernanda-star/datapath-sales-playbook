@@ -34,3 +34,4 @@
 .notification-composer input, .notification-composer textarea { font: inherit; border: 1px solid var(--border-color); padding: 9px 10px; border-radius: 6px; outline-color: var(--color-orange); }
 .notification-composer textarea { min-height: 120px; resize: vertical; }
 @media (max-width: 820px) { .notifications-grid { grid-template-columns: 1fr; }.notifications-heading { flex-direction: column; }.update-notification, .admin-alert-panel { grid-template-columns: auto 1fr; }.update-notification > button, .admin-alert-panel > button { grid-column: 1 / -1; } }
+.notification-card p{white-space:pre-wrap}

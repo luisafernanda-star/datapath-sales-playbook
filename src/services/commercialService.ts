@@ -173,6 +173,18 @@ export const commercialService = {
     await commercialService.markNotificationRead(session, row.id);
     return { id: row.id, title: row.title, message: row.message, createdAt: row.created_at, expiresAt: row.expires_at, read: true };
   },
+  async sendNotificationToMember(session: CommercialSession, recipientId: string, notification: { title: string; message: string }) {
+    if (!recipientId) throw new Error("Selecciona a quién deseas enviar la solicitud.");
+    const response = await fetch(`${url}/rest/v1/notifications`, {
+      method: "POST", headers: { ...await authHeaders(session), Prefer: "return=minimal" },
+      body: JSON.stringify({ title: notification.title, message: notification.message, recipient_id: recipientId, sender_id: session.userId })
+    });
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({})) as { code?: string; message?: string };
+      if (data.code === "PGRST204" || data.code === "42703") throw new Error("Falta activar el envío interno en Supabase. Ejecuta nuevamente el archivo schema.sql actualizado.");
+      throw new Error(data.message || "No fue posible enviar la solicitud.");
+    }
+  },
   async markNotificationRead(session: CommercialSession, notificationId: string) {
     const response = await fetch(`${url}/rest/v1/notification_reads?on_conflict=notification_id,user_id`, {
       method: "POST", headers: { ...await authHeaders(session), Prefer: "resolution=merge-duplicates" },

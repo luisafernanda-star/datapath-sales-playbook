@@ -67,9 +67,14 @@ create table if not exists public.notifications (
   id uuid primary key default gen_random_uuid(),
   title text not null,
   message text not null default '',
+  recipient_id uuid references auth.users(id) on delete cascade,
+  sender_id uuid references auth.users(id) on delete set null default auth.uid(),
   expires_at timestamptz,
   created_at timestamptz not null default now()
 );
+
+alter table public.notifications add column if not exists recipient_id uuid references auth.users(id) on delete cascade;
+alter table public.notifications add column if not exists sender_id uuid references auth.users(id) on delete set null default auth.uid();
 
 create table if not exists public.notification_reads (
   notification_id uuid not null references public.notifications(id) on delete cascade,
@@ -81,9 +86,9 @@ create table if not exists public.notification_reads (
 alter table public.notifications enable row level security;
 alter table public.notification_reads enable row level security;
 drop policy if exists "Authenticated users can read notifications" on public.notifications;
-create policy "Authenticated users can read notifications" on public.notifications for select to authenticated using (true);
+create policy "Authenticated users can read notifications" on public.notifications for select to authenticated using (recipient_id is null or recipient_id = auth.uid());
 drop policy if exists "Only the commercial admin can add notifications" on public.notifications;
-create policy "Only the commercial admin can add notifications" on public.notifications for insert to authenticated with check (public.is_commercial_admin());
+create policy "Only the commercial admin can add notifications" on public.notifications for insert to authenticated with check (public.is_commercial_admin() or (recipient_id is not null and sender_id = auth.uid()));
 drop policy if exists "Only the commercial admin can delete notifications" on public.notifications;
 create policy "Only the commercial admin can delete notifications" on public.notifications for delete to authenticated using (public.is_commercial_admin());
 drop policy if exists "Advisors can read their notification receipts" on public.notification_reads;
