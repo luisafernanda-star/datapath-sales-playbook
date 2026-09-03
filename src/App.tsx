@@ -9,12 +9,14 @@ import { FollowUpsView } from "./components/FollowUpsView";
 import { NotificationsView } from "./components/NotificationsView";
 import { HomeDashboard } from "./components/HomeDashboard";
 import { TeamNetworkView } from "./components/TeamNetworkView";
+import { AuthGate } from "./components/AuthGate";
 import { commercialService } from "./services/commercialService";
 import { contentService } from "./services/contentService";
 import type { Profile } from "./data/playbookData";
 import { Bell, Menu } from "lucide-react";
 
 function App() {
+  const [session, setSession] = useState(() => commercialService.getSession());
   const [activeTab, setActiveTabState] = useState<string>(() => window.location.hash.slice(1) || "home");
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [highlightedProgramId, setHighlightedProgramId] = useState<string | undefined>(undefined);
@@ -23,6 +25,12 @@ function App() {
   const [notificationCount, setNotificationCount] = useState(0);
 
   // Carga inicial de perfiles a través de la capa de servicio (contentService)
+  useEffect(() => {
+    const syncSession = () => setSession(commercialService.getSession());
+    window.addEventListener("datapath-session-change", syncSession);
+    return () => window.removeEventListener("datapath-session-change", syncSession);
+  }, []);
+
   useEffect(() => {
     contentService.getProfiles().then(setProfiles);
   }, []);
@@ -84,6 +92,8 @@ function App() {
   const handleClearHighlight = () => {
     setHighlightedProgramId(undefined);
   };
+
+  if (!session) return <AuthGate onSignedIn={(activeSession) => { setSession(activeSession); setActiveTab("home"); }} />;
 
   // Determine what content to display in the main workspace
   const renderWorkspaceContent = () => {
@@ -167,6 +177,7 @@ function App() {
         setIsOpen={setSidebarOpen}
         notificationCount={notificationCount}
         updateAvailable={updateAvailable}
+        onSignOut={() => { commercialService.signOut(); setSession(null); setActiveTab("home"); }}
       />
 
       {/* Main content display panel */}

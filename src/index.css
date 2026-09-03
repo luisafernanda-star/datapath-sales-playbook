@@ -197,6 +197,7 @@ body {
   border-top: 1px solid var(--border-color);
   background-color: var(--bg-secondary);
 }
+.sidebar-signout{width:100%;margin-top:7px;padding:8px 10px;display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--border-color);border-radius:8px;background:white;color:var(--text-secondary);font:inherit;font-size:.76rem;font-weight:600;cursor:pointer}.sidebar-signout:hover{color:#b42318;border-color:#f3b7b2;background:#fff7f6}
 
 .user-profile {
   display: flex;

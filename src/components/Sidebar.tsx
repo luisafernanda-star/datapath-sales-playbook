@@ -13,7 +13,8 @@ import {
   FileText,
   CalendarDays,
   Bell,
-  UsersRound
+  UsersRound,
+  LogOut
 } from "lucide-react";
 import { SidebarNotifications } from "./SidebarNotifications";
 import { UserProfileMenu } from "./UserProfileMenu";
@@ -25,6 +26,7 @@ interface SidebarProps {
   setIsOpen: (isOpen: boolean) => void;
   notificationCount: number;
   updateAvailable: boolean;
+  onSignOut: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -33,7 +35,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isOpen,
   setIsOpen,
   notificationCount,
-  updateAvailable
+  updateAvailable,
+  onSignOut
 }) => {
   const menuItems = [
     { id: "home", label: "Inicio", icon: Home },
@@ -132,6 +135,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       <div className="sidebar-footer">
         <UserProfileMenu onNavigate={handleSelect} />
+        <button className="sidebar-signout" onClick={onSignOut}><LogOut size={15}/> Cerrar sesión</button>
       </div>
     </aside>
   );
