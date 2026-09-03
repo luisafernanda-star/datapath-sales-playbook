@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { contentService } from "../services/contentService";
 import { curriculaService } from "../services/curriculaService";
+import { commercialService } from "../services/commercialService";
 import type { Program } from "../data/playbookData";
+import type { CommercialProgram } from "../data/commercialTypes";
 import { parseInlineMarkdown } from "../utils/markdown";
 import { Check, Search, ChevronDown, ChevronUp, AlertCircle, Copy, CheckSquare, Sparkles } from "lucide-react";
 
@@ -17,12 +19,17 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
   const [searchQuery, setSearchQuery] = useState("");
   const programRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [programs, setPrograms] = useState<Program[]>([]);
+  const [modalityFilter, setModalityFilter] = useState<"Todos" | "En vivo" | "Asincrónico">("Todos");
   const [expandedProgramId, setExpandedProgramId] = useState<string | null>(null);
   const [copiedPitchId, setCopiedPitchId] = useState<string | null>(null);
 
   // Load programs
   useEffect(() => {
-    contentService.getPrograms().then(setPrograms);
+    Promise.all([
+      contentService.getPrograms(),
+      commercialService.getSession() ? commercialService.getPrograms(commercialService.getSession()!) : Promise.resolve([])
+    ]).then(([academicPrograms, commercialPrograms]) => setPrograms(mergeCatalog(academicPrograms, commercialPrograms)))
+      .catch(() => contentService.getPrograms().then(setPrograms));
   }, []);
 
   // Scroll highlighted program and expand it automatically
@@ -37,11 +44,15 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
     }
   }, [highlightedProgramId]);
 
-  const filteredPrograms = programs.filter((prog) =>
-    prog.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    prog.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    prog.target.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredPrograms = programs.filter((prog) => {
+    const matchesSearch = prog.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      prog.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      prog.target.toLowerCase().includes(searchQuery.toLowerCase());
+    const modality = prog.modality.toLowerCase();
+    const matchesModality = modalityFilter === "Todos" ||
+      (modalityFilter === "En vivo" ? modality.includes("vivo") || modality.includes("híbrido") : modality.includes("asincrónico") || modality.includes("híbrido"));
+    return matchesSearch && matchesModality;
+  });
 
   const toggleExpand = (programId: string) => {
     setExpandedProgramId((prev) => (prev === programId ? null : programId));
@@ -64,6 +75,11 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
         <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", marginTop: "4px" }}>
           Consulta cuándo sugerir u omitir cada programa de Datapath, cómo argumentar su valor y qué preguntas de calificación realizar.
         </p>
+      </div>
+
+      <div className="catalog-filters" aria-label="Filtrar catálogo por modalidad">
+        {(["Todos", "En vivo", "Asincrónico"] as const).map((filter) => <button key={filter} className={modalityFilter === filter ? "active" : ""} onClick={() => setModalityFilter(filter)}>{filter}</button>)}
+        <span>{filteredPrograms.length} programas</span>
       </div>
 
       {/* Search Bar */}
@@ -238,6 +254,8 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
                       </p>
                     </div>
 
+                    {prog.keyBenefits.length > 0 && <div><h4 style={{ fontSize: "0.9rem", fontWeight: 700, textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "8px" }}>Contenido de la currícula vigente</h4><ul style={{ paddingLeft: "20px" }}>{prog.keyBenefits.map((benefit, index) => <li key={index} style={{ fontSize: "0.9rem", color: "var(--text-secondary)", marginBottom: "6px" }}>{parseInlineMarkdown(benefit)}</li>)}</ul></div>}
+
                     {/* Recomendar / NO Recomendar */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                       <div style={{ padding: "16px", backgroundColor: "rgba(34, 197, 94, 0.04)", borderRadius: "6px", border: "1px solid rgba(34, 197, 94, 0.15)" }}>
@@ -411,3 +429,32 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
     </div>
   );
 };
+
+const normalizeProgramName = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\b(for developers|engineer|programa|program)\b/g, "").replace(/[^a-z0-9]/g, "");
+
+function mergeCatalog(academicPrograms: Program[], commercialPrograms: CommercialProgram[]): Program[] {
+  if (commercialPrograms.length === 0) return academicPrograms;
+  const activeCommercial = commercialPrograms.filter((program) => program.status === "active");
+  return activeCommercial.map((commercial) => {
+    const commercialName = normalizeProgramName(commercial.name);
+    const academic = academicPrograms.find((program) => {
+      const academicName = normalizeProgramName(program.name);
+      return academicName === commercialName || academicName.includes(commercialName) || commercialName.includes(academicName);
+    });
+    const prices = [...new Set(commercial.paymentLinks.map((link) => link.price).filter(Boolean))].join(" · ");
+    if (academic) return { ...academic, name: commercial.name, modality: commercial.type, description: commercial.description || academic.description, priceInfo: prices || academic.priceInfo };
+    const edition = curriculaService.getCurrentEdition(commercial.name);
+    const curriculumItems = [...new Set((edition?.sessions ?? []).map((session) => session.content || session.module).filter(Boolean))];
+    return {
+      id: `commercial-${commercial.id}`,
+      name: commercial.name,
+      duration: edition?.sessions.length ? `${edition.sessions.length} sesiones registradas` : "Consultar currícula vigente",
+      modality: commercial.type,
+      target: "Consulta la currícula y realiza el diagnóstico para validar si este programa corresponde al perfil del prospecto.",
+      description: commercial.description,
+      keyBenefits: curriculumItems,
+      priceInfo: prices || "Consulta los enlaces de pago vigentes.",
+      advisorSummary: "Programa activo en el catálogo comercial. Revisa su currícula vigente antes de recomendarlo."
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name));
+}

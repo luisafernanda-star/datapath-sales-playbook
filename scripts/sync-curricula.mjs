@@ -51,6 +51,8 @@ for (const sheet of workbook.worksheets) {
       const sessionIndex = [dateIndex - 1, dateIndex - 2].find((index) => index >= 0 && normalize(values[index]).includes("sesion"));
       if (sessionIndex === undefined) continue;
       const formatIndex = values.findIndex((value, index) => index > dateIndex && index <= dateIndex + 4 && normalize(value).includes("formato"));
+      const moduleIndex = values.findIndex((value, index) => index > dateIndex && normalize(value) === "modulo");
+      const courseIndex = values.findIndex((value, index) => index > dateIndex && ["curso", "sesion", "contenido"].includes(normalize(value)));
       let sessionRow;
       for (let candidate = rowNumber + 1; candidate <= Math.min(sheet.rowCount, rowNumber + 120); candidate += 1) {
         const candidateRow = sheet.getRow(candidate);
@@ -60,9 +62,25 @@ for (const sheet of workbook.worksheets) {
       const startDate = parseDate(displayValue(sessionRow.getCell(dateIndex + 1)));
       if (!startDate) continue;
       const format = formatIndex >= 0 ? String(displayValue(sessionRow.getCell(formatIndex + 1)) ?? "") : "";
+      const sessions = [];
+      for (let candidate = rowNumber + 1; candidate <= Math.min(sheet.rowCount, rowNumber + 120); candidate += 1) {
+        const candidateRow = sheet.getRow(candidate);
+        const sessionValue = displayValue(candidateRow.getCell(sessionIndex + 1));
+        const sessionDate = parseDate(displayValue(candidateRow.getCell(dateIndex + 1)));
+        if (!sessionDate || sessionValue === null || sessionValue === "") continue;
+        const sessionNumber = Number(String(sessionValue).replace(/[^0-9.]/g, ""));
+        if (!Number.isFinite(sessionNumber)) continue;
+        sessions.push({
+          session: sessionNumber,
+          date: sessionDate.toISOString(),
+          format: formatIndex >= 0 ? String(displayValue(candidateRow.getCell(formatIndex + 1)) ?? "") : "",
+          module: moduleIndex >= 0 ? String(displayValue(candidateRow.getCell(moduleIndex + 1)) ?? "") : "",
+          content: courseIndex >= 0 ? String(displayValue(candidateRow.getCell(courseIndex + 1)) ?? "") : ""
+        });
+      }
       const key = `${sheet.name}-${dateIndex}-${startDate.toISOString()}`;
       if (editions.some((edition) => edition.key === key)) continue;
-      editions.push({ key, program: canonicalName(sheet.name), edition: sheet.name, startDate: startDate.toISOString(), format, sheetId: sheet.id });
+      editions.push({ key, program: canonicalName(sheet.name), edition: sheet.name, startDate: startDate.toISOString(), format, sheetId: sheet.id, sessions });
     }
   }
 }
@@ -72,7 +90,7 @@ const groups = Object.groupBy(editions, (edition) => edition.program);
 const programs = Object.entries(groups).map(([program, programEditions]) => {
   const sorted = [...programEditions].sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
   const selected = sorted.find((edition) => new Date(edition.startDate) >= today) ?? sorted.at(-1);
-  return { program, selectedEdition: selected, editions: sorted };
+  return { program, editions: sorted.map((edition) => edition.key === selected.key ? edition : { ...edition, sessions: [] }) };
 }).sort((a, b) => a.program.localeCompare(b.program));
 
 await mkdir(new URL("../src/data/", import.meta.url), { recursive: true });

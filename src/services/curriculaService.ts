@@ -7,6 +7,7 @@ export type CurriculaEdition = {
   startDate: string;
   format: string;
   sheetId: number;
+  sessions: Array<{ session: number; date: string; format: string; module: string; content: string }>;
 };
 
 const PROGRAM_ALIASES: Record<string, string[]> = {
