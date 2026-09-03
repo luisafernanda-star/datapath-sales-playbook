@@ -19,7 +19,7 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
   const [loading, setLoading] = useState<boolean>(true);
   
   // Refs para evitar bucles o loops entre clics en sidebar y detección de scroll
-  const currentActiveSection = useRef<string>(section);
+  const currentActiveSection = useRef<string>("");
   const isProgrammaticScroll = useRef<boolean>(false);
 
   useEffect(() => {
@@ -227,11 +227,6 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
         continue;
       }
 
-      if (line.startsWith("- ") || line.startsWith("* ")) {
-        listItems.push(line);
-        continue;
-      }
-
       // Ordered lists (e.g. "1. Comprender...")
       const orderedListMatch = line.match(/^(\d+)\.\s+(.*)$/);
       if (orderedListMatch) {
@@ -275,6 +270,11 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
             </span>
           </div>
         );
+        continue;
+      }
+
+      if (line.startsWith("- ") || line.startsWith("* ")) {
+        listItems.push(line);
         continue;
       }
 

@@ -60,14 +60,14 @@ export const ObjectionsView: React.FC = () => {
           return (
             <div key={objection.id} className="objection-item">
               {/* Accordion Header */}
-              <div onClick={() => toggleOpen(objection.id)} className="objection-header">
+              <button type="button" onClick={() => toggleOpen(objection.id)} className="objection-header" aria-expanded={Boolean(isOpen)} aria-controls={`objection-${objection.id}`}>
                 <span className="objection-title">{objection.title}</span>
                 {isOpen ? <ChevronUp size={18} color="var(--text-secondary)" /> : <ChevronDown size={18} color="var(--text-secondary)" />}
-              </div>
+              </button>
 
               {/* Accordion Body */}
               {isOpen && (
-                <div className="objection-body">
+                <div className="objection-body" id={`objection-${objection.id}`}>
                   {/* Common Phrases */}
                   <div className="phrases-container">
                     <span className="phrases-title">El prospecto suele decir:</span>

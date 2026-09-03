@@ -8,6 +8,9 @@
 .commercial-toolbar { background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-md); display: flex; align-items: center; gap: 14px; }
 .commercial-toolbar input { flex: 1; border: 0; outline: 0; background: transparent; font: inherit; padding: 4px; color: var(--text-primary); }
 .commercial-toolbar span { font-size: .8rem; color: var(--text-muted); white-space: nowrap; }
+.commercial-filters { display: flex; gap: 7px; flex-wrap: wrap; margin-top: -14px; }
+.commercial-filters button { border: 1px solid var(--border-color); background: white; color: var(--text-secondary); border-radius: 999px; padding: 7px 12px; cursor: pointer; font: inherit; font-size: .8rem; }
+.commercial-filters button.active { color: var(--color-orange); border-color: var(--color-orange); background: var(--color-orange-light); font-weight: 700; }
 .commercial-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
 .commercial-card, .login-card, .setup-card, .empty-state { border: 1px solid var(--border-color); background: var(--bg-card, #fff); border-radius: var(--radius-md); padding: 22px; box-shadow: var(--shadow-sm); }
 .card-heading { display: flex; justify-content: space-between; gap: 12px; }.card-heading h2 { font-size: 1.1rem; margin: 5px 0; }.card-heading p { color: var(--text-secondary); line-height: 1.45; font-size: .86rem; }

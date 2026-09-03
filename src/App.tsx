@@ -6,12 +6,13 @@ import { ProgramsView } from "./components/ProgramsView";
 import { ObjectionsView } from "./components/ObjectionsView";
 import { ManualView } from "./components/ManualView";
 import { CommercialHub } from "./components/CommercialHub";
+import { FollowUpsView } from "./components/FollowUpsView";
 import { contentService } from "./services/contentService";
 import type { Profile } from "./data/playbookData";
 import { Menu, Sparkles, ShieldCheck } from "lucide-react";
 
 function App() {
-  const [activeTab, setActiveTab] = useState<string>("home");
+  const [activeTab, setActiveTabState] = useState<string>(() => window.location.hash.slice(1) || "home");
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [highlightedProgramId, setHighlightedProgramId] = useState<string | undefined>(undefined);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
@@ -20,6 +21,17 @@ function App() {
   useEffect(() => {
     contentService.getProfiles().then(setProfiles);
   }, []);
+
+  useEffect(() => {
+    const syncFromUrl = () => setActiveTabState(window.location.hash.slice(1) || "home");
+    window.addEventListener("hashchange", syncFromUrl);
+    return () => window.removeEventListener("hashchange", syncFromUrl);
+  }, []);
+
+  const setActiveTab = (tab: string) => {
+    setActiveTabState(tab);
+    window.history.replaceState(null, "", `#${tab}`);
+  };
 
   const handleSelectProfile = (profileId: string) => {
     setActiveTab(profileId);
@@ -70,8 +82,8 @@ function App() {
             <h3 style={{ fontSize: "1rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-muted)", marginBottom: "16px" }}>
               Metodología y Filosofía de Ventas
             </h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-              <div 
+            <div className="methodology-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+              <button type="button"
                 onClick={() => setActiveTab("manual-filosofia-comercial")}
                 style={{ 
                   padding: "20px", 
@@ -79,7 +91,7 @@ function App() {
                   border: "1px solid var(--border-color)", 
                   borderRadius: "8px", 
                   cursor: "pointer", 
-                  transition: "all 0.2s" 
+                  transition: "all 0.2s", textAlign: "left"
                 }}
                 className="hover-card-effects"
               >
@@ -90,9 +102,9 @@ function App() {
                 <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0 }}>
                   Conoce nuestra misión, principios comerciales y los estándares esperados que debe experimentar cada prospecto en contacto con una asesora.
                 </p>
-              </div>
+              </button>
 
-              <div 
+              <button type="button"
                 onClick={() => setActiveTab("manual-reglas-de-oro")}
                 style={{ 
                   padding: "20px", 
@@ -100,7 +112,7 @@ function App() {
                   border: "1px solid var(--border-color)", 
                   borderRadius: "8px", 
                   cursor: "pointer", 
-                  transition: "all 0.2s" 
+                  transition: "all 0.2s", textAlign: "left"
                 }}
                 className="hover-card-effects"
               >
@@ -111,7 +123,7 @@ function App() {
                 <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0 }}>
                   El decálogo de estándares de calidad comercial de Datapath. Directrices obligatorias para estructurar el valor y generar confianza.
                 </p>
-              </div>
+              </button>
             </div>
           </div>
         </>
@@ -129,6 +141,10 @@ function App() {
 
     if (activeTab === "commercial") {
       return <CommercialHub />;
+    }
+
+    if (activeTab === "follow-ups") {
+      return <FollowUpsView />;
     }
 
     if (activeTab === "objections") {

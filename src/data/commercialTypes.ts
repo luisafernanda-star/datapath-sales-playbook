@@ -30,4 +30,17 @@ export interface CommercialProgram {
 export interface CommercialSession {
   accessToken: string;
   email: string;
+  userId?: string;
+}
+
+export interface FollowUp {
+  id: string;
+  userId: string;
+  clientName: string;
+  phone: string;
+  program: string;
+  dueAt: string;
+  notes: string;
+  status: "pending" | "completed";
+  attachmentUrl?: string;
 }

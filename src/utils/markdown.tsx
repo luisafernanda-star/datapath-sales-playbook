@@ -90,7 +90,7 @@ export const stripBlockMarkdown = (text: string): string => {
   if (!text) return "";
   return text
     .replace(/^(#+\s+)/g, "")               // Remove headings (# Heading, ## Heading)
-    .replace(/^([*\-\+]\s+)/g, "")          // Remove list bullets (* item, - item)
+    .replace(/^([-*+]\s+)/g, "")            // Remove list bullets (* item, - item)
     .replace(/^(\s*>\s*)/g, "")             // Remove blockquote symbol (> text)
     .replace(/^-\s*\[([ xX]?)\]\s*/g, "")   // Remove checklist checkboxes (- [ ] or - [x])
     .trim();

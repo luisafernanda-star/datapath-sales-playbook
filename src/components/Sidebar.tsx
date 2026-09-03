@@ -10,7 +10,8 @@ import {
   Brain,
   Settings,
   X,
-  FileText
+  FileText,
+  CalendarDays
 } from "lucide-react";
 
 interface SidebarProps {
@@ -50,6 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: "programs", label: "Catálogo de Programas", icon: BookOpen },
     { id: "commercial", label: "Cursos, links y cupones", icon: CreditCard },
     { id: "objections", label: "Objeciones frecuentes", icon: Brain },
+    { id: "follow-ups", label: "Mis seguimientos", icon: CalendarDays },
     { id: "settings", label: "Configuración", icon: Settings, disabled: true }
   ];
 
