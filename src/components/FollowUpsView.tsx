@@ -23,6 +23,15 @@ export function FollowUpsView() {
     if (!session) return;
     setLoading(true);
     commercialService.getFollowUps(session).then(setItems).catch((error) => setMessage(error.message)).finally(() => setLoading(false));
+    const savedDraft = localStorage.getItem("datapath-followup-draft");
+    if (savedDraft) {
+      try {
+        const draft = JSON.parse(savedDraft) as { program?: string; notes?: string };
+        setEditing({ ...blankFollowUp(session.userId), program: draft.program ?? "", notes: draft.notes ?? "" });
+      } finally {
+        localStorage.removeItem("datapath-followup-draft");
+      }
+    }
   }, [session]);
 
   const grouped = useMemo(() => items.filter((item) => item.status === view).reduce<Record<string, FollowUp[]>>((result, item) => {

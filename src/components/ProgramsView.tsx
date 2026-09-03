@@ -137,14 +137,15 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
       <div className="programs-list" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         {filteredPrograms.length > 0 ? (
           filteredPrograms.map((prog) => {
-            const isHighlighted = prog.id === highlightedProgramId;
-            const isExpanded = expandedProgramId === prog.id;
+            const curriculaId = curriculaService.getCatalogId(prog.name);
+            const isHighlighted = prog.id === highlightedProgramId || curriculaId === highlightedProgramId;
+            const isExpanded = expandedProgramId === prog.id || expandedProgramId === curriculaId;
             const currentEdition = curriculaService.getCurrentEdition(prog.name);
 
             return (
               <div
                 key={prog.id}
-                ref={(el) => { programRefs.current[prog.id] = el; }}
+                ref={(el) => { programRefs.current[prog.id] = el; programRefs.current[curriculaId] = el; }}
                 className="program-card"
                 style={{
                   borderColor: isHighlighted ? "var(--color-orange)" : "",

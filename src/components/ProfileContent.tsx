@@ -3,6 +3,7 @@ import { contentService } from "../services/contentService";
 import { curriculaService } from "../services/curriculaService";
 import type { Profile, DecisionNode, Program } from "../data/playbookData";
 import { parseInlineMarkdown, stripBlockMarkdown } from "../utils/markdown";
+import { AdvancedSimulator } from "./AdvancedSimulator";
 import {
   ArrowLeft,
   RotateCcw,
@@ -32,7 +33,7 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
   onGoBackHome,
   onViewProgram
 }) => {
-  const [activeSubTab, setActiveSubTab] = useState<"guide" | "simulator">("guide");
+  const [activeSubTab, setActiveSubTab] = useState<"guide" | "simulator" | "advanced">("guide");
   const [currentNodeId, setCurrentNodeId] = useState<string>(profile.startNodeId);
   const [history, setHistory] = useState<string[]>([profile.startNodeId]);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
@@ -617,6 +618,27 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
           <Play size={16} />
           <span>💬 Simulador Conversacional</span>
         </button>
+
+        <button
+          onClick={() => setActiveSubTab("advanced")}
+          style={{
+            padding: "10px 4px",
+            background: "none",
+            border: "none",
+            borderBottom: activeSubTab === "advanced" ? "2px solid var(--primary-color)" : "2px solid transparent",
+            color: activeSubTab === "advanced" ? "var(--primary-color)" : "var(--text-muted)",
+            fontWeight: activeSubTab === "advanced" ? 600 : 500,
+            cursor: "pointer",
+            fontSize: "0.95rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            transition: "all 0.2s"
+          }}
+        >
+          <Sparkles size={16} />
+          <span>✨ Diagnóstico inteligente</span>
+        </button>
       </div>
 
       {/* Tab Contents */}
@@ -634,6 +656,8 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
         >
           {renderGuideContent(profile.diagnosticGuide)}
         </div>
+      ) : activeSubTab === "advanced" ? (
+        <AdvancedSimulator profileId={profile.id} onViewProgram={onViewProgram} />
       ) : (
         /* Main Conversation Box (Simulator) */
         <div className="chat-flow-container animate-fade-in">

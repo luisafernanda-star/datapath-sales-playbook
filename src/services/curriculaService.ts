@@ -10,6 +10,8 @@ export type CurriculaEdition = {
   sessions: Array<{ session: number; date: string; format: string; module: string; content: string }>;
 };
 
+export type CurriculaProgram = { program: string; editions: CurriculaEdition[] };
+
 const PROGRAM_ALIASES: Record<string, string[]> = {
   "AI Solution Architect": ["AI Solution Architect"],
   "AI Engineer": ["AI Engineer"],
@@ -24,17 +26,28 @@ const PROGRAM_ALIASES: Record<string, string[]> = {
 
 const normalizeName = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
+const findProgram = (programName: string): CurriculaProgram | undefined => {
+  const aliases = PROGRAM_ALIASES[programName] ?? [programName];
+  return aliases.map((alias) => curricula.programs.find((program) => normalizeName(program.program) === normalizeName(alias))).find(Boolean)
+    ?? aliases.map((alias) => curricula.programs.find((program) => {
+      const candidate = normalizeName(program.program);
+      const normalized = normalizeName(alias);
+      return candidate.includes(normalized) || normalized.includes(candidate);
+    })).find(Boolean);
+};
+
 export const curriculaService = {
   syncedAt: curricula.syncedAt,
   getPrograms() { return curricula.programs; },
+  findProgram,
+  getCatalogId(programName: string) {
+    const program = findProgram(programName);
+    if (!program) return programName;
+    const slug = normalizeName(program.program) || "programa";
+    return `curricula-${slug}-${program.editions[0]?.sheetId ?? 0}`;
+  },
   getCurrentEdition(programName: string, referenceDate = new Date()): CurriculaEdition | undefined {
-    const aliases = PROGRAM_ALIASES[programName] ?? [programName];
-    const match = aliases.map((alias) => curricula.programs.find((program) => normalizeName(program.program) === normalizeName(alias))).find(Boolean)
-      ?? aliases.map((alias) => curricula.programs.find((program) => {
-        const candidate = normalizeName(program.program);
-        const normalized = normalizeName(alias);
-        return candidate.includes(normalized) || normalized.includes(candidate);
-      })).find(Boolean);
+    const match = findProgram(programName);
     if (!match) return undefined;
     const sorted = [...match.editions].sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
     return sorted.find((edition) => new Date(edition.startDate) >= referenceDate) ?? sorted.at(-1);
