@@ -91,3 +91,112 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
     ]
   }
 ];
+
+const PROFILE_QUESTIONS: Record<string, DiagnosticQuestion[]> = {
+  "tech-pro": [
+    {
+      id: "tech-role",
+      message: "Ya que actualmente trabaja en tecnología, ¿en qué área se desempeña principalmente?",
+      advisorTip: "Reconoce primero su experiencia actual. Así puedes presentar el programa como evolución profesional y no como una formación desde cero.",
+      options: [
+        { id: "analytics", label: "Analítica, inteligencia de negocios o Power BI", helper: "Trabaja con reportes, indicadores o visualización.", tags: ["analytics", "intermediate"] },
+        { id: "data-engineering", label: "Ingeniería de datos, bases de datos o plataformas", helper: "Construye pipelines, integra información o administra datos.", tags: ["data-engineering", "technical", "advanced"] },
+        { id: "development", label: "Desarrollo de software o aplicaciones", helper: "Programa y puede avanzar hacia soluciones de IA.", tags: ["ai-apps", "technical", "advanced"] },
+        { id: "cloud", label: "Nube, infraestructura o arquitectura", helper: "Trabaja con plataformas y diseño de soluciones.", tags: ["cloud", "architecture", "advanced"] },
+        { id: "leadership", label: "Liderazgo técnico, producto o gestión de equipos", helper: "Necesita criterio estratégico y aplicación empresarial.", tags: ["architecture", "corporate", "advanced"] }
+      ]
+    },
+    {
+      id: "tech-next-step",
+      message: "¿Cuál sería el siguiente salto profesional que quiere lograr desde su experiencia actual?",
+      advisorTip: "Busca la brecha entre lo que ya sabe y el rol o proyecto que quiere asumir. Esa brecha es el argumento de valor.",
+      options: [
+        { id: "specialize", label: "Especializarse más en su área actual", helper: "Busca profundidad técnica y proyectos más complejos.", tags: ["specialization", "advanced", "full-program"] },
+        { id: "ai", label: "Incorporar IA y agentes a su perfil", helper: "Quiere complementar su experiencia con soluciones inteligentes.", tags: ["ai-apps", "agents", "technical"] },
+        { id: "architect", label: "Pasar a arquitectura o liderazgo técnico", helper: "Busca diseñar soluciones y tomar decisiones de alto nivel.", tags: ["architecture", "advanced"] },
+        { id: "certify", label: "Dominar o certificarse en una plataforma", helper: "Tiene una tecnología o nube específica como prioridad.", tags: ["cloud", "certification", "specialization"] }
+      ]
+    }
+  ],
+  "career-switcher": [
+    {
+      id: "transferable-base",
+      message: "Pensando en el cambio de perfil, ¿qué conocimientos o experiencia puede aprovechar como punto de partida?",
+      advisorTip: "Haz visible lo que la persona ya trae. Esto reduce el miedo al cambio y ayuda a elegir una ruta realista.",
+      options: [
+        { id: "none", label: "Empieza desde cero en tecnología", helper: "Necesita fundamentos, acompañamiento y una ruta progresiva.", tags: ["beginner", "full-program", "career"] },
+        { id: "office", label: "Maneja Excel, reportes o información del negocio", helper: "Tiene una base útil para comenzar por analítica.", tags: ["analytics", "beginner", "career"] },
+        { id: "business", label: "Viene de administración, marketing u otra área de negocio", helper: "Puede comenzar aplicando IA y automatización en su campo.", tags: ["business-ai", "automation", "beginner"] },
+        { id: "technical", label: "Ya estudió programación, datos o tecnología", helper: "Puede asumir una ruta técnica con mayor profundidad.", tags: ["technical", "intermediate", "career"] }
+      ]
+    },
+    {
+      id: "career-goal",
+      message: "¿Qué resultado haría que este cambio profesional valiera la pena para esa persona?",
+      advisorTip: "Conecta la recomendación con una meta concreta: empleo, promoción, portafolio o aplicación inmediata.",
+      options: [
+        { id: "first-job", label: "Conseguir su primera oportunidad en tecnología", helper: "Necesita una ruta completa y construir evidencia práctica.", tags: ["career", "portfolio", "full-program"] },
+        { id: "promotion", label: "Acceder a un cargo mejor remunerado o especializado", helper: "Busca habilidades diferenciadoras y profundidad.", tags: ["specialization", "advanced", "full-program"] },
+        { id: "current-role", label: "Aplicar tecnología en el trabajo que ya tiene", helper: "Prioriza productividad y resultados inmediatos.", tags: ["business-ai", "automation", "short-format"] },
+        { id: "explore", label: "Explorar antes de decidir un cambio completo", helper: "Conviene comenzar con una experiencia corta y aplicada.", tags: ["guided", "beginner", "short-format"] }
+      ]
+    }
+  ],
+  student: [
+    {
+      id: "student-area",
+      message: "¿Qué está estudiando actualmente y desde qué área quiere acercarse a tecnología?",
+      advisorTip: "Relaciona el programa con su carrera actual para que lo perciba como una ventaja profesional y no como un camino separado.",
+      options: [
+        { id: "systems", label: "Sistemas, software o informática", helper: "Puede avanzar hacia desarrollo, datos e IA.", tags: ["technical", "ai-apps", "intermediate"] },
+        { id: "engineering", label: "Ingeniería, matemáticas o ciencias", helper: "Tiene bases analíticas para datos y modelos.", tags: ["analytics", "data-engineering", "intermediate"] },
+        { id: "business", label: "Administración, economía, marketing o negocios", helper: "Puede aplicar analítica e IA a decisiones empresariales.", tags: ["analytics", "business-ai", "beginner"] },
+        { id: "other", label: "Otra carrera o todavía está explorando", helper: "Necesita una entrada amigable y orientación.", tags: ["beginner", "guided"] }
+      ]
+    },
+    {
+      id: "student-goal",
+      message: "¿Qué quiere obtener antes de terminar sus estudios?",
+      advisorTip: "En estudiantes funciona mejor vender una ventaja demostrable: proyecto, portafolio, práctica o primera experiencia laboral.",
+      options: [
+        { id: "portfolio", label: "Construir proyectos para su portafolio", helper: "Quiere demostrar lo que sabe hacer.", tags: ["portfolio", "full-program"] },
+        { id: "job", label: "Prepararse para prácticas o su primer empleo", helper: "Necesita una ruta aplicable al mercado laboral.", tags: ["career", "portfolio", "full-program"] },
+        { id: "complement", label: "Complementar su carrera con una habilidad tecnológica", helper: "Busca diferenciarse sin cambiar necesariamente de profesión.", tags: ["business-ai", "analytics", "specialization"] },
+        { id: "short", label: "Aprender una herramienta puntual rápidamente", helper: "Prefiere una experiencia corta y concreta.", tags: ["short-format", "beginner"] }
+      ]
+    }
+  ],
+  corporate: [
+    {
+      id: "corporate-need",
+      message: "¿Qué problema o resultado necesita resolver la empresa con esta capacitación?",
+      advisorTip: "Lleva la conversación a impacto empresarial: tiempo, productividad, capacidad técnica o ejecución de proyectos.",
+      options: [
+        { id: "productivity", label: "Mejorar productividad y automatizar tareas", helper: "El equipo necesita aplicar herramientas inmediatamente.", tags: ["automation", "business-ai", "corporate"] },
+        { id: "analytics", label: "Tomar mejores decisiones con datos", helper: "Busca fortalecer análisis, indicadores y visualización.", tags: ["analytics", "corporate"] },
+        { id: "technical", label: "Fortalecer las capacidades del equipo técnico", helper: "Requiere profundidad en datos, desarrollo o IA.", tags: ["technical", "advanced", "full-program"] },
+        { id: "cloud", label: "Adoptar o profundizar una plataforma de nube", helper: "La tecnología usada por la empresa será decisiva.", tags: ["cloud", "architecture", "corporate"] },
+        { id: "ai", label: "Implementar soluciones de IA o agentes", helper: "Quiere pasar de exploración a casos de uso reales.", tags: ["ai-apps", "agents", "corporate"] }
+      ]
+    },
+    {
+      id: "corporate-audience",
+      message: "¿Quiénes recibirían la capacitación y qué nivel tienen actualmente?",
+      advisorTip: "La composición del grupo define la profundidad. Si es mixto, identifica el nivel de la mayoría y el resultado mínimo común.",
+      options: [
+        { id: "nontechnical", label: "Equipo no técnico o administrativo", helper: "Necesita lenguaje accesible y aplicación al negocio.", tags: ["business-ai", "beginner", "corporate"] },
+        { id: "analysts", label: "Analistas o usuarios de datos", helper: "Puede profundizar en visualización, analítica e ingeniería.", tags: ["analytics", "intermediate", "corporate"] },
+        { id: "developers", label: "Desarrolladores, ingenieros o especialistas", helper: "Puede abordar programas técnicos y avanzados.", tags: ["technical", "advanced", "corporate"] },
+        { id: "leaders", label: "Líderes, arquitectos o tomadores de decisión", helper: "Conviene orientar a estrategia, arquitectura y gobierno.", tags: ["architecture", "advanced", "corporate"] },
+        { id: "mixed", label: "Es un grupo con niveles mezclados", helper: "Requiere nivelación y una ruta común bien delimitada.", tags: ["guided", "corporate"] }
+      ]
+    }
+  ]
+};
+
+export const getDiagnosticQuestions = (profileId: string): DiagnosticQuestion[] => {
+  const profileQuestions = PROFILE_QUESTIONS[profileId];
+  if (!profileQuestions) return DIAGNOSTIC_QUESTIONS;
+  const commonQuestions = DIAGNOSTIC_QUESTIONS.filter((question) => ["interest", "ecosystem", "depth"].includes(question.id));
+  return [...profileQuestions, ...commonQuestions];
+};

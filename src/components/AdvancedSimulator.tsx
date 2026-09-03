@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowLeft, BookOpen, CalendarPlus, Check, Copy, MessageCircle, RotateCcw, Sparkles, Target } from "lucide-react";
-import { DIAGNOSTIC_QUESTIONS, type DiagnosticAnswer } from "../data/diagnosticFlow";
+import { getDiagnosticQuestions, type DiagnosticAnswer, type DiagnosticOption } from "../data/diagnosticFlow";
 import { buildWhatsAppMessage, recommendPrograms } from "../services/recommendationEngine";
 import { curriculaService } from "../services/curriculaService";
 import "./AdvancedSimulator.css";
@@ -13,13 +13,14 @@ interface Props {
 export function AdvancedSimulator({ profileId, onViewProgram }: Props) {
   const [answers, setAnswers] = useState<DiagnosticAnswer[]>([]);
   const [copied, setCopied] = useState(false);
-  const complete = answers.length === DIAGNOSTIC_QUESTIONS.length;
-  const question = DIAGNOSTIC_QUESTIONS[answers.length];
+  const questions = useMemo(() => getDiagnosticQuestions(profileId), [profileId]);
+  const complete = answers.length === questions.length;
+  const question = questions[answers.length];
   const recommendations = useMemo(() => complete ? recommendPrograms(profileId, answers) : [], [answers, complete, profileId]);
   const message = useMemo(() => buildWhatsAppMessage(recommendations, answers), [recommendations, answers]);
-  const progress = Math.round((answers.length / DIAGNOSTIC_QUESTIONS.length) * 100);
+  const progress = Math.round((answers.length / questions.length) * 100);
 
-  const choose = (option: typeof question.options[number]) => {
+  const choose = (option: DiagnosticOption) => {
     setAnswers((current) => [...current, { questionId: question.id, optionId: option.id, label: option.label, tags: option.tags }]);
   };
 
@@ -41,7 +42,7 @@ export function AdvancedSimulator({ profileId, onViewProgram }: Props) {
     </header>
 
     <div className="diagnostic-progress" aria-label={`Progreso ${progress}%`}><span style={{ width: `${progress}%` }}/></div>
-    <div className="diagnostic-progress-label"><span>{complete ? "Diagnóstico completo" : `Pregunta ${answers.length + 1} de ${DIAGNOSTIC_QUESTIONS.length}`}</span><strong>{progress}%</strong></div>
+    <div className="diagnostic-progress-label"><span>{complete ? "Diagnóstico completo" : `Pregunta ${answers.length + 1} de ${questions.length}`}</span><strong>{progress}%</strong></div>
 
     {!complete && question && <div className="diagnostic-layout">
       <article className="diagnostic-question">
