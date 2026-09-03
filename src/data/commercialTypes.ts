@@ -29,6 +29,8 @@ export interface CommercialProgram {
 
 export interface CommercialSession {
   accessToken: string;
+  refreshToken?: string;
+  expiresAt?: number;
   email: string;
   userId?: string;
 }
