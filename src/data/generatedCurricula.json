@@ -1,0 +1,2674 @@
+{
+  "sourceUrl": "https://docs.google.com/spreadsheets/d/1gh-Fat339GkeooWfyDCxrePNxPzg88lEbmSMGUgsBuk/export?format=xlsx",
+  "syncedAt": "2026-09-03T19:24:33.366Z",
+  "rule": "Fecha de la Sesión 1",
+  "programs": [
+    {
+      "program": "Agentes con Azure",
+      "selectedEdition": {
+        "key": "Agentes con Azure Ed. 3-1-2025-10-30T00:00:00.000Z",
+        "program": "Agentes con Azure",
+        "edition": "Agentes con Azure Ed. 3",
+        "startDate": "2025-10-30T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 151
+      },
+      "editions": [
+        {
+          "key": "Agentes con Azure-1-2025-08-04T00:00:00.000Z",
+          "program": "Agentes con Azure",
+          "edition": "Agentes con Azure",
+          "startDate": "2025-08-04T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 149
+        },
+        {
+          "key": "Agentes con Azure Ed. 2-1-2025-09-15T00:00:00.000Z",
+          "program": "Agentes con Azure",
+          "edition": "Agentes con Azure Ed. 2",
+          "startDate": "2025-09-15T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 150
+        },
+        {
+          "key": "Agentes con Azure Ed. 3-1-2025-10-30T00:00:00.000Z",
+          "program": "Agentes con Azure",
+          "edition": "Agentes con Azure Ed. 3",
+          "startDate": "2025-10-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 151
+        }
+      ]
+    },
+    {
+      "program": "AI Agentic Engineer",
+      "selectedEdition": {
+        "key": "AI Agentic Engineer Ed. 3-1-2026-09-02T00:00:00.000Z",
+        "program": "AI Agentic Engineer",
+        "edition": "AI Agentic Engineer Ed. 3",
+        "startDate": "2026-09-02T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 107
+      },
+      "editions": [
+        {
+          "key": "AI Agentic Engineer-1-2026-06-03T00:00:00.000Z",
+          "program": "AI Agentic Engineer",
+          "edition": "AI Agentic Engineer",
+          "startDate": "2026-06-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 105
+        },
+        {
+          "key": "AI Agentic Engineer Ed. 2-1-2026-07-22T00:00:00.000Z",
+          "program": "AI Agentic Engineer",
+          "edition": "AI Agentic Engineer Ed. 2",
+          "startDate": "2026-07-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 106
+        },
+        {
+          "key": "AI Agentic Engineer Ed. 3-1-2026-09-02T00:00:00.000Z",
+          "program": "AI Agentic Engineer",
+          "edition": "AI Agentic Engineer Ed. 3",
+          "startDate": "2026-09-02T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 107
+        }
+      ]
+    },
+    {
+      "program": "AI Engineer",
+      "selectedEdition": {
+        "key": "AI Engineer 18-1-2026-09-30T00:00:00.000Z",
+        "program": "AI Engineer",
+        "edition": "AI Engineer 18",
+        "startDate": "2026-09-30T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 87
+      },
+      "editions": [
+        {
+          "key": "AI Engineer  9-1-2025-06-04T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer  9",
+          "startDate": "2025-06-04T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 77
+        },
+        {
+          "key": "AI Engineer 10-1-2025-07-14T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 10",
+          "startDate": "2025-07-14T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 78
+        },
+        {
+          "key": "AI Engineer 11-1-2025-09-03T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 11",
+          "startDate": "2025-09-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 79
+        },
+        {
+          "key": "AI Engineer 12-1-2025-11-03T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 12",
+          "startDate": "2025-11-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 80
+        },
+        {
+          "key": "AI Engineer 13-1-2026-01-28T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 13",
+          "startDate": "2026-01-28T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 81
+        },
+        {
+          "key": "AI Engineer 14-1-2026-03-09T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 14",
+          "startDate": "2026-03-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 82
+        },
+        {
+          "key": "AI Engineer 15-1-2026-04-29T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 15",
+          "startDate": "2026-04-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 83
+        },
+        {
+          "key": "AI Engineer 16-1-2026-06-17T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 16",
+          "startDate": "2026-06-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 84
+        },
+        {
+          "key": "AI Engineer 17-1-2026-08-05T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 17",
+          "startDate": "2026-08-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 85
+        },
+        {
+          "key": "NEW AI Engineer 17-1-2026-08-05T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "NEW AI Engineer 17",
+          "startDate": "2026-08-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 86
+        },
+        {
+          "key": "AI Engineer 18-1-2026-09-30T00:00:00.000Z",
+          "program": "AI Engineer",
+          "edition": "AI Engineer 18",
+          "startDate": "2026-09-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 87
+        }
+      ]
+    },
+    {
+      "program": "AI Marketing NV",
+      "selectedEdition": {
+        "key": "AI Marketing NV-1-2026-06-23T00:00:00.000Z",
+        "program": "AI Marketing NV",
+        "edition": "AI Marketing NV",
+        "startDate": "2026-06-23T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 147
+      },
+      "editions": [
+        {
+          "key": "AI Marketing NV-1-2026-06-23T00:00:00.000Z",
+          "program": "AI Marketing NV",
+          "edition": "AI Marketing NV",
+          "startDate": "2026-06-23T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 147
+        }
+      ]
+    },
+    {
+      "program": "AI Prompt Eng",
+      "selectedEdition": {
+        "key": "AI Prompt Eng 8-1-2025-03-17T00:00:00.000Z",
+        "program": "AI Prompt Eng",
+        "edition": "AI Prompt Eng 8",
+        "startDate": "2025-03-17T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 76
+      },
+      "editions": [
+        {
+          "key": "AI Prompt Eng 6-1-2024-11-06T00:00:00.000Z",
+          "program": "AI Prompt Eng",
+          "edition": "AI Prompt Eng 6",
+          "startDate": "2024-11-06T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 74
+        },
+        {
+          "key": "AI Prompt Eng 7-1-2024-12-16T00:00:00.000Z",
+          "program": "AI Prompt Eng",
+          "edition": "AI Prompt Eng 7",
+          "startDate": "2024-12-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 75
+        },
+        {
+          "key": "AI Prompt Eng 8-1-2025-03-17T00:00:00.000Z",
+          "program": "AI Prompt Eng",
+          "edition": "AI Prompt Eng 8",
+          "startDate": "2025-03-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 76
+        }
+      ]
+    },
+    {
+      "program": "AI Prompt Eng.",
+      "selectedEdition": {
+        "key": "AI Prompt Eng. 5-1-2024-08-14T00:00:00.000Z",
+        "program": "AI Prompt Eng.",
+        "edition": "AI Prompt Eng. 5",
+        "startDate": "2024-08-14T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 73
+      },
+      "editions": [
+        {
+          "key": "AI Prompt Eng. 1-1-2023-12-19T00:00:00.000Z",
+          "program": "AI Prompt Eng.",
+          "edition": "AI Prompt Eng. 1",
+          "startDate": "2023-12-19T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 69
+        },
+        {
+          "key": "AI Prompt Eng. 2-1-2024-02-23T00:00:00.000Z",
+          "program": "AI Prompt Eng.",
+          "edition": "AI Prompt Eng. 2",
+          "startDate": "2024-02-23T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 70
+        },
+        {
+          "key": "AI Prompt Eng. 3-1-2024-04-26T00:00:00.000Z",
+          "program": "AI Prompt Eng.",
+          "edition": "AI Prompt Eng. 3",
+          "startDate": "2024-04-26T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 71
+        },
+        {
+          "key": "AI Prompt Eng. 4-1-2024-06-21T00:00:00.000Z",
+          "program": "AI Prompt Eng.",
+          "edition": "AI Prompt Eng. 4",
+          "startDate": "2024-06-21T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 72
+        },
+        {
+          "key": "AI Prompt Eng. 5-1-2024-08-14T00:00:00.000Z",
+          "program": "AI Prompt Eng.",
+          "edition": "AI Prompt Eng. 5",
+          "startDate": "2024-08-14T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 73
+        }
+      ]
+    },
+    {
+      "program": "AI Solution Architect",
+      "selectedEdition": {
+        "key": "AI Solution Architect Ed. 4-1-2026-09-17T00:00:00.000Z",
+        "program": "AI Solution Architect",
+        "edition": "AI Solution Architect Ed. 4",
+        "startDate": "2026-09-17T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 104
+      },
+      "editions": [
+        {
+          "key": "AI Solution Architect-1-2026-05-23T00:00:00.000Z",
+          "program": "AI Solution Architect",
+          "edition": "AI Solution Architect",
+          "startDate": "2026-05-23T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 101
+        },
+        {
+          "key": "AI Solution Architect Ed. 2-1-2026-06-30T00:00:00.000Z",
+          "program": "AI Solution Architect",
+          "edition": "AI Solution Architect Ed. 2",
+          "startDate": "2026-06-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 102
+        },
+        {
+          "key": "AI Solution Architect Ed. 3-1-2026-08-08T00:00:00.000Z",
+          "program": "AI Solution Architect",
+          "edition": "AI Solution Architect Ed. 3",
+          "startDate": "2026-08-08T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 103
+        },
+        {
+          "key": "AI Solution Architect Ed. 4-1-2026-09-17T00:00:00.000Z",
+          "program": "AI Solution Architect",
+          "edition": "AI Solution Architect Ed. 4",
+          "startDate": "2026-09-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 104
+        }
+      ]
+    },
+    {
+      "program": "Airflow Expert Automatización y",
+      "selectedEdition": {
+        "key": "Airflow Expert Automatización y-1-2024-08-01T00:00:00.000Z",
+        "program": "Airflow Expert Automatización y",
+        "edition": "Airflow Expert Automatización y",
+        "startDate": "2024-08-01T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 182
+      },
+      "editions": [
+        {
+          "key": "Airflow Expert Automatización y-1-2024-08-01T00:00:00.000Z",
+          "program": "Airflow Expert Automatización y",
+          "edition": "Airflow Expert Automatización y",
+          "startDate": "2024-08-01T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 182
+        }
+      ]
+    },
+    {
+      "program": "Antigravity y Gemini",
+      "selectedEdition": {
+        "key": "Antigravity y Gemini-1-2026-03-30T00:00:00.000Z",
+        "program": "Antigravity y Gemini",
+        "edition": "Antigravity y Gemini",
+        "startDate": "2026-03-30T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 138
+      },
+      "editions": [
+        {
+          "key": "Antigravity y Gemini-1-2026-03-30T00:00:00.000Z",
+          "program": "Antigravity y Gemini",
+          "edition": "Antigravity y Gemini",
+          "startDate": "2026-03-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 138
+        }
+      ]
+    },
+    {
+      "program": "AWS DE",
+      "selectedEdition": {
+        "key": "AWS DE 14-1-2026-07-02T00:00:00.000Z",
+        "program": "AWS DE",
+        "edition": "AWS DE 14",
+        "startDate": "2026-07-02T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 214
+      },
+      "editions": [
+        {
+          "key": "AWS DE 14-1-2026-07-02T00:00:00.000Z",
+          "program": "AWS DE",
+          "edition": "AWS DE 14",
+          "startDate": "2026-07-02T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 214
+        }
+      ]
+    },
+    {
+      "program": "AWS DevOps",
+      "selectedEdition": {
+        "key": "AWS DevOps-1-2023-10-21T00:00:00.000Z",
+        "program": "AWS DevOps",
+        "edition": "AWS DevOps",
+        "startDate": "2023-10-21T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 20
+      },
+      "editions": [
+        {
+          "key": "AWS DevOps-1-2023-10-21T00:00:00.000Z",
+          "program": "AWS DevOps",
+          "edition": "AWS DevOps",
+          "startDate": "2023-10-21T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 20
+        }
+      ]
+    },
+    {
+      "program": "AWSCA",
+      "selectedEdition": {
+        "key": "AWSCA3-1-2024-11-28T00:00:00.000Z",
+        "program": "AWSCA",
+        "edition": "AWSCA3",
+        "startDate": "2024-11-28T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 211
+      },
+      "editions": [
+        {
+          "key": "AWSCA1-1-2024-05-09T00:00:00.000Z",
+          "program": "AWSCA",
+          "edition": "AWSCA1",
+          "startDate": "2024-05-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 209
+        },
+        {
+          "key": "AWSCA2-1-2024-07-23T00:00:00.000Z",
+          "program": "AWSCA",
+          "edition": "AWSCA2",
+          "startDate": "2024-07-23T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 210
+        },
+        {
+          "key": "AWSCA3-1-2024-11-28T00:00:00.000Z",
+          "program": "AWSCA",
+          "edition": "AWSCA3",
+          "startDate": "2024-11-28T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 211
+        }
+      ]
+    },
+    {
+      "program": "Azure AI Engineer",
+      "selectedEdition": {
+        "key": "Azure AI Engineer-1-2025-05-06T00:00:00.000Z",
+        "program": "Azure AI Engineer",
+        "edition": "Azure AI Engineer",
+        "startDate": "2025-05-06T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 124
+      },
+      "editions": [
+        {
+          "key": "Azure AI Engineer-1-2025-05-06T00:00:00.000Z",
+          "program": "Azure AI Engineer",
+          "edition": "Azure AI Engineer",
+          "startDate": "2025-05-06T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 124
+        }
+      ]
+    },
+    {
+      "program": "BigQuery & PowerBI",
+      "selectedEdition": {
+        "key": "BigQuery & PowerBI-1-2024-01-16T00:00:00.000Z",
+        "program": "BigQuery & PowerBI",
+        "edition": "BigQuery & PowerBI",
+        "startDate": "2024-01-16T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 185
+      },
+      "editions": [
+        {
+          "key": "BigQuery & PowerBI-1-2024-01-16T00:00:00.000Z",
+          "program": "BigQuery & PowerBI",
+          "edition": "BigQuery & PowerBI",
+          "startDate": "2024-01-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 185
+        }
+      ]
+    },
+    {
+      "program": "CIISA",
+      "selectedEdition": {
+        "key": "CIISA-1-2025-08-18T00:00:00.000Z",
+        "program": "CIISA",
+        "edition": "CIISA",
+        "startDate": "2025-08-18T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 207
+      },
+      "editions": [
+        {
+          "key": "CIISA-1-2025-08-18T00:00:00.000Z",
+          "program": "CIISA",
+          "edition": "CIISA",
+          "startDate": "2025-08-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 207
+        }
+      ]
+    },
+    {
+      "program": "Claude Code",
+      "selectedEdition": {
+        "key": "Claude Code Ed. 5-1-2026-09-30T00:00:00.000Z",
+        "program": "Claude Code",
+        "edition": "Claude Code Ed. 5",
+        "startDate": "2026-09-30T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 144
+      },
+      "editions": [
+        {
+          "key": "Claude Code-1-2026-03-30T00:00:00.000Z",
+          "program": "Claude Code",
+          "edition": "Claude Code",
+          "startDate": "2026-03-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 139
+        },
+        {
+          "key": " Claude Code Ed. 2-1-2026-05-06T00:00:00.000Z",
+          "program": "Claude Code",
+          "edition": " Claude Code Ed. 2",
+          "startDate": "2026-05-06T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 140
+        },
+        {
+          "key": "Claude Code Ed. 3-1-2026-06-29T00:00:00.000Z",
+          "program": "Claude Code",
+          "edition": "Claude Code Ed. 3",
+          "startDate": "2026-06-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 141
+        },
+        {
+          "key": "Claude Code Ed. 3 New-1-2026-06-29T00:00:00.000Z",
+          "program": "Claude Code",
+          "edition": "Claude Code Ed. 3 New",
+          "startDate": "2026-06-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 142
+        },
+        {
+          "key": "Claude Code Ed. 4-1-2026-08-17T00:00:00.000Z",
+          "program": "Claude Code",
+          "edition": "Claude Code Ed. 4",
+          "startDate": "2026-08-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 143
+        },
+        {
+          "key": "Claude Code Ed. 5-1-2026-09-30T00:00:00.000Z",
+          "program": "Claude Code",
+          "edition": "Claude Code Ed. 5",
+          "startDate": "2026-09-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 144
+        }
+      ]
+    },
+    {
+      "program": "DA & Dashboards con IA",
+      "selectedEdition": {
+        "key": "DA & Dashboards con IA-1-2025-10-04T00:00:00.000Z",
+        "program": "DA & Dashboards con IA",
+        "edition": "DA & Dashboards con IA",
+        "startDate": "2025-10-04T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 176
+      },
+      "editions": [
+        {
+          "key": "DA & Dashboards con IA-1-2025-10-04T00:00:00.000Z",
+          "program": "DA & Dashboards con IA",
+          "edition": "DA & Dashboards con IA",
+          "startDate": "2025-10-04T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 176
+        }
+      ]
+    },
+    {
+      "program": "DAP",
+      "selectedEdition": {
+        "key": "Nuevo DAP23-1-2026-07-03T00:00:00.000Z",
+        "program": "DAP",
+        "edition": "Nuevo DAP23",
+        "startDate": "2026-07-03T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 206
+      },
+      "editions": [
+        {
+          "key": "DAP1-1-2022-09-27T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP1",
+          "startDate": "2022-09-27T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 63
+        },
+        {
+          "key": "DAP2-1-2022-12-09T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP2",
+          "startDate": "2022-12-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 68
+        },
+        {
+          "key": "DAP3-1-2023-01-16T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP3",
+          "startDate": "2023-01-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 186
+        },
+        {
+          "key": "DAP4-1-2023-03-09T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP4",
+          "startDate": "2023-03-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 187
+        },
+        {
+          "key": "DAP 5-1-2023-05-02T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP 5",
+          "startDate": "2023-05-02T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 188
+        },
+        {
+          "key": "DAP6-1-2023-06-10T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP6",
+          "startDate": "2023-06-10T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 189
+        },
+        {
+          "key": "DAP7-1-2023-07-22T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP7",
+          "startDate": "2023-07-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 190
+        },
+        {
+          "key": "DAP8-1-2023-09-15T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP8",
+          "startDate": "2023-09-15T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 191
+        },
+        {
+          "key": "DAP9-1-2023-11-20T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP9",
+          "startDate": "2023-11-20T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 192
+        },
+        {
+          "key": "DAP10-1-2023-12-18T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP10",
+          "startDate": "2023-12-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 193
+        },
+        {
+          "key": "DAP11-1-2024-01-31T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP11",
+          "startDate": "2024-01-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 194
+        },
+        {
+          "key": "DAP9-1-2024-02-26T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP9",
+          "startDate": "2024-02-26T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 192
+        },
+        {
+          "key": "DAP11-1-2024-02-26T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP11",
+          "startDate": "2024-02-26T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 194
+        },
+        {
+          "key": "DAP12-1-2024-03-06T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP12",
+          "startDate": "2024-03-06T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 195
+        },
+        {
+          "key": "DAP13-1-2024-04-10T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP13",
+          "startDate": "2024-04-10T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 196
+        },
+        {
+          "key": "DAP14-1-2024-05-29T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP14",
+          "startDate": "2024-05-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 197
+        },
+        {
+          "key": "DAP15-1-2024-07-10T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP15",
+          "startDate": "2024-07-10T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 198
+        },
+        {
+          "key": "DAP16-1-2024-08-21T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP16",
+          "startDate": "2024-08-21T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 199
+        },
+        {
+          "key": "DAP17-1-2024-10-28T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP17",
+          "startDate": "2024-10-28T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 200
+        },
+        {
+          "key": "DAP18-1-2024-12-16T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP18",
+          "startDate": "2024-12-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 201
+        },
+        {
+          "key": "DAP19-1-2025-02-19T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP19",
+          "startDate": "2025-02-19T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 202
+        },
+        {
+          "key": "DAP20-1-2025-04-30T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP20",
+          "startDate": "2025-04-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 203
+        },
+        {
+          "key": "DAP21-1-2025-08-04T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP21",
+          "startDate": "2025-08-04T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 204
+        },
+        {
+          "key": "DAP 22-1-2025-12-01T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "DAP 22",
+          "startDate": "2025-12-01T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 205
+        },
+        {
+          "key": "Nuevo DAP23-1-2026-07-03T00:00:00.000Z",
+          "program": "DAP",
+          "edition": "Nuevo DAP23",
+          "startDate": "2026-07-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 206
+        }
+      ]
+    },
+    {
+      "program": "DARP",
+      "selectedEdition": {
+        "key": "DARP5-1-2026-10-31T00:00:00.000Z",
+        "program": "DARP",
+        "edition": "DARP5",
+        "startDate": "2026-10-31T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 26
+      },
+      "editions": [
+        {
+          "key": "DARP1-1-2024-10-30T00:00:00.000Z",
+          "program": "DARP",
+          "edition": "DARP1",
+          "startDate": "2024-10-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 21
+        },
+        {
+          "key": "DARP2-1-2025-02-19T00:00:00.000Z",
+          "program": "DARP",
+          "edition": "DARP2",
+          "startDate": "2025-02-19T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 22
+        },
+        {
+          "key": "DARP3-1-2025-06-30T00:00:00.000Z",
+          "program": "DARP",
+          "edition": "DARP3",
+          "startDate": "2025-06-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 23
+        },
+        {
+          "key": "DARP4-1-2026-06-22T00:00:00.000Z",
+          "program": "DARP",
+          "edition": "DARP4",
+          "startDate": "2026-06-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 24
+        },
+        {
+          "key": "DARP5-1-2026-10-31T00:00:00.000Z",
+          "program": "DARP",
+          "edition": "DARP5",
+          "startDate": "2026-10-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 26
+        }
+      ]
+    },
+    {
+      "program": "Data Analytics con IA",
+      "selectedEdition": {
+        "key": " Data Analytics con IA-1-2026-05-04T00:00:00.000Z",
+        "program": "Data Analytics con IA",
+        "edition": " Data Analytics con IA",
+        "startDate": "2026-05-04T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 146
+      },
+      "editions": [
+        {
+          "key": " Data Analytics con IA-1-2026-05-04T00:00:00.000Z",
+          "program": "Data Analytics con IA",
+          "edition": " Data Analytics con IA",
+          "startDate": "2026-05-04T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 146
+        }
+      ]
+    },
+    {
+      "program": "Data Build Tool y Snowflake",
+      "selectedEdition": {
+        "key": "Data Build Tool y Snowflake-1-2024-12-05T00:00:00.000Z",
+        "program": "Data Build Tool y Snowflake",
+        "edition": "Data Build Tool y Snowflake",
+        "startDate": "2024-12-05T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 183
+      },
+      "editions": [
+        {
+          "key": "Data Build Tool y Snowflake-1-2024-12-05T00:00:00.000Z",
+          "program": "Data Build Tool y Snowflake",
+          "edition": "Data Build Tool y Snowflake",
+          "startDate": "2024-12-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 183
+        }
+      ]
+    },
+    {
+      "program": "Databricks",
+      "selectedEdition": {
+        "key": "Databricks15-1-2025-09-16T00:00:00.000Z",
+        "program": "Databricks",
+        "edition": "Databricks15",
+        "startDate": "2025-09-16T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 110
+      },
+      "editions": [
+        {
+          "key": "Databricks3-1-2023-12-19T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks3",
+          "startDate": "2023-12-19T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 91
+        },
+        {
+          "key": "Databricks4-1-2024-02-03T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks4",
+          "startDate": "2024-02-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 92
+        },
+        {
+          "key": "Databricks5-1-2024-03-05T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks5",
+          "startDate": "2024-03-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 93
+        },
+        {
+          "key": "Databricks6-1-2024-04-30T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks6",
+          "startDate": "2024-04-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 94
+        },
+        {
+          "key": "Databricks7-1-2024-06-13T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks7",
+          "startDate": "2024-06-13T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 95
+        },
+        {
+          "key": "Databricks8-1-2024-07-13T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks8",
+          "startDate": "2024-07-13T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 96
+        },
+        {
+          "key": "Databricks9-1-2024-08-10T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks9",
+          "startDate": "2024-08-10T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 97
+        },
+        {
+          "key": "Databricks10-1-2024-09-17T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks10",
+          "startDate": "2024-09-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 98
+        },
+        {
+          "key": "Databricks11-1-2024-11-30T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks11",
+          "startDate": "2024-11-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 99
+        },
+        {
+          "key": "Databricks12-1-2025-02-18T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks12",
+          "startDate": "2025-02-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 100
+        },
+        {
+          "key": "Databricks13-1-2025-05-06T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks13",
+          "startDate": "2025-05-06T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 108
+        },
+        {
+          "key": "Databricks14-1-2025-07-01T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks14",
+          "startDate": "2025-07-01T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 109
+        },
+        {
+          "key": "Databricks15-1-2025-09-16T00:00:00.000Z",
+          "program": "Databricks",
+          "edition": "Databricks15",
+          "startDate": "2025-09-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 110
+        }
+      ]
+    },
+    {
+      "program": "Databricks DE",
+      "selectedEdition": {
+        "key": "Databricks DE 16-1-2026-07-06T00:00:00.000Z",
+        "program": "Databricks DE",
+        "edition": "Databricks DE 16",
+        "startDate": "2026-07-06T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 212
+      },
+      "editions": [
+        {
+          "key": "Databricks DE 16-1-2026-07-06T00:00:00.000Z",
+          "program": "Databricks DE",
+          "edition": "Databricks DE 16",
+          "startDate": "2026-07-06T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 212
+        }
+      ]
+    },
+    {
+      "program": "DEP",
+      "selectedEdition": {
+        "key": "DEP28-1-2025-08-05T00:00:00.000Z",
+        "program": "DEP",
+        "edition": "DEP28",
+        "startDate": "2025-08-05T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 56
+      },
+      "editions": [
+        {
+          "key": "DEP6-2-2022-06-07T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP6",
+          "startDate": "2022-06-07T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 8
+        },
+        {
+          "key": "DEP7-2-2022-08-18T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP7",
+          "startDate": "2022-08-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 9
+        },
+        {
+          "key": "DEP1-1-2022-10-29T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP1",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 3
+        },
+        {
+          "key": "DEP2-1-2022-10-29T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP2",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 4
+        },
+        {
+          "key": "DEP3-1-2022-10-29T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP3",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 5
+        },
+        {
+          "key": "DEP4-1-2022-10-29T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP4",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 6
+        },
+        {
+          "key": "DEP5-1-2022-10-29T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP5",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 7
+        },
+        {
+          "key": "DEP8-1-2022-10-29T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP8",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 14
+        },
+        {
+          "key": "DEP9-2-2022-12-13T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP9",
+          "startDate": "2022-12-13T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 16
+        },
+        {
+          "key": "DEP10-2-2023-01-18T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP10",
+          "startDate": "2023-01-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 17
+        },
+        {
+          "key": "DEP11-2-2023-02-28T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP11",
+          "startDate": "2023-02-28T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 18
+        },
+        {
+          "key": "DEP 12-2-2023-04-18T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP 12",
+          "startDate": "2023-04-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 19
+        },
+        {
+          "key": "DEP13-2-2023-06-17T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP13",
+          "startDate": "2023-06-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 64
+        },
+        {
+          "key": "DEP14-1-2023-07-22T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP14",
+          "startDate": "2023-07-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 65
+        },
+        {
+          "key": "DEP15-1-2023-09-09T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP15",
+          "startDate": "2023-09-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 66
+        },
+        {
+          "key": "DEP16-1-2023-11-09T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP16",
+          "startDate": "2023-11-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 67
+        },
+        {
+          "key": "DEP17-1-2023-12-19T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP17",
+          "startDate": "2023-12-19T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 45
+        },
+        {
+          "key": "DEP18-1-2024-02-03T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP18",
+          "startDate": "2024-02-03T00:00:00.000Z",
+          "format": "En vivo",
+          "sheetId": 46
+        },
+        {
+          "key": "DEP19-1-2024-03-09T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP19",
+          "startDate": "2024-03-09T00:00:00.000Z",
+          "format": "En vivo",
+          "sheetId": 47
+        },
+        {
+          "key": "DEP20-1-2024-04-18T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP20",
+          "startDate": "2024-04-18T00:00:00.000Z",
+          "format": "En vivo",
+          "sheetId": 48
+        },
+        {
+          "key": "DEP21.-1-2024-05-25T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP21.",
+          "startDate": "2024-05-25T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 49
+        },
+        {
+          "key": "DEP22-1-2024-07-11T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP22",
+          "startDate": "2024-07-11T00:00:00.000Z",
+          "format": "En vivo",
+          "sheetId": 50
+        },
+        {
+          "key": "DEP23-1-2024-08-24T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP23",
+          "startDate": "2024-08-24T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 51
+        },
+        {
+          "key": "DEP24-1-2024-10-29T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP24",
+          "startDate": "2024-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 52
+        },
+        {
+          "key": "DEP25-1-2024-12-17T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP25",
+          "startDate": "2024-12-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 53
+        },
+        {
+          "key": "DEP26-1-2025-03-06T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP26",
+          "startDate": "2025-03-06T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 54
+        },
+        {
+          "key": "DEP27-1-2025-06-03T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP27",
+          "startDate": "2025-06-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 55
+        },
+        {
+          "key": "DEP28-1-2025-08-05T00:00:00.000Z",
+          "program": "DEP",
+          "edition": "DEP28",
+          "startDate": "2025-08-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 56
+        }
+      ]
+    },
+    {
+      "program": "DEP AI",
+      "selectedEdition": {
+        "key": "DEP AI 34-1-2026-11-03T00:00:00.000Z",
+        "program": "DEP AI",
+        "edition": "DEP AI 34",
+        "startDate": "2026-11-03T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 62
+      },
+      "editions": [
+        {
+          "key": "DEP AI 29-1-2025-12-02T00:00:00.000Z",
+          "program": "DEP AI",
+          "edition": "DEP AI 29",
+          "startDate": "2025-12-02T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 57
+        },
+        {
+          "key": "DEP AI 30-1-2026-01-31T00:00:00.000Z",
+          "program": "DEP AI",
+          "edition": "DEP AI 30",
+          "startDate": "2026-01-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 58
+        },
+        {
+          "key": "DEP AI 31-1-2026-03-31T00:00:00.000Z",
+          "program": "DEP AI",
+          "edition": "DEP AI 31",
+          "startDate": "2026-03-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 59
+        },
+        {
+          "key": "DEP AI 32-1-2026-06-13T00:00:00.000Z",
+          "program": "DEP AI",
+          "edition": "DEP AI 32",
+          "startDate": "2026-06-13T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 60
+        },
+        {
+          "key": "DEP AI 33-1-2026-08-27T00:00:00.000Z",
+          "program": "DEP AI",
+          "edition": "DEP AI 33",
+          "startDate": "2026-08-27T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 61
+        },
+        {
+          "key": "DEP AI 34-1-2026-11-03T00:00:00.000Z",
+          "program": "DEP AI",
+          "edition": "DEP AI 34",
+          "startDate": "2026-11-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 62
+        }
+      ]
+    },
+    {
+      "program": "DEP-AWS",
+      "selectedEdition": {
+        "key": "DEP-AWS 1-1-2023-01-23T00:00:00.000Z",
+        "program": "DEP-AWS",
+        "edition": "DEP-AWS 1",
+        "startDate": "2023-01-23T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 13
+      },
+      "editions": [
+        {
+          "key": "DEP-AWS 1-1-2023-01-23T00:00:00.000Z",
+          "program": "DEP-AWS",
+          "edition": "DEP-AWS 1",
+          "startDate": "2023-01-23T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 13
+        }
+      ]
+    },
+    {
+      "program": "DEP7-CURSO5-GCP",
+      "selectedEdition": {
+        "key": "DEP7-CURSO5-GCP-1-2023-01-26T00:00:00.000Z",
+        "program": "DEP7-CURSO5-GCP",
+        "edition": "DEP7-CURSO5-GCP",
+        "startDate": "2023-01-26T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 10
+      },
+      "editions": [
+        {
+          "key": "DEP7-CURSO5-GCP-1-2023-01-26T00:00:00.000Z",
+          "program": "DEP7-CURSO5-GCP",
+          "edition": "DEP7-CURSO5-GCP",
+          "startDate": "2023-01-26T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 10
+        }
+      ]
+    },
+    {
+      "program": "DEP7-CURSO6&7-AZURE",
+      "selectedEdition": {
+        "key": "DEP7-CURSO6&7-AZURE-1-2022-10-13T00:00:00.000Z",
+        "program": "DEP7-CURSO6&7-AZURE",
+        "edition": "DEP7-CURSO6&7-AZURE",
+        "startDate": "2022-10-13T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 15
+      },
+      "editions": [
+        {
+          "key": "DEP7-CURSO6&7-AZURE-1-2022-10-13T00:00:00.000Z",
+          "program": "DEP7-CURSO6&7-AZURE",
+          "edition": "DEP7-CURSO6&7-AZURE",
+          "startDate": "2022-10-13T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 15
+        }
+      ]
+    },
+    {
+      "program": "DSP",
+      "selectedEdition": {
+        "key": "DSP1-1-2023-01-25T00:00:00.000Z",
+        "program": "DSP",
+        "edition": "DSP1",
+        "startDate": "2023-01-25T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 208
+      },
+      "editions": [
+        {
+          "key": "DSP2-1-2022-10-29T00:00:00.000Z",
+          "program": "DSP",
+          "edition": "DSP2",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 216
+        },
+        {
+          "key": "DSP1-1-2023-01-25T00:00:00.000Z",
+          "program": "DSP",
+          "edition": "DSP1",
+          "startDate": "2023-01-25T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 208
+        }
+      ]
+    },
+    {
+      "program": "ENGLISH",
+      "selectedEdition": {
+        "key": "ENGLISH 1-1-2022-10-29T00:00:00.000Z",
+        "program": "ENGLISH",
+        "edition": "ENGLISH 1",
+        "startDate": "2022-10-29T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 217
+      },
+      "editions": [
+        {
+          "key": "ENGLISH 1-1-2022-10-29T00:00:00.000Z",
+          "program": "ENGLISH",
+          "edition": "ENGLISH 1",
+          "startDate": "2022-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 217
+        }
+      ]
+    },
+    {
+      "program": "Fabric & Databricks",
+      "selectedEdition": {
+        "key": "Fabric & Databricks-1-2025-08-27T00:00:00.000Z",
+        "program": "Fabric & Databricks",
+        "edition": "Fabric & Databricks",
+        "startDate": "2025-08-27T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 123
+      },
+      "editions": [
+        {
+          "key": "Fabric & Databricks-1-2025-08-27T00:00:00.000Z",
+          "program": "Fabric & Databricks",
+          "edition": "Fabric & Databricks",
+          "startDate": "2025-08-27T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 123
+        }
+      ]
+    },
+    {
+      "program": "Fabric DE",
+      "selectedEdition": {
+        "key": "Fabric DE 4-1-2025-09-16T00:00:00.000Z",
+        "program": "Fabric DE",
+        "edition": "Fabric DE 4",
+        "startDate": "2025-09-16T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 213
+      },
+      "editions": [
+        {
+          "key": "Fabric DE 4-1-2025-09-16T00:00:00.000Z",
+          "program": "Fabric DE",
+          "edition": "Fabric DE 4",
+          "startDate": "2025-09-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 213
+        }
+      ]
+    },
+    {
+      "program": "GCP - CLOUD",
+      "selectedEdition": {
+        "key": "GCP - CLOUD-1-2023-01-28T00:00:00.000Z",
+        "program": "GCP - CLOUD",
+        "edition": "GCP - CLOUD",
+        "startDate": "2023-01-28T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 11
+      },
+      "editions": [
+        {
+          "key": "GCP - CLOUD-1-2023-01-28T00:00:00.000Z",
+          "program": "GCP - CLOUD",
+          "edition": "GCP - CLOUD",
+          "startDate": "2023-01-28T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 11
+        }
+      ]
+    },
+    {
+      "program": "GCP Agentes",
+      "selectedEdition": {
+        "key": "GCP Agentes Ed. 5-1-2025-11-15T00:00:00.000Z",
+        "program": "GCP Agentes",
+        "edition": "GCP Agentes Ed. 5",
+        "startDate": "2025-11-15T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 174
+      },
+      "editions": [
+        {
+          "key": "GCP Agentes Ed. 4-1-2025-09-13T00:00:00.000Z",
+          "program": "GCP Agentes",
+          "edition": "GCP Agentes Ed. 4",
+          "startDate": "2025-09-13T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 173
+        },
+        {
+          "key": "GCP Agentes Ed. 5-1-2025-11-15T00:00:00.000Z",
+          "program": "GCP Agentes",
+          "edition": "GCP Agentes Ed. 5",
+          "startDate": "2025-11-15T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 174
+        }
+      ]
+    },
+    {
+      "program": "GCP DE",
+      "selectedEdition": {
+        "key": "GCP DE 18-1-2026-06-09T00:00:00.000Z",
+        "program": "GCP DE",
+        "edition": "GCP DE 18",
+        "startDate": "2026-06-09T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 215
+      },
+      "editions": [
+        {
+          "key": "GCP DE 18-1-2026-06-09T00:00:00.000Z",
+          "program": "GCP DE",
+          "edition": "GCP DE 18",
+          "startDate": "2026-06-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 215
+        }
+      ]
+    },
+    {
+      "program": "Hoja",
+      "selectedEdition": {
+        "key": "Hoja 38-1-2026-07-31T00:00:00.000Z",
+        "program": "Hoja",
+        "edition": "Hoja 38",
+        "startDate": "2026-07-31T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 122
+      },
+      "editions": [
+        {
+          "key": "Hoja 39-1-2025-10-22T00:00:00.000Z",
+          "program": "Hoja",
+          "edition": "Hoja 39",
+          "startDate": "2025-10-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 154
+        },
+        {
+          "key": "Hoja 40-1-2025-11-25T00:00:00.000Z",
+          "program": "Hoja",
+          "edition": "Hoja 40",
+          "startDate": "2025-11-25T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 155
+        },
+        {
+          "key": "Hoja 41-1-2025-11-28T00:00:00.000Z",
+          "program": "Hoja",
+          "edition": "Hoja 41",
+          "startDate": "2025-11-28T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 162
+        },
+        {
+          "key": "Hoja 37-1-2026-02-23T00:00:00.000Z",
+          "program": "Hoja",
+          "edition": "Hoja 37",
+          "startDate": "2026-02-23T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 112
+        },
+        {
+          "key": "Hoja 38-1-2026-07-31T00:00:00.000Z",
+          "program": "Hoja",
+          "edition": "Hoja 38",
+          "startDate": "2026-07-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 122
+        }
+      ]
+    },
+    {
+      "program": "IA Aplicada Admón Legal",
+      "selectedEdition": {
+        "key": "IA Aplicada Admón Legal -1-2026-09-03T00:00:00.000Z",
+        "program": "IA Aplicada Admón Legal",
+        "edition": "IA Aplicada Admón Legal ",
+        "startDate": "2026-09-03T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 145
+      },
+      "editions": [
+        {
+          "key": "IA Aplicada Admón Legal -1-2026-09-03T00:00:00.000Z",
+          "program": "IA Aplicada Admón Legal",
+          "edition": "IA Aplicada Admón Legal ",
+          "startDate": "2026-09-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 145
+        }
+      ]
+    },
+    {
+      "program": "MLOPs",
+      "selectedEdition": {
+        "key": "MLOPs 18-1-2026-10-29T00:00:00.000Z",
+        "program": "MLOPs",
+        "edition": "MLOPs 18",
+        "startDate": "2026-10-29T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 44
+      },
+      "editions": [
+        {
+          "key": "MLOPs 7-1-2024-06-22T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 7",
+          "startDate": "2024-06-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 33
+        },
+        {
+          "key": "MLOPs 8-1-2024-08-22T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 8",
+          "startDate": "2024-08-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 34
+        },
+        {
+          "key": "MLOPs 9-1-2024-10-29T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 9",
+          "startDate": "2024-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 35
+        },
+        {
+          "key": "MLOPs 10-1-2024-12-17T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 10",
+          "startDate": "2024-12-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 36
+        },
+        {
+          "key": "MLOPs 11-1-2025-02-18T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 11",
+          "startDate": "2025-02-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 37
+        },
+        {
+          "key": "MLOPs 12-1-2025-07-22T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 12",
+          "startDate": "2025-07-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 38
+        },
+        {
+          "key": "MLOPs 13-1-2025-10-07T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 13",
+          "startDate": "2025-10-07T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 39
+        },
+        {
+          "key": "MLOPs 14-1-2026-01-13T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 14",
+          "startDate": "2026-01-13T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 40
+        },
+        {
+          "key": "MLOPs 15.-1-2026-03-31T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 15.",
+          "startDate": "2026-03-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 41
+        },
+        {
+          "key": "MLOPs 16-1-2026-05-30T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 16",
+          "startDate": "2026-05-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 42
+        },
+        {
+          "key": "MLOPs 17-1-2026-08-04T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 17",
+          "startDate": "2026-08-04T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 43
+        },
+        {
+          "key": "MLOPs 18-1-2026-10-29T00:00:00.000Z",
+          "program": "MLOPs",
+          "edition": "MLOPs 18",
+          "startDate": "2026-10-29T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 44
+        }
+      ]
+    },
+    {
+      "program": "MLP",
+      "selectedEdition": {
+        "key": "MLP6-1-2024-02-08T00:00:00.000Z",
+        "program": "MLP",
+        "edition": "MLP6",
+        "startDate": "2024-02-08T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 32
+      },
+      "editions": [
+        {
+          "key": "MLP-1-2023-05-20T00:00:00.000Z",
+          "program": "MLP",
+          "edition": "MLP",
+          "startDate": "2023-05-20T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 27
+        },
+        {
+          "key": "MLP2-1-2023-07-22T00:00:00.000Z",
+          "program": "MLP",
+          "edition": "MLP2",
+          "startDate": "2023-07-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 28
+        },
+        {
+          "key": "MLP3-1-2023-09-09T00:00:00.000Z",
+          "program": "MLP",
+          "edition": "MLP3",
+          "startDate": "2023-09-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 29
+        },
+        {
+          "key": "MLP4-1-2023-11-09T00:00:00.000Z",
+          "program": "MLP",
+          "edition": "MLP4",
+          "startDate": "2023-11-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 30
+        },
+        {
+          "key": "MLP5-1-2023-12-19T00:00:00.000Z",
+          "program": "MLP",
+          "edition": "MLP5",
+          "startDate": "2023-12-19T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 31
+        },
+        {
+          "key": "MLP6-1-2024-02-08T00:00:00.000Z",
+          "program": "MLP",
+          "edition": "MLP6",
+          "startDate": "2024-02-08T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 32
+        }
+      ]
+    },
+    {
+      "program": "Nube AWS AI Practitioner",
+      "selectedEdition": {
+        "key": "Nube AWS AI Practitioner Ed. 2-1-2026-02-09T00:00:00.000Z",
+        "program": "Nube AWS AI Practitioner",
+        "edition": "Nube AWS AI Practitioner Ed. 2",
+        "startDate": "2026-02-09T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 117
+      },
+      "editions": [
+        {
+          "key": "Nube AWS AI Practitioner-1-2025-11-26T00:00:00.000Z",
+          "program": "Nube AWS AI Practitioner",
+          "edition": "Nube AWS AI Practitioner",
+          "startDate": "2025-11-26T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 116
+        },
+        {
+          "key": "Nube AWS AI Practitioner Ed. 2-1-2026-02-09T00:00:00.000Z",
+          "program": "Nube AWS AI Practitioner",
+          "edition": "Nube AWS AI Practitioner Ed. 2",
+          "startDate": "2026-02-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 117
+        }
+      ]
+    },
+    {
+      "program": "Nube Azure AI Engineer Associat",
+      "selectedEdition": {
+        "key": "Nube Azure AI Engineer Associat-1-2025-12-05T00:00:00.000Z",
+        "program": "Nube Azure AI Engineer Associat",
+        "edition": "Nube Azure AI Engineer Associat",
+        "startDate": "2025-12-05T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 111
+      },
+      "editions": [
+        {
+          "key": "Nube Azure AI Engineer Associat-1-2025-12-05T00:00:00.000Z",
+          "program": "Nube Azure AI Engineer Associat",
+          "edition": "Nube Azure AI Engineer Associat",
+          "startDate": "2025-12-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 111
+        }
+      ]
+    },
+    {
+      "program": "Nube Databricks AI Engineer",
+      "selectedEdition": {
+        "key": "Nube Databricks AI Engineer-1-2025-12-03T00:00:00.000Z",
+        "program": "Nube Databricks AI Engineer",
+        "edition": "Nube Databricks AI Engineer",
+        "startDate": "2025-12-03T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 120
+      },
+      "editions": [
+        {
+          "key": "Nube Databricks AI Engineer-1-2025-12-03T00:00:00.000Z",
+          "program": "Nube Databricks AI Engineer",
+          "edition": "Nube Databricks AI Engineer",
+          "startDate": "2025-12-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 120
+        }
+      ]
+    },
+    {
+      "program": "Nube Databricks AI Engineer Ed.",
+      "selectedEdition": {
+        "key": "Nube Databricks AI Engineer Ed.-1-2026-02-02T00:00:00.000Z",
+        "program": "Nube Databricks AI Engineer Ed.",
+        "edition": "Nube Databricks AI Engineer Ed.",
+        "startDate": "2026-02-02T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 121
+      },
+      "editions": [
+        {
+          "key": "Nube Databricks AI Engineer Ed.-1-2026-02-02T00:00:00.000Z",
+          "program": "Nube Databricks AI Engineer Ed.",
+          "edition": "Nube Databricks AI Engineer Ed.",
+          "startDate": "2026-02-02T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 121
+        }
+      ]
+    },
+    {
+      "program": "Nube Fabric Data Engineer",
+      "selectedEdition": {
+        "key": "Nube Fabric Data Engineer Ed. 3-1-2025-09-16T00:00:00.000Z",
+        "program": "Nube Fabric Data Engineer",
+        "edition": "Nube Fabric Data Engineer Ed. 3",
+        "startDate": "2025-09-16T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 127
+      },
+      "editions": [
+        {
+          "key": "Nube Fabric Data Engineer-1-2025-05-20T00:00:00.000Z",
+          "program": "Nube Fabric Data Engineer",
+          "edition": "Nube Fabric Data Engineer",
+          "startDate": "2025-05-20T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 125
+        },
+        {
+          "key": "Nube Fabric Data Engineer Ed. 2-1-2025-07-31T00:00:00.000Z",
+          "program": "Nube Fabric Data Engineer",
+          "edition": "Nube Fabric Data Engineer Ed. 2",
+          "startDate": "2025-07-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 126
+        },
+        {
+          "key": "Nube Fabric Data Engineer Ed. 3-1-2025-09-16T00:00:00.000Z",
+          "program": "Nube Fabric Data Engineer",
+          "edition": "Nube Fabric Data Engineer Ed. 3",
+          "startDate": "2025-09-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 127
+        }
+      ]
+    },
+    {
+      "program": "Nube Google Leader IA",
+      "selectedEdition": {
+        "key": "Nube Google Leader IA Ed. 3-1-2026-07-01T00:00:00.000Z",
+        "program": "Nube Google Leader IA",
+        "edition": "Nube Google Leader IA Ed. 3",
+        "startDate": "2026-07-01T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 115
+      },
+      "editions": [
+        {
+          "key": "Nube Google Leader IA Ed. 2-1-2026-02-25T00:00:00.000Z",
+          "program": "Nube Google Leader IA",
+          "edition": "Nube Google Leader IA Ed. 2",
+          "startDate": "2026-02-25T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 114
+        },
+        {
+          "key": "Nube Google Leader IA Ed. 3-1-2026-07-01T00:00:00.000Z",
+          "program": "Nube Google Leader IA",
+          "edition": "Nube Google Leader IA Ed. 3",
+          "startDate": "2026-07-01T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 115
+        }
+      ]
+    },
+    {
+      "program": "Nube Google Leader IA-",
+      "selectedEdition": {
+        "key": "Nube Google Leader IA--1-2025-12-10T00:00:00.000Z",
+        "program": "Nube Google Leader IA-",
+        "edition": "Nube Google Leader IA-",
+        "startDate": "2025-12-10T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 113
+      },
+      "editions": [
+        {
+          "key": "Nube Google Leader IA--1-2025-12-10T00:00:00.000Z",
+          "program": "Nube Google Leader IA-",
+          "edition": "Nube Google Leader IA-",
+          "startDate": "2025-12-10T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 113
+        }
+      ]
+    },
+    {
+      "program": "NUBES 4a ED (AGOSTO)",
+      "selectedEdition": {
+        "key": "NUBES 4a ED (AGOSTO)-17-2023-08-07T00:00:00.000Z",
+        "program": "NUBES 4a ED (AGOSTO)",
+        "edition": "NUBES 4a ED (AGOSTO)",
+        "startDate": "2023-08-07T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 220
+      },
+      "editions": [
+        {
+          "key": "NUBES 4a ED (AGOSTO)-1-2023-08-07T00:00:00.000Z",
+          "program": "NUBES 4a ED (AGOSTO)",
+          "edition": "NUBES 4a ED (AGOSTO)",
+          "startDate": "2023-08-07T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 220
+        },
+        {
+          "key": "NUBES 4a ED (AGOSTO)-9-2023-08-07T00:00:00.000Z",
+          "program": "NUBES 4a ED (AGOSTO)",
+          "edition": "NUBES 4a ED (AGOSTO)",
+          "startDate": "2023-08-07T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 220
+        },
+        {
+          "key": "NUBES 4a ED (AGOSTO)-17-2023-08-07T00:00:00.000Z",
+          "program": "NUBES 4a ED (AGOSTO)",
+          "edition": "NUBES 4a ED (AGOSTO)",
+          "startDate": "2023-08-07T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 220
+        }
+      ]
+    },
+    {
+      "program": "NV DARP",
+      "selectedEdition": {
+        "key": "NV DARP4-1-2026-08-22T00:00:00.000Z",
+        "program": "NV DARP",
+        "edition": "NV DARP4",
+        "startDate": "2026-08-22T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 25
+      },
+      "editions": [
+        {
+          "key": "NV DARP4-1-2026-08-22T00:00:00.000Z",
+          "program": "NV DARP",
+          "edition": "NV DARP4",
+          "startDate": "2026-08-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 25
+        }
+      ]
+    },
+    {
+      "program": "Power Apps & Automate",
+      "selectedEdition": {
+        "key": "Power Apps & Automate Ed. 2-1-2026-02-10T00:00:00.000Z",
+        "program": "Power Apps & Automate",
+        "edition": "Power Apps & Automate Ed. 2",
+        "startDate": "2026-02-10T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 119
+      },
+      "editions": [
+        {
+          "key": "Power Apps & Automate-1-2025-12-04T00:00:00.000Z",
+          "program": "Power Apps & Automate",
+          "edition": "Power Apps & Automate",
+          "startDate": "2025-12-04T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 118
+        },
+        {
+          "key": "Power Apps & Automate Ed. 2-1-2026-02-10T00:00:00.000Z",
+          "program": "Power Apps & Automate",
+          "edition": "Power Apps & Automate Ed. 2",
+          "startDate": "2026-02-10T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 119
+        }
+      ]
+    },
+    {
+      "program": "Programa N8N",
+      "selectedEdition": {
+        "key": "Programa N8N Ed.10-1-2026-01-14T00:00:00.000Z",
+        "program": "Programa N8N",
+        "edition": "Programa N8N Ed.10",
+        "startDate": "2026-01-14T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 137
+      },
+      "editions": [
+        {
+          "key": "Programa N8N Ed. 3-1-2025-05-05T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Programa N8N Ed. 3",
+          "startDate": "2025-05-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 130
+        },
+        {
+          "key": "Programa N8N Ed. 4-1-2025-06-02T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Programa N8N Ed. 4",
+          "startDate": "2025-06-02T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 131
+        },
+        {
+          "key": "Junio No. 2 Programa N8N Ed. 5-1-2025-06-17T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Junio No. 2 Programa N8N Ed. 5",
+          "startDate": "2025-06-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 132
+        },
+        {
+          "key": "Programa N8N Ed. 6-1-2025-07-14T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Programa N8N Ed. 6",
+          "startDate": "2025-07-14T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 133
+        },
+        {
+          "key": "Programa N8N Ed. 7-1-2025-08-19T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Programa N8N Ed. 7",
+          "startDate": "2025-08-19T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 134
+        },
+        {
+          "key": "Programa N8N Ed. 8-1-2025-09-22T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Programa N8N Ed. 8",
+          "startDate": "2025-09-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 135
+        },
+        {
+          "key": "Programa N8N Ed.9-1-2025-11-03T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Programa N8N Ed.9",
+          "startDate": "2025-11-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 136
+        },
+        {
+          "key": "Programa N8N Ed.10-1-2026-01-14T00:00:00.000Z",
+          "program": "Programa N8N",
+          "edition": "Programa N8N Ed.10",
+          "startDate": "2026-01-14T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 137
+        }
+      ]
+    },
+    {
+      "program": "Programa Presencial IA & MLOps",
+      "selectedEdition": {
+        "key": "Programa Presencial IA & MLOps-1-2026-02-10T00:00:00.000Z",
+        "program": "Programa Presencial IA & MLOps",
+        "edition": "Programa Presencial IA & MLOps",
+        "startDate": "2026-02-10T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 88
+      },
+      "editions": [
+        {
+          "key": "Programa Presencial IA & MLOps-1-2026-02-10T00:00:00.000Z",
+          "program": "Programa Presencial IA & MLOps",
+          "edition": "Programa Presencial IA & MLOps",
+          "startDate": "2026-02-10T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 88
+        }
+      ]
+    },
+    {
+      "program": "PRUEBADEP",
+      "selectedEdition": {
+        "key": "PRUEBADEP14-1-2023-07-18T00:00:00.000Z",
+        "program": "PRUEBADEP",
+        "edition": "PRUEBADEP14",
+        "startDate": "2023-07-18T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 219
+      },
+      "editions": [
+        {
+          "key": "PRUEBADEP14-1-2023-07-18T00:00:00.000Z",
+          "program": "PRUEBADEP",
+          "edition": "PRUEBADEP14",
+          "startDate": "2023-07-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 219
+        }
+      ]
+    },
+    {
+      "program": "PRUEBAMLP",
+      "selectedEdition": {
+        "key": "PRUEBAMLP2-1-2023-07-18T00:00:00.000Z",
+        "program": "PRUEBAMLP",
+        "edition": "PRUEBAMLP2",
+        "startDate": "2023-07-18T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 218
+      },
+      "editions": [
+        {
+          "key": "PRUEBAMLP2-1-2023-07-18T00:00:00.000Z",
+          "program": "PRUEBAMLP",
+          "edition": "PRUEBAMLP2",
+          "startDate": "2023-07-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 218
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes con AWS",
+      "selectedEdition": {
+        "key": "Taller Agentes con AWS Ed. 4-1-2025-11-20T00:00:00.000Z",
+        "program": "Taller Agentes con AWS",
+        "edition": "Taller Agentes con AWS Ed. 4",
+        "startDate": "2025-11-20T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 159
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes con AWS-1-2025-08-05T00:00:00.000Z",
+          "program": "Taller Agentes con AWS",
+          "edition": "Taller Agentes con AWS",
+          "startDate": "2025-08-05T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 156
+        },
+        {
+          "key": "Taller Agentes con AWS Ed. 2-1-2025-08-27T00:00:00.000Z",
+          "program": "Taller Agentes con AWS",
+          "edition": "Taller Agentes con AWS Ed. 2",
+          "startDate": "2025-08-27T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 157
+        },
+        {
+          "key": "Taller Agentes con AWS Ed. 3-1-2025-10-02T00:00:00.000Z",
+          "program": "Taller Agentes con AWS",
+          "edition": "Taller Agentes con AWS Ed. 3",
+          "startDate": "2025-10-02T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 158
+        },
+        {
+          "key": "Taller Agentes con AWS Ed. 4-1-2025-11-20T00:00:00.000Z",
+          "program": "Taller Agentes con AWS",
+          "edition": "Taller Agentes con AWS Ed. 4",
+          "startDate": "2025-11-20T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 159
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes con Databricks",
+      "selectedEdition": {
+        "key": "Taller Agentes con Databricks-1-2025-08-25T00:00:00.000Z",
+        "program": "Taller Agentes con Databricks",
+        "edition": "Taller Agentes con Databricks",
+        "startDate": "2025-08-25T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 160
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes con Databricks-1-2025-08-25T00:00:00.000Z",
+          "program": "Taller Agentes con Databricks",
+          "edition": "Taller Agentes con Databricks",
+          "startDate": "2025-08-25T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 160
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes con Databricks E",
+      "selectedEdition": {
+        "key": "Taller Agentes con Databricks E-1-2025-10-18T00:00:00.000Z",
+        "program": "Taller Agentes con Databricks E",
+        "edition": "Taller Agentes con Databricks E",
+        "startDate": "2025-10-18T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 161
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes con Databricks E-1-2025-10-18T00:00:00.000Z",
+          "program": "Taller Agentes con Databricks E",
+          "edition": "Taller Agentes con Databricks E",
+          "startDate": "2025-10-18T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 161
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes con LangChain",
+      "selectedEdition": {
+        "key": "Taller Agentes con LangChain-1-2025-11-14T00:00:00.000Z",
+        "program": "Taller Agentes con LangChain",
+        "edition": "Taller Agentes con LangChain",
+        "startDate": "2025-11-14T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 164
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes con LangChain-1-2025-11-14T00:00:00.000Z",
+          "program": "Taller Agentes con LangChain",
+          "edition": "Taller Agentes con LangChain",
+          "startDate": "2025-11-14T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 164
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes con LangGraph",
+      "selectedEdition": {
+        "key": "Taller Agentes con LangGraph-1-2025-11-15T00:00:00.000Z",
+        "program": "Taller Agentes con LangGraph",
+        "edition": "Taller Agentes con LangGraph",
+        "startDate": "2025-11-15T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 163
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes con LangGraph-1-2025-11-15T00:00:00.000Z",
+          "program": "Taller Agentes con LangGraph",
+          "edition": "Taller Agentes con LangGraph",
+          "startDate": "2025-11-15T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 163
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes IA - Real Time",
+      "selectedEdition": {
+        "key": "Taller Agentes IA - Real Time-1-2025-10-08T00:00:00.000Z",
+        "program": "Taller Agentes IA - Real Time",
+        "edition": "Taller Agentes IA - Real Time",
+        "startDate": "2025-10-08T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 180
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes IA - Real Time-1-2025-10-08T00:00:00.000Z",
+          "program": "Taller Agentes IA - Real Time",
+          "edition": "Taller Agentes IA - Real Time",
+          "startDate": "2025-10-08T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 180
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes IA - Real Time E",
+      "selectedEdition": {
+        "key": "Taller Agentes IA - Real Time E-1-2026-01-26T00:00:00.000Z",
+        "program": "Taller Agentes IA - Real Time E",
+        "edition": "Taller Agentes IA - Real Time E",
+        "startDate": "2026-01-26T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 181
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes IA - Real Time E-1-2026-01-26T00:00:00.000Z",
+          "program": "Taller Agentes IA - Real Time E",
+          "edition": "Taller Agentes IA - Real Time E",
+          "startDate": "2026-01-26T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 181
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes Para WhatsApp",
+      "selectedEdition": {
+        "key": "Taller Agentes Para WhatsApp-1-2025-07-17T00:00:00.000Z",
+        "program": "Taller Agentes Para WhatsApp",
+        "edition": "Taller Agentes Para WhatsApp",
+        "startDate": "2025-07-17T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 152
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes Para WhatsApp-1-2025-07-17T00:00:00.000Z",
+          "program": "Taller Agentes Para WhatsApp",
+          "edition": "Taller Agentes Para WhatsApp",
+          "startDate": "2025-07-17T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 152
+        }
+      ]
+    },
+    {
+      "program": "Taller Agentes Para WhatsApp Ed",
+      "selectedEdition": {
+        "key": "Taller Agentes Para WhatsApp Ed-1-2025-09-15T00:00:00.000Z",
+        "program": "Taller Agentes Para WhatsApp Ed",
+        "edition": "Taller Agentes Para WhatsApp Ed",
+        "startDate": "2025-09-15T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 153
+      },
+      "editions": [
+        {
+          "key": "Taller Agentes Para WhatsApp Ed-1-2025-09-15T00:00:00.000Z",
+          "program": "Taller Agentes Para WhatsApp Ed",
+          "edition": "Taller Agentes Para WhatsApp Ed",
+          "startDate": "2025-09-15T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 153
+        }
+      ]
+    },
+    {
+      "program": "Taller Arquitectura N8N",
+      "selectedEdition": {
+        "key": "Taller Arquitectura N8N Ed. 2-1-2026-03-31T00:00:00.000Z",
+        "program": "Taller Arquitectura N8N",
+        "edition": "Taller Arquitectura N8N Ed. 2",
+        "startDate": "2026-03-31T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 178
+      },
+      "editions": [
+        {
+          "key": "Taller Arquitectura N8N-1-2025-09-22T00:00:00.000Z",
+          "program": "Taller Arquitectura N8N",
+          "edition": "Taller Arquitectura N8N",
+          "startDate": "2025-09-22T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 177
+        },
+        {
+          "key": "Taller Arquitectura N8N Ed. 2-1-2026-03-31T00:00:00.000Z",
+          "program": "Taller Arquitectura N8N",
+          "edition": "Taller Arquitectura N8N Ed. 2",
+          "startDate": "2026-03-31T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 178
+        }
+      ]
+    },
+    {
+      "program": "Taller Fabric Analytics",
+      "selectedEdition": {
+        "key": "Taller Fabric Analytics Ed. 2-1-2025-06-16T00:00:00.000Z",
+        "program": "Taller Fabric Analytics",
+        "edition": "Taller Fabric Analytics Ed. 2",
+        "startDate": "2025-06-16T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 168
+      },
+      "editions": [
+        {
+          "key": "Taller Fabric Analytics-1-2025-04-14T00:00:00.000Z",
+          "program": "Taller Fabric Analytics",
+          "edition": "Taller Fabric Analytics",
+          "startDate": "2025-04-14T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 167
+        },
+        {
+          "key": "Taller Fabric Analytics Ed. 2-1-2025-06-16T00:00:00.000Z",
+          "program": "Taller Fabric Analytics",
+          "edition": "Taller Fabric Analytics Ed. 2",
+          "startDate": "2025-06-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 168
+        }
+      ]
+    },
+    {
+      "program": "Taller Fundamentos de IA",
+      "selectedEdition": {
+        "key": "Taller Fundamentos de IA-1-2025-08-26T00:00:00.000Z",
+        "program": "Taller Fundamentos de IA",
+        "edition": "Taller Fundamentos de IA",
+        "startDate": "2025-08-26T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 175
+      },
+      "editions": [
+        {
+          "key": "Taller Fundamentos de IA-1-2025-08-26T00:00:00.000Z",
+          "program": "Taller Fundamentos de IA",
+          "edition": "Taller Fundamentos de IA",
+          "startDate": "2025-08-26T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 175
+        }
+      ]
+    },
+    {
+      "program": "Taller GCP Agentes",
+      "selectedEdition": {
+        "key": "Taller GCP Agentes Ed. 3-1-2025-08-11T00:00:00.000Z",
+        "program": "Taller GCP Agentes",
+        "edition": "Taller GCP Agentes Ed. 3",
+        "startDate": "2025-08-11T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 172
+      },
+      "editions": [
+        {
+          "key": "Taller GCP Agentes-1-2025-07-08T00:00:00.000Z",
+          "program": "Taller GCP Agentes",
+          "edition": "Taller GCP Agentes",
+          "startDate": "2025-07-08T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 170
+        },
+        {
+          "key": "Taller GCP Agentes Ed. 2-1-2025-07-16T00:00:00.000Z",
+          "program": "Taller GCP Agentes",
+          "edition": "Taller GCP Agentes Ed. 2",
+          "startDate": "2025-07-16T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 171
+        },
+        {
+          "key": "Taller GCP Agentes Ed. 3-1-2025-08-11T00:00:00.000Z",
+          "program": "Taller GCP Agentes",
+          "edition": "Taller GCP Agentes Ed. 3",
+          "startDate": "2025-08-11T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 172
+        }
+      ]
+    },
+    {
+      "program": "Taller Gratuito Copilot",
+      "selectedEdition": {
+        "key": "Taller Gratuito Copilot-1-2025-04-09T00:00:00.000Z",
+        "program": "Taller Gratuito Copilot",
+        "edition": "Taller Gratuito Copilot",
+        "startDate": "2025-04-09T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 169
+      },
+      "editions": [
+        {
+          "key": "Taller Gratuito Copilot-1-2025-04-09T00:00:00.000Z",
+          "program": "Taller Gratuito Copilot",
+          "edition": "Taller Gratuito Copilot",
+          "startDate": "2025-04-09T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 169
+        }
+      ]
+    },
+    {
+      "program": "Taller N8N",
+      "selectedEdition": {
+        "key": "Taller N8N Ed. 2-1-2025-04-03T00:00:00.000Z",
+        "program": "Taller N8N",
+        "edition": "Taller N8N Ed. 2",
+        "startDate": "2025-04-03T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 129
+      },
+      "editions": [
+        {
+          "key": "Taller N8N-1-2025-03-20T00:00:00.000Z",
+          "program": "Taller N8N",
+          "edition": "Taller N8N",
+          "startDate": "2025-03-20T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 128
+        },
+        {
+          "key": "Taller N8N Ed. 2-1-2025-04-03T00:00:00.000Z",
+          "program": "Taller N8N",
+          "edition": "Taller N8N Ed. 2",
+          "startDate": "2025-04-03T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 129
+        }
+      ]
+    },
+    {
+      "program": "Taller VEO",
+      "selectedEdition": {
+        "key": "Taller VEO3 ED. 2-1-2025-08-01T00:00:00.000Z",
+        "program": "Taller VEO",
+        "edition": "Taller VEO3 ED. 2",
+        "startDate": "2025-08-01T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 166
+      },
+      "editions": [
+        {
+          "key": "Taller VEO3-1-2025-06-23T00:00:00.000Z",
+          "program": "Taller VEO",
+          "edition": "Taller VEO3",
+          "startDate": "2025-06-23T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 165
+        },
+        {
+          "key": "Taller VEO3 ED. 2-1-2025-08-01T00:00:00.000Z",
+          "program": "Taller VEO",
+          "edition": "Taller VEO3 ED. 2",
+          "startDate": "2025-08-01T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 166
+        }
+      ]
+    },
+    {
+      "program": "Triple Certificación -",
+      "selectedEdition": {
+        "key": "Copia de Triple Certificación --1-2024-07-30T00:00:00.000Z",
+        "program": "Triple Certificación -",
+        "edition": "Copia de Triple Certificación -",
+        "startDate": "2024-07-30T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 90
+      },
+      "editions": [
+        {
+          "key": "Copia de Triple Certificación --1-2024-07-30T00:00:00.000Z",
+          "program": "Triple Certificación -",
+          "edition": "Copia de Triple Certificación -",
+          "startDate": "2024-07-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 90
+        }
+      ]
+    },
+    {
+      "program": "Triple Certificación - AZURE",
+      "selectedEdition": {
+        "key": "Triple Certificación - AZURE-1-2024-07-30T00:00:00.000Z",
+        "program": "Triple Certificación - AZURE",
+        "edition": "Triple Certificación - AZURE",
+        "startDate": "2024-07-30T00:00:00.000Z",
+        "format": "En Vivo",
+        "sheetId": 89
+      },
+      "editions": [
+        {
+          "key": "Triple Certificación - AZURE-1-2024-07-30T00:00:00.000Z",
+          "program": "Triple Certificación - AZURE",
+          "edition": "Triple Certificación - AZURE",
+          "startDate": "2024-07-30T00:00:00.000Z",
+          "format": "En Vivo",
+          "sheetId": 89
+        }
+      ]
+    }
+  ]
+}

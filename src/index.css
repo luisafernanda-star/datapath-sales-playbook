@@ -628,6 +628,23 @@ body {
   line-height: 1.5;
 }
 
+.current-edition-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--color-orange-light);
+  color: var(--color-orange);
+  font-size: .78rem;
+}
+
+.current-edition-badge span { font-weight: 600; }
+.current-edition-badge small { color: var(--text-muted); }
+.current-edition-inline { color: var(--color-orange); font-size: .8rem; font-weight: 600; margin-top: 4px; }
+
 .program-benefits-title {
   font-size: 0.85rem;
   font-weight: 700;

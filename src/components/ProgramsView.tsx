@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { contentService } from "../services/contentService";
+import { curriculaService } from "../services/curriculaService";
 import type { Program } from "../data/playbookData";
 import { parseInlineMarkdown } from "../utils/markdown";
 import { Check, Search, ChevronDown, ChevronUp, AlertCircle, Copy, CheckSquare, Sparkles } from "lucide-react";
@@ -121,6 +122,7 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
           filteredPrograms.map((prog) => {
             const isHighlighted = prog.id === highlightedProgramId;
             const isExpanded = expandedProgramId === prog.id;
+            const currentEdition = curriculaService.getCurrentEdition(prog.name);
 
             return (
               <div
@@ -166,6 +168,7 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
                     <p className="program-description" style={{ margin: "8px 0 0", color: "var(--text-secondary)", fontSize: "0.95rem" }}>
                       {parseInlineMarkdown(prog.description)}
                     </p>
+                    {currentEdition && <div className="current-edition-badge"><span>{new Date(currentEdition.startDate) >= new Date() ? "Próxima edición" : "Última edición registrada"}</span><strong>{curriculaService.formatStartDate(currentEdition)}</strong><small>{currentEdition.edition}</small></div>}
                   </div>
 
                   {/* Sidebar Metadata (compact format) */}

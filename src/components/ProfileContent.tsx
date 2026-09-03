@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { contentService } from "../services/contentService";
+import { curriculaService } from "../services/curriculaService";
 import type { Profile, DecisionNode, Program } from "../data/playbookData";
 import { parseInlineMarkdown, stripBlockMarkdown } from "../utils/markdown";
 import {
@@ -708,6 +709,7 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
                     {activeOption.suggestedPrograms.map((progId) => {
                       const prog = programs.find((p) => p.id === progId);
                       if (!prog) return null;
+                      const currentEdition = curriculaService.getCurrentEdition(prog.name);
                       return (
                         <div key={prog.id} className="compact-program-card">
                           <div className="flex-between">
@@ -728,6 +730,7 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
                             <span>⏱ {prog.duration}</span>
                             <span>🏢 {prog.modality}</span>
                           </div>
+                          {currentEdition && <div className="current-edition-inline">Inicio: {curriculaService.formatStartDate(currentEdition)}</div>}
                         </div>
                       );
                     })}

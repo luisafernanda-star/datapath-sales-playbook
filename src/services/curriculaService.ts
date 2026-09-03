@@ -1,0 +1,45 @@
+import curricula from "../data/generatedCurricula.json";
+
+export type CurriculaEdition = {
+  key: string;
+  program: string;
+  edition: string;
+  startDate: string;
+  format: string;
+  sheetId: number;
+};
+
+const PROGRAM_ALIASES: Record<string, string[]> = {
+  "AI Solution Architect": ["AI Solution Architect"],
+  "AI Engineer": ["AI Engineer"],
+  "Data Analyst": ["DAP", "Data Analytics con IA", "DA & Dashboards con IA"],
+  "AI Data Engineer": ["DEP AI", "DEP", "Data Engineer Program"],
+  "Claude Code for Developers": ["Claude Code"],
+  "AI Agentic Engineer": ["AI Agentic Engineer"],
+  "Data Architect": ["DARP", "Data Architect"],
+  "MLOps Engineer": ["MLOPs", "Machine Learning Program"],
+  "IA Generativa en Databricks": ["Databricks"]
+};
+
+const normalizeName = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
+export const curriculaService = {
+  syncedAt: curricula.syncedAt,
+  getPrograms() { return curricula.programs; },
+  getCurrentEdition(programName: string, referenceDate = new Date()): CurriculaEdition | undefined {
+    const aliases = PROGRAM_ALIASES[programName] ?? [programName];
+    const match = aliases.map((alias) => curricula.programs.find((program) => normalizeName(program.program) === normalizeName(alias))).find(Boolean)
+      ?? aliases.map((alias) => curricula.programs.find((program) => {
+        const candidate = normalizeName(program.program);
+        const normalized = normalizeName(alias);
+        return candidate.includes(normalized) || normalized.includes(candidate);
+      })).find(Boolean);
+    if (!match) return undefined;
+    const sorted = [...match.editions].sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+    return sorted.find((edition) => new Date(edition.startDate) >= referenceDate) ?? sorted.at(-1);
+  },
+  formatStartDate(edition?: CurriculaEdition) {
+    if (!edition) return "Fecha por confirmar";
+    return new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(edition.startDate));
+  }
+};
