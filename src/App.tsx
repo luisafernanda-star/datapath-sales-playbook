@@ -161,6 +161,7 @@ function App() {
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
         notificationCount={notificationCount}
+        updateAvailable={updateAvailable}
       />
 
       {/* Main content display panel */}

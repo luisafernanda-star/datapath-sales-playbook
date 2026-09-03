@@ -14,6 +14,7 @@ import {
   CalendarDays,
   Bell
 } from "lucide-react";
+import { SidebarNotifications } from "./SidebarNotifications";
 
 interface SidebarProps {
   activeTab: string;
@@ -21,6 +22,7 @@ interface SidebarProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   notificationCount: number;
+  updateAvailable: boolean;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -28,7 +30,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setActiveTab,
   isOpen,
   setIsOpen,
-  notificationCount
+  notificationCount,
+  updateAvailable
 }) => {
   const menuItems = [
     { id: "home", label: "Inicio", icon: Home },
@@ -68,9 +71,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <aside className={`sidebar ${isOpen ? "open" : ""}`}>
       <div className="sidebar-header">
-        <div className="logo-dot" />
-        <span className="logo-text">Datapath Playbook</span>
-        <span className="logo-tag">Sales</span>
+        <div className="sidebar-brand"><div className="logo-dot" /><span className="logo-text">Datapath Playbook</span><span className="logo-tag">Sales</span></div>
+        <SidebarNotifications count={notificationCount} updateAvailable={updateAvailable} onNavigate={handleSelect} />
         {isOpen && (
           <button
             onClick={() => setIsOpen(false)}

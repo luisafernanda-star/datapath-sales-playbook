@@ -55,8 +55,10 @@ export function NotificationsView({ updateAvailable, onChanged }: NotificationsV
   };
 
   return <section className="notifications-page">
-    <div className="notifications-heading"><div><p className="eyebrow">CENTRO PERSONAL</p><h1>Notificaciones</h1><p className="notifications-lead">Avisos del equipo, actualizaciones y próximos seguimientos.</p></div><div className="notifications-actions">{unread.length > 0 && <button className="outline-button" onClick={() => void markAllRead()}><CheckCheck size={16}/> Marcar avisos como leídos</button>}{isAdmin && <button className="primary-button" onClick={() => setShowComposer(true)}><Plus size={16}/> Publicar aviso</button>}</div></div>
+    <div className="notifications-heading"><div><p className="eyebrow">CENTRO DE NOTIFICACIONES</p><h1>Notificaciones</h1><p className="notifications-lead">Avisos del equipo, actualizaciones y próximos seguimientos.</p></div><div className="notifications-actions">{unread.length > 0 && <button className="outline-button" onClick={() => void markAllRead()}><CheckCheck size={16}/> Marcar avisos como leídos</button>}</div></div>
     {message && <p className="form-message" role="alert">{message}</p>}
+
+    {isAdmin && <section className="admin-alert-panel"><div className="notification-icon"><Megaphone size={19}/></div><div><span className="notification-type">ESPACIO DE ADMINISTRACIÓN</span><h2>Envía un aviso a todas las asesoras</h2><p>Publica recordatorios, recomendaciones comerciales o cualquier novedad que quieras mantener visible dentro del Playbook.</p></div><button className="primary-button" onClick={() => setShowComposer(true)}><Plus size={16}/> Escribir nuevo aviso</button></section>}
 
     {updateAvailable && <article className="update-notification"><div className="notification-icon"><RefreshCw size={19}/></div><div><span className="notification-type">NUEVA ACTUALIZACIÓN</span><h2>Hay una nueva versión de la plataforma</h2><p>Recarga para ver los cambios y mejoras que se acaban de publicar.</p></div><button className="primary-button" onClick={() => window.location.reload()}><RefreshCw size={16}/> Recargar ahora</button></article>}
 
