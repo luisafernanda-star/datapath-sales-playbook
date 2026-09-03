@@ -8,6 +8,7 @@ import { CommercialHub } from "./components/CommercialHub";
 import { FollowUpsView } from "./components/FollowUpsView";
 import { NotificationsView } from "./components/NotificationsView";
 import { HomeDashboard } from "./components/HomeDashboard";
+import { TeamNetworkView } from "./components/TeamNetworkView";
 import { commercialService } from "./services/commercialService";
 import { contentService } from "./services/contentService";
 import type { Profile } from "./data/playbookData";
@@ -109,6 +110,10 @@ function App() {
 
     if (activeTab === "notifications") {
       return <NotificationsView updateAvailable={updateAvailable} onChanged={() => void refreshNotificationCount()} />;
+    }
+
+    if (activeTab === "team-network") {
+      return <TeamNetworkView />;
     }
 
     if (activeTab === "objections") {

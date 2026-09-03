@@ -62,3 +62,8 @@ export interface UserProfile {
   avatarPath?: string;
   avatarUrl?: string;
 }
+
+export interface TeamMember extends UserProfile {
+  email: string;
+  joinedAt: string;
+}

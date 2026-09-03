@@ -1,4 +1,4 @@
-import type { AppNotification, CommercialProgram, CommercialSession, FollowUp, UserProfile } from "../data/commercialTypes";
+import type { AppNotification, CommercialProgram, CommercialSession, FollowUp, TeamMember, UserProfile } from "../data/commercialTypes";
 
 const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/$/, "");
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -223,5 +223,21 @@ export const commercialService = {
     const data = await response.json();
     if (!response.ok) throw new Error("No fue posible cargar la foto de perfil.");
     return `${url}/storage/v1${data.signedURL}`;
+  },
+  async getTeamMembers(session: CommercialSession): Promise<TeamMember[]> {
+    const response = await fetch(`${url}/rest/v1/rpc/get_team_directory`, { method: "POST", headers: await authHeaders(session), body: "{}" });
+    const data = await response.json();
+    if (!response.ok) {
+      if (data.code === "PGRST202" || data.code === "42883") throw new Error("Falta activar Mi red en Supabase. Ejecuta nuevamente el archivo schema.sql actualizado.");
+      throw new Error(data.message || "No fue posible cargar los perfiles del equipo.");
+    }
+    return Promise.all((data as Array<{ user_id: string; email: string; display_name: string; avatar_path?: string; joined_at: string }>).map(async (row) => {
+      let avatarUrl: string | undefined;
+      if (row.avatar_path) {
+        try { avatarUrl = await commercialService.getProfileAvatarUrl(session, row.avatar_path); }
+        catch { avatarUrl = undefined; }
+      }
+      return { userId: row.user_id, email: row.email, displayName: row.display_name || "", avatarPath: row.avatar_path, avatarUrl, joinedAt: row.joined_at };
+    }));
   }
 };

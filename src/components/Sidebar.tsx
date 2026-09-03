@@ -12,7 +12,8 @@ import {
   X,
   FileText,
   CalendarDays,
-  Bell
+  Bell,
+  UsersRound
 } from "lucide-react";
 import { SidebarNotifications } from "./SidebarNotifications";
 import { UserProfileMenu } from "./UserProfileMenu";
@@ -60,6 +61,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: "objections", label: "Objeciones frecuentes", icon: Brain },
     { id: "follow-ups", label: "Mis seguimientos", icon: CalendarDays },
     { id: "notifications", label: "Notificaciones", icon: Bell },
+    { type: "separator" },
+    { type: "section-title", label: "Equipo" },
+    { id: "team-network", label: "Mi red", icon: UsersRound },
     { id: "settings", label: "Configuración", icon: Settings, disabled: true }
   ];
 

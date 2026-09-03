@@ -120,6 +120,22 @@ create policy "Users can update their own avatar" on storage.objects for update 
 drop policy if exists "Users can read their own avatar" on storage.objects;
 create policy "Users can read their own avatar" on storage.objects for select to authenticated using (bucket_id = 'profile-avatars' and (storage.foldername(name))[1] = auth.uid()::text);
 
+-- Directorio interno: incluye todas las cuentas invitadas, incluso si aún no completaron su perfil.
+create or replace function public.get_team_directory()
+returns table (user_id uuid, email text, display_name text, avatar_path text, joined_at timestamptz)
+language sql stable security definer set search_path = public, auth as $$
+  select u.id, coalesce(u.email, ''), coalesce(p.display_name, ''), p.avatar_path, u.created_at
+  from auth.users u
+  left join public.user_profiles p on p.user_id = u.id
+  order by coalesce(nullif(p.display_name, ''), u.email, '') asc
+$$;
+revoke all on function public.get_team_directory() from public;
+grant execute on function public.get_team_directory() to authenticated;
+
+drop policy if exists "Users can read their own avatar" on storage.objects;
+drop policy if exists "Authenticated team can read profile avatars" on storage.objects;
+create policy "Authenticated team can read profile avatars" on storage.objects for select to authenticated using (bucket_id = 'profile-avatars');
+
 insert into storage.buckets (id, name, public) values ('followup-attachments', 'followup-attachments', false) on conflict (id) do nothing;
 drop policy if exists "Advisors can upload their attachments" on storage.objects;
 create policy "Advisors can upload their attachments" on storage.objects for insert to authenticated with check (bucket_id = 'followup-attachments' and (storage.foldername(name))[1] = auth.uid()::text);
