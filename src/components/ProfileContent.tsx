@@ -5,14 +5,11 @@ import type { Profile, DecisionNode, Program } from "../data/playbookData";
 import { parseInlineMarkdown, stripBlockMarkdown } from "../utils/markdown";
 import { AdvancedSimulator } from "./AdvancedSimulator";
 import {
-  ArrowLeft,
-  RotateCcw,
   Sparkles,
   MessageSquare,
   Award,
   ChevronRight,
   BookOpen,
-  Play,
   Copy,
   Check,
   Search,
@@ -33,7 +30,7 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
   onGoBackHome,
   onViewProgram
 }) => {
-  const [activeSubTab, setActiveSubTab] = useState<"guide" | "simulator" | "advanced">("guide");
+  const [activeSubTab, setActiveSubTab] = useState<"guide" | "simulator" | "advanced">("advanced");
   const [currentNodeId, setCurrentNodeId] = useState<string>(profile.startNodeId);
   const [history, setHistory] = useState<string[]>([profile.startNodeId]);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
@@ -58,25 +55,6 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
       setHistory((prev) => [...prev, nextNodeId]);
       setSelectedOptionIndex(null);
     }
-  };
-
-  const handleGoBackNode = () => {
-    if (history.length <= 1) {
-      onGoBackHome();
-      return;
-    }
-    const newHistory = [...history];
-    newHistory.pop();
-    const prevNodeId = newHistory[newHistory.length - 1];
-    setHistory(newHistory);
-    setCurrentNodeId(prevNodeId);
-    setSelectedOptionIndex(null);
-  };
-
-  const handleResetFlow = () => {
-    setCurrentNodeId(profile.startNodeId);
-    setHistory([profile.startNodeId]);
-    setSelectedOptionIndex(null);
   };
 
   const copyToClipboard = (text: string, label: string) => {
@@ -554,21 +532,9 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
           </p>
         </div>
         
-        {activeSubTab === "simulator" && (
-          <div style={{ display: "flex", gap: "10px" }}>
-            <button onClick={handleGoBackNode} className="btn-reset">
-              <ArrowLeft size={16} />
-              <span>Atrás</span>
-            </button>
-            <button onClick={handleResetFlow} className="btn-reset" title="Reiniciar árbol">
-              <RotateCcw size={16} />
-              <span>Reiniciar</span>
-            </button>
-          </div>
-        )}
       </div>
 
-      {/* Sub Tabs Toggle (Guía vs Simulador) */}
+      {/* Herramientas del perfil */}
       <div 
         style={{ 
           display: "flex", 
@@ -598,27 +564,6 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
           <span>📖 Guía Comercial</span>
         </button>
         
-        <button
-          onClick={() => setActiveSubTab("simulator")}
-          style={{
-            padding: "10px 4px",
-            background: "none",
-            border: "none",
-            borderBottom: activeSubTab === "simulator" ? "2px solid var(--primary-color)" : "2px solid transparent",
-            color: activeSubTab === "simulator" ? "var(--primary-color)" : "var(--text-muted)",
-            fontWeight: activeSubTab === "simulator" ? 600 : 500,
-            cursor: "pointer",
-            fontSize: "0.95rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            transition: "all 0.2s"
-          }}
-        >
-          <Play size={16} />
-          <span>💬 Simulador Conversacional</span>
-        </button>
-
         <button
           onClick={() => setActiveSubTab("advanced")}
           style={{
