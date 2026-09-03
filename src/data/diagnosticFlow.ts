@@ -12,6 +12,8 @@ export interface DiagnosticQuestion {
   message: string;
   advisorTip: string;
   options: DiagnosticOption[];
+  responseType?: "options" | "text" | "number";
+  placeholder?: string;
 }
 
 export interface DiagnosticAnswer {
@@ -168,27 +170,96 @@ const PROFILE_QUESTIONS: Record<string, DiagnosticQuestion[]> = {
   ],
   corporate: [
     {
-      id: "corporate-need",
-      message: "¿Qué problema o resultado necesita resolver la empresa con esta capacitación?",
-      advisorTip: "Lleva la conversación a impacto empresarial: tiempo, productividad, capacidad técnica o ejecución de proyectos.",
+      id: "corporate-industry",
+      message: "Para entender mejor su contexto, ¿a qué se dedica la empresa y cuál es su actividad principal?",
+      advisorTip: "Anota el sector y su producto o servicio principal; así podrás aterrizar la propuesta a su realidad.",
+      responseType: "text",
+      placeholder: "Ej. Empresa de logística y distribución nacional",
+      options: []
+    },
+    {
+      id: "corporate-areas",
+      message: "¿Qué áreas o equipos de la empresa participarían en la capacitación?",
+      advisorTip: "Si participarán varias áreas, identifica el objetivo común que deben compartir.",
       options: [
-        { id: "productivity", label: "Mejorar productividad y automatizar tareas", helper: "El equipo necesita aplicar herramientas inmediatamente.", tags: ["automation", "business-ai", "corporate"] },
-        { id: "analytics", label: "Tomar mejores decisiones con datos", helper: "Busca fortalecer análisis, indicadores y visualización.", tags: ["analytics", "corporate"] },
-        { id: "technical", label: "Fortalecer las capacidades del equipo técnico", helper: "Requiere profundidad en datos, desarrollo o IA.", tags: ["technical", "advanced", "full-program"] },
-        { id: "cloud", label: "Adoptar o profundizar una plataforma de nube", helper: "La tecnología usada por la empresa será decisiva.", tags: ["cloud", "architecture", "corporate"] },
-        { id: "ai", label: "Implementar soluciones de IA o agentes", helper: "Quiere pasar de exploración a casos de uso reales.", tags: ["ai-apps", "agents", "corporate"] }
+        { id: "operations", label: "Administración, operaciones o servicio al cliente", helper: "Suele requerir productividad y automatización.", tags: ["business-ai", "automation", "corporate"] },
+        { id: "analytics", label: "Analítica, inteligencia de negocios o finanzas", helper: "Prioriza indicadores, datos y visualización.", tags: ["analytics", "corporate"] },
+        { id: "technology", label: "Tecnología, desarrollo o ingeniería", helper: "Puede asumir formación técnica de mayor profundidad.", tags: ["technical", "advanced", "corporate"] },
+        { id: "leadership", label: "Líderes o tomadores de decisión", helper: "Conviene orientar a estrategia y arquitectura.", tags: ["architecture", "advanced", "corporate"] },
+        { id: "mixed", label: "Participarán varias áreas", helper: "Será necesario definir un alcance común.", tags: ["guided", "corporate"] }
       ]
     },
     {
-      id: "corporate-audience",
-      message: "¿Quiénes recibirían la capacitación y qué nivel tienen actualmente?",
-      advisorTip: "La composición del grupo define la profundidad. Si es mixto, identifica el nivel de la mayoría y el resultado mínimo común.",
+      id: "corporate-level",
+      message: "Respecto al tema que desean estudiar, ¿qué nivel de conocimiento tiene actualmente el equipo?",
+      advisorTip: "Valida el nivel con un ejemplo de lo que ya pueden hacer para no ofrecer una formación demasiado básica o avanzada.",
       options: [
-        { id: "nontechnical", label: "Equipo no técnico o administrativo", helper: "Necesita lenguaje accesible y aplicación al negocio.", tags: ["business-ai", "beginner", "corporate"] },
-        { id: "analysts", label: "Analistas o usuarios de datos", helper: "Puede profundizar en visualización, analítica e ingeniería.", tags: ["analytics", "intermediate", "corporate"] },
-        { id: "developers", label: "Desarrolladores, ingenieros o especialistas", helper: "Puede abordar programas técnicos y avanzados.", tags: ["technical", "advanced", "corporate"] },
-        { id: "leaders", label: "Líderes, arquitectos o tomadores de decisión", helper: "Conviene orientar a estrategia, arquitectura y gobierno.", tags: ["architecture", "advanced", "corporate"] },
-        { id: "mixed", label: "Es un grupo con niveles mezclados", helper: "Requiere nivelación y una ruta común bien delimitada.", tags: ["guided", "corporate"] }
+        { id: "beginner", label: "Inicial: prácticamente empiezan desde cero", helper: "Necesitan fundamentos y una ruta progresiva.", tags: ["beginner", "corporate"] },
+        { id: "basic", label: "Básico: conocen conceptos o algunas herramientas", helper: "Pueden avanzar hacia una formación aplicada.", tags: ["intermediate", "corporate"] },
+        { id: "advanced", label: "Intermedio o avanzado: ya desarrollan proyectos", helper: "Requieren especialización y mayor profundidad.", tags: ["technical", "advanced", "specialization"] },
+        { id: "mixed", label: "El grupo tiene niveles diferentes", helper: "Será importante contemplar una nivelación.", tags: ["guided", "corporate"] }
+      ]
+    },
+    {
+      id: "corporate-tools",
+      message: "¿Qué herramientas, plataformas o tecnologías utilizan actualmente en la empresa?",
+      advisorTip: "Pregunta por lo que realmente usan en sus procesos; el ecosistema existente puede definir la ruta.",
+      options: [
+        { id: "microsoft", label: "Excel, Power BI, Azure o Fabric", helper: "La empresa trabaja principalmente con Microsoft.", tags: ["azure", "fabric", "analytics", "cloud"] },
+        { id: "aws", label: "AWS", helper: "Trabajan sobre Amazon Web Services.", tags: ["aws", "cloud"] },
+        { id: "google", label: "Google Cloud, BigQuery o ecosistema Google", helper: "Conviene priorizar GCP.", tags: ["gcp", "cloud"] },
+        { id: "databricks", label: "Databricks", helper: "Puede requerir datos, ingeniería o IA.", tags: ["databricks", "cloud", "data-engineering"] },
+        { id: "ai", label: "ChatGPT, Copilot u otras herramientas de IA", helper: "Ya existe adopción inicial de IA generativa.", tags: ["business-ai", "ai-apps"] },
+        { id: "other", label: "Otras o todavía no está definido", helper: "La recomendación se basará en el objetivo.", tags: ["platform-neutral", "guided"] }
+      ]
+    },
+    {
+      id: "corporate-processes",
+      message: "Pensando en el trabajo diario, ¿qué procesos les gustaría optimizar o automatizar primero?",
+      advisorTip: "Pide un caso concreto; ese proceso será el principal argumento de impacto de la propuesta.",
+      options: [
+        { id: "reports", label: "Reportes, análisis o toma de decisiones", helper: "Necesitan analítica, visualización o gestión de datos.", tags: ["analytics", "data-engineering"] },
+        { id: "repetitive", label: "Tareas administrativas o repetitivas", helper: "Buscan automatización y productividad inmediata.", tags: ["automation", "business-ai", "short-format"] },
+        { id: "customer", label: "Atención al cliente, ventas o marketing", helper: "Pueden aprovechar IA, agentes y automatizaciones.", tags: ["agents", "automation", "business-ai"] },
+        { id: "development", label: "Desarrollo de soluciones tecnológicas", helper: "Necesitan capacidades técnicas en IA o datos.", tags: ["ai-apps", "technical", "advanced"] },
+        { id: "strategy", label: "Arquitectura, gobierno o adopción tecnológica", helper: "El foco está en diseño y decisiones empresariales.", tags: ["architecture", "advanced"] }
+      ]
+    },
+    {
+      id: "corporate-format",
+      message: "Para organizar la experiencia, ¿prefieren que la capacitación sea virtual o presencial?",
+      advisorTip: "Si es presencial, confirma también la ciudad y las condiciones logísticas.",
+      options: [
+        { id: "virtual", label: "Virtual", helper: "El equipo se conectaría de manera remota.", tags: ["corporate"] },
+        { id: "onsite", label: "Presencial", helper: "Será necesario confirmar ciudad y logística.", tags: ["corporate"] },
+        { id: "hybrid", label: "Híbrida o cualquiera de las dos", helper: "La modalidad puede definirse con la propuesta.", tags: ["corporate", "guided"] }
+      ]
+    },
+    {
+      id: "corporate-participants",
+      message: "¿Cuántas personas participarían aproximadamente en la capacitación?",
+      advisorTip: "Este dato es indispensable para dimensionar el alcance y preparar la propuesta.",
+      responseType: "number",
+      placeholder: "Ej. 25",
+      options: []
+    },
+    {
+      id: "corporate-timing",
+      message: "¿En qué plazo esperan realizar la capacitación y qué disponibilidad tendría el equipo?",
+      advisorTip: "Aclara mes esperado, días, horarios y cantidad de horas disponibles.",
+      responseType: "text",
+      placeholder: "Ej. En octubre, martes y jueves de 4:00 a 6:00 p. m.",
+      options: []
+    },
+    {
+      id: "corporate-goal",
+      message: "Para cerrar, ¿cuál sería el resultado más importante que esperan obtener con esta capacitación?",
+      advisorTip: "Resume lo conversado y valida el resultado esperado antes de presentar la recomendación.",
+      options: [
+        { id: "productivity", label: "Mejoras inmediatas en productividad", helper: "Buscan un resultado práctico a corto plazo.", tags: ["automation", "business-ai", "short-format"] },
+        { id: "capability", label: "Desarrollar una capacidad técnica sólida", helper: "Necesitan una ruta completa y estructurada.", tags: ["technical", "full-program", "advanced"] },
+        { id: "project", label: "Prepararse para ejecutar un proyecto específico", helper: "La formación debe conectarse con un caso real.", tags: ["specialization", "full-program"] },
+        { id: "strategy", label: "Definir una ruta de adopción o transformación", helper: "Requieren visión estratégica y arquitectura.", tags: ["architecture", "advanced", "corporate"] }
       ]
     }
   ]
@@ -197,6 +268,7 @@ const PROFILE_QUESTIONS: Record<string, DiagnosticQuestion[]> = {
 export const getDiagnosticQuestions = (profileId: string): DiagnosticQuestion[] => {
   const profileQuestions = PROFILE_QUESTIONS[profileId];
   if (!profileQuestions) return DIAGNOSTIC_QUESTIONS;
+  if (profileId === "corporate") return profileQuestions;
   const commonQuestions = DIAGNOSTIC_QUESTIONS.filter((question) => ["interest", "ecosystem", "depth"].includes(question.id));
   return [...profileQuestions, ...commonQuestions];
 };

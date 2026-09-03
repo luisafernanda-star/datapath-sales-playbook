@@ -13,6 +13,7 @@ interface Props {
 export function AdvancedSimulator({ profileId, onViewProgram }: Props) {
   const [answers, setAnswers] = useState<DiagnosticAnswer[]>([]);
   const [copied, setCopied] = useState(false);
+  const [writtenAnswer, setWrittenAnswer] = useState("");
   const questions = useMemo(() => getDiagnosticQuestions(profileId), [profileId]);
   const complete = answers.length === questions.length;
   const question = questions[answers.length];
@@ -22,6 +23,14 @@ export function AdvancedSimulator({ profileId, onViewProgram }: Props) {
 
   const choose = (option: DiagnosticOption) => {
     setAnswers((current) => [...current, { questionId: question.id, optionId: option.id, label: option.label, tags: option.tags }]);
+    setWrittenAnswer("");
+  };
+
+  const submitWrittenAnswer = () => {
+    const value = writtenAnswer.trim();
+    if (!question || !value) return;
+    setAnswers((current) => [...current, { questionId: question.id, optionId: "written", label: value, tags: ["corporate"] }]);
+    setWrittenAnswer("");
   };
 
   const reset = () => { setAnswers([]); setCopied(false); };
@@ -52,8 +61,11 @@ export function AdvancedSimulator({ profileId, onViewProgram }: Props) {
       </article>
       <div className="diagnostic-options">
         <span>Selecciona la respuesta que mejor representa al prospecto</span>
-        {question.options.map((option) => <button key={option.id} onClick={() => choose(option)}><strong>{option.label}</strong><small>{option.helper}</small></button>)}
-        {answers.length > 0 && <button className="diagnostic-back" onClick={() => setAnswers((current) => current.slice(0, -1))}><ArrowLeft size={15}/> Volver a la pregunta anterior</button>}
+        {question.responseType === "text" || question.responseType === "number" ? <form className="diagnostic-written" onSubmit={(event) => { event.preventDefault(); submitWrittenAnswer(); }}>
+          <input type={question.responseType === "number" ? "number" : "text"} min={question.responseType === "number" ? 1 : undefined} value={writtenAnswer} onChange={(event) => setWrittenAnswer(event.target.value)} placeholder={question.placeholder} autoFocus required />
+          <button className="primary-button">Continuar</button>
+        </form> : question.options.map((option) => <button key={option.id} onClick={() => choose(option)}><strong>{option.label}</strong><small>{option.helper}</small></button>)}
+        {answers.length > 0 && <button className="diagnostic-back" onClick={() => { setAnswers((current) => current.slice(0, -1)); setWrittenAnswer(""); }}><ArrowLeft size={15}/> Volver a la pregunta anterior</button>}
       </div>
     </div>}
 
