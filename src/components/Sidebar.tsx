@@ -11,7 +11,8 @@ import {
   Settings,
   X,
   FileText,
-  CalendarDays
+  CalendarDays,
+  Bell
 } from "lucide-react";
 
 interface SidebarProps {
@@ -19,13 +20,15 @@ interface SidebarProps {
   setActiveTab: (tabId: string) => void;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  notificationCount: number;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   activeTab,
   setActiveTab,
   isOpen,
-  setIsOpen
+  setIsOpen,
+  notificationCount
 }) => {
   const menuItems = [
     { id: "home", label: "Inicio", icon: Home },
@@ -52,6 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: "commercial", label: "Cursos, links y cupones", icon: CreditCard },
     { id: "objections", label: "Objeciones frecuentes", icon: Brain },
     { id: "follow-ups", label: "Mis seguimientos", icon: CalendarDays },
+    { id: "notifications", label: "Notificaciones", icon: Bell },
     { id: "settings", label: "Configuración", icon: Settings, disabled: true }
   ];
 
@@ -113,6 +117,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <IconComponent size={18} />
               <span>{item.label}</span>
+              {item.id === "notifications" && notificationCount > 0 && <span className="nav-notification-count">{notificationCount > 99 ? "99+" : notificationCount}</span>}
             </button>
           );
         })}

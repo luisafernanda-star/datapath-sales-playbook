@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { Sidebar } from "./components/Sidebar";
 import { ProfileCard } from "./components/ProfileCard";
 import { ProfileContent } from "./components/ProfileContent";
@@ -7,20 +7,57 @@ import { ObjectionsView } from "./components/ObjectionsView";
 import { ManualView } from "./components/ManualView";
 import { CommercialHub } from "./components/CommercialHub";
 import { FollowUpsView } from "./components/FollowUpsView";
+import { NotificationsView } from "./components/NotificationsView";
+import { commercialService } from "./services/commercialService";
 import { contentService } from "./services/contentService";
 import type { Profile } from "./data/playbookData";
-import { Menu, Sparkles, ShieldCheck } from "lucide-react";
+import { Bell, Menu, Sparkles, ShieldCheck } from "lucide-react";
 
 function App() {
   const [activeTab, setActiveTabState] = useState<string>(() => window.location.hash.slice(1) || "home");
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [highlightedProgramId, setHighlightedProgramId] = useState<string | undefined>(undefined);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
+  const [updateAvailable, setUpdateAvailable] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
 
   // Carga inicial de perfiles a través de la capa de servicio (contentService)
   useEffect(() => {
     contentService.getProfiles().then(setProfiles);
   }, []);
+
+  useEffect(() => {
+    const checkVersion = async () => {
+      try {
+        const response = await fetch(`/version.json?t=${Date.now()}`, { cache: "no-store" });
+        const payload = await response.json() as { version?: string };
+        if (payload.version && payload.version !== __APP_VERSION__) setUpdateAvailable(true);
+      } catch { /* La siguiente comprobación lo intentará de nuevo. */ }
+    };
+    void checkVersion();
+    const interval = window.setInterval(checkVersion, 60000);
+    const onVisibility = () => { if (document.visibilityState === "visible") void checkVersion(); };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => { window.clearInterval(interval); document.removeEventListener("visibilitychange", onVisibility); };
+  }, []);
+
+  const refreshNotificationCount = useCallback(async () => {
+    const session = commercialService.getSession();
+    if (!session) { setNotificationCount(updateAvailable ? 1 : 0); return; }
+    try {
+      const [notifications, followUps] = await Promise.all([commercialService.getNotifications(session), commercialService.getFollowUps(session)]);
+      const pendingReminders = followUps.filter((item) => item.status === "pending").length;
+      setNotificationCount(notifications.filter((item) => !item.read).length + pendingReminders + (updateAvailable ? 1 : 0));
+    } catch { setNotificationCount(updateAvailable ? 1 : 0); }
+  }, [updateAvailable]);
+
+  useEffect(() => {
+    void refreshNotificationCount();
+    const interval = window.setInterval(refreshNotificationCount, 300000);
+    const onSessionChange = () => void refreshNotificationCount();
+    window.addEventListener("datapath-session-change", onSessionChange);
+    return () => { window.clearInterval(interval); window.removeEventListener("datapath-session-change", onSessionChange); };
+  }, [refreshNotificationCount]);
 
   useEffect(() => {
     const syncFromUrl = () => setActiveTabState(window.location.hash.slice(1) || "home");
@@ -147,6 +184,10 @@ function App() {
       return <FollowUpsView />;
     }
 
+    if (activeTab === "notifications") {
+      return <NotificationsView updateAvailable={updateAvailable} onChanged={() => void refreshNotificationCount()} />;
+    }
+
     if (activeTab === "objections") {
       return <ObjectionsView />;
     }
@@ -196,6 +237,7 @@ function App() {
         setActiveTab={setActiveTab}
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
+        notificationCount={notificationCount}
       />
 
       {/* Main content display panel */}
@@ -210,7 +252,7 @@ function App() {
             <Menu size={20} />
           </button>
           <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>Datapath Playbook</div>
-          <div style={{ width: 36 }} /> {/* Balance space */}
+          <button className="mobile-notification-button" onClick={() => setActiveTab("notifications")} aria-label={`Notificaciones${notificationCount ? `, ${notificationCount} pendientes` : ""}`}><Bell size={19}/>{notificationCount > 0 && <span>{notificationCount > 99 ? "99+" : notificationCount}</span>}</button>
         </header>
 
         {/* Content canvas container */}

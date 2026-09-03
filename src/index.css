@@ -159,6 +159,21 @@ body {
   font-weight: 600;
 }
 
+.nav-notification-count {
+  margin-left: auto;
+  min-width: 21px;
+  height: 21px;
+  padding: 0 6px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-orange);
+  color: white;
+  font-size: .68rem;
+  font-weight: 800;
+}
+
 .sidebar-footer {
   padding: 16px;
   border-top: 1px solid var(--border-color);
@@ -223,6 +238,34 @@ body {
 
 .menu-button:hover {
   background-color: var(--bg-hover);
+}
+
+.mobile-notification-button {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.mobile-notification-button span {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--color-orange);
+  color: white;
+  font-size: .58rem;
+  font-weight: 800;
 }
 
 /* Scrollable Content Workspace */

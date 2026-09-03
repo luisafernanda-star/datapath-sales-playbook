@@ -1,4 +1,4 @@
-import type { CommercialProgram, CommercialSession, FollowUp } from "../data/commercialTypes";
+import type { AppNotification, CommercialProgram, CommercialSession, FollowUp } from "../data/commercialTypes";
 
 const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/$/, "");
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -56,9 +56,10 @@ export const commercialService = {
     if (!response.ok) throw new Error(payload.error_description ?? "No fue posible iniciar sesión.");
     const session = { accessToken: payload.access_token as string, email: payload.user.email as string, userId: payload.user.id as string };
     localStorage.setItem(storageKey, JSON.stringify(session));
+    window.dispatchEvent(new Event("datapath-session-change"));
     return session;
   },
-  signOut() { localStorage.removeItem(storageKey); },
+  signOut() { localStorage.removeItem(storageKey); window.dispatchEvent(new Event("datapath-session-change")); },
   async getPrograms(session: CommercialSession): Promise<CommercialProgram[]> {
     const response = await fetch(`${url}/rest/v1/commercial_programs?select=*&order=name.asc`, { headers: headers(session.accessToken) });
     if (!response.ok) throw new Error("No fue posible cargar la información comercial.");
@@ -113,5 +114,39 @@ export const commercialService = {
     const data = await response.json();
     if (!response.ok) throw new Error("No fue posible abrir el archivo.");
     return `${url}/storage/v1${data.signedURL}`;
+  },
+  async getNotifications(session: CommercialSession): Promise<AppNotification[]> {
+    const now = new Date().toISOString();
+    const [notificationsResponse, readsResponse] = await Promise.all([
+      fetch(`${url}/rest/v1/notifications?select=*&or=(expires_at.is.null,expires_at.gte.${encodeURIComponent(now)})&order=created_at.desc`, { headers: headers(session.accessToken) }),
+      fetch(`${url}/rest/v1/notification_reads?select=notification_id`, { headers: headers(session.accessToken) })
+    ]);
+    if (!notificationsResponse.ok || !readsResponse.ok) throw new Error("No fue posible cargar las notificaciones.");
+    const readIds = new Set((await readsResponse.json() as Array<{ notification_id: string }>).map((row) => row.notification_id));
+    return (await notificationsResponse.json() as Array<{ id: string; title: string; message: string; created_at: string; expires_at?: string }>).map((row) => ({
+      id: row.id, title: row.title, message: row.message, createdAt: row.created_at, expiresAt: row.expires_at, read: readIds.has(row.id)
+    }));
+  },
+  async createNotification(session: CommercialSession, notification: { title: string; message: string; expiresAt?: string }): Promise<AppNotification> {
+    const response = await fetch(`${url}/rest/v1/notifications`, {
+      method: "POST", headers: { ...headers(session.accessToken), Prefer: "return=representation" },
+      body: JSON.stringify({ title: notification.title, message: notification.message, expires_at: notification.expiresAt || null })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message ?? "No fue posible publicar la notificación.");
+    const row = data[0];
+    await commercialService.markNotificationRead(session, row.id);
+    return { id: row.id, title: row.title, message: row.message, createdAt: row.created_at, expiresAt: row.expires_at, read: true };
+  },
+  async markNotificationRead(session: CommercialSession, notificationId: string) {
+    const response = await fetch(`${url}/rest/v1/notification_reads?on_conflict=notification_id,user_id`, {
+      method: "POST", headers: { ...headers(session.accessToken), Prefer: "resolution=merge-duplicates" },
+      body: JSON.stringify({ notification_id: notificationId, user_id: session.userId })
+    });
+    if (!response.ok) throw new Error("No fue posible marcar la notificación como leída.");
+  },
+  async deleteNotification(session: CommercialSession, notificationId: string) {
+    const response = await fetch(`${url}/rest/v1/notifications?id=eq.${notificationId}`, { method: "DELETE", headers: headers(session.accessToken) });
+    if (!response.ok) throw new Error("No fue posible eliminar la notificación.");
   }
 };

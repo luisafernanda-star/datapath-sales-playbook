@@ -44,3 +44,12 @@ export interface FollowUp {
   status: "pending" | "completed";
   attachmentUrl?: string;
 }
+
+export interface AppNotification {
+  id: string;
+  title: string;
+  message: string;
+  createdAt: string;
+  expiresAt?: string;
+  read: boolean;
+}

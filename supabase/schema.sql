@@ -62,6 +62,37 @@ drop policy if exists "Advisors can delete their follow ups" on public.follow_up
 create policy "Advisors can delete their follow ups" on public.follow_ups for delete to authenticated using (auth.uid() = user_id);
 create index if not exists follow_ups_user_due_idx on public.follow_ups (user_id, due_at);
 
+-- Avisos generales publicados por la administradora.
+create table if not exists public.notifications (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  message text not null default '',
+  expires_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.notification_reads (
+  notification_id uuid not null references public.notifications(id) on delete cascade,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  read_at timestamptz not null default now(),
+  primary key (notification_id, user_id)
+);
+
+alter table public.notifications enable row level security;
+alter table public.notification_reads enable row level security;
+drop policy if exists "Authenticated users can read notifications" on public.notifications;
+create policy "Authenticated users can read notifications" on public.notifications for select to authenticated using (true);
+drop policy if exists "Only the commercial admin can add notifications" on public.notifications;
+create policy "Only the commercial admin can add notifications" on public.notifications for insert to authenticated with check (public.is_commercial_admin());
+drop policy if exists "Only the commercial admin can delete notifications" on public.notifications;
+create policy "Only the commercial admin can delete notifications" on public.notifications for delete to authenticated using (public.is_commercial_admin());
+drop policy if exists "Advisors can read their notification receipts" on public.notification_reads;
+create policy "Advisors can read their notification receipts" on public.notification_reads for select to authenticated using (auth.uid() = user_id);
+drop policy if exists "Advisors can mark their notifications as read" on public.notification_reads;
+create policy "Advisors can mark their notifications as read" on public.notification_reads for insert to authenticated with check (auth.uid() = user_id);
+drop policy if exists "Advisors can update their notification receipts" on public.notification_reads;
+create policy "Advisors can update their notification receipts" on public.notification_reads for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
 insert into storage.buckets (id, name, public) values ('followup-attachments', 'followup-attachments', false) on conflict (id) do nothing;
 drop policy if exists "Advisors can upload their attachments" on storage.objects;
 create policy "Advisors can upload their attachments" on storage.objects for insert to authenticated with check (bucket_id = 'followup-attachments' and (storage.foldername(name))[1] = auth.uid()::text);
