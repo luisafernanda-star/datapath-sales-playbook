@@ -61,6 +61,7 @@ export interface UserProfile {
   displayName: string;
   avatarPath?: string;
   avatarUrl?: string;
+  roleLabel?: string;
 }
 
 export interface TeamMember extends UserProfile {

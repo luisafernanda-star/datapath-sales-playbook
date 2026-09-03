@@ -29,7 +29,7 @@ export function UserProfileMenu({ onNavigate }: UserProfileMenuProps) {
 
   const name = profile?.displayName || session.email.split("@")[0];
   return <>
-    <button className="user-profile user-profile-button" onClick={() => setEditing(true)} aria-label="Editar mi perfil"><ProfileAvatar profile={profile} name={name}/><span className="user-profile-copy"><strong>{profile?.displayName || "Completa tu perfil"}</strong><small>{getAccountRole(session.email)}</small>{!profile?.displayName && <em>Agrega tu nombre y foto</em>}</span><Pencil className="profile-edit-icon" size={14}/></button>
+    <button className="user-profile user-profile-button" onClick={() => setEditing(true)} aria-label="Editar mi perfil"><ProfileAvatar profile={profile} name={name}/><span className="user-profile-copy"><strong>{profile?.displayName || "Completa tu perfil"}</strong><small>{getAccountRole(session.email, profile?.roleLabel)}</small>{!profile?.displayName && <em>Agrega tu nombre y foto</em>}</span><Pencil className="profile-edit-icon" size={14}/></button>
     {editing && <ProfileEditor session={session} profile={profile} onCancel={() => setEditing(false)} onSaved={(saved) => { setProfile(saved); setEditing(false); }}/>} 
   </>;
 }
@@ -57,7 +57,7 @@ function ProfileEditor({ session, profile, onCancel, onSaved }: { session: Comme
     <div className="editor-heading"><div><p className="eyebrow">MI CUENTA</p><h2>Personaliza tu perfil</h2></div><button type="button" className="icon-button" aria-label="Cerrar" onClick={onCancel}>×</button></div>
     <div className="profile-photo-editor"><ProfileAvatar profile={profile} name={displayName || session.email} preview={preview}/><label className="outline-button"><Camera size={16}/> Cambiar foto<input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={(event) => choosePhoto(event.target.files?.[0])}/></label></div>
     <label>Nombre que verá el equipo<input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="Ej. María Fernanda" required maxLength={80}/></label>
-    <div className="profile-role-preview"><Check size={16}/><span>Tu cargo aparecerá automáticamente como <strong>{getAccountRole(session.email)}</strong>.</span></div>
+    <div className="profile-role-preview"><Check size={16}/><span>Tu cargo aparece como <strong>{getAccountRole(session.email, profile?.roleLabel)}</strong> y solo la administradora puede modificarlo.</span></div>
     {message && <p className="form-message" role="alert">{message}</p>}
     <div className="editor-actions"><span/><button type="button" className="outline-button" onClick={onCancel}>Cancelar</button><button className="primary-button" disabled={saving}>{saving ? "Guardando…" : "Guardar perfil"}</button></div>
   </form></div>;

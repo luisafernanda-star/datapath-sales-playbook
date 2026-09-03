@@ -202,7 +202,7 @@ export const commercialService = {
     const row = (await response.json())[0];
     if (!row) return null;
     const avatarUrl = row.avatar_path ? await commercialService.getProfileAvatarUrl(session, row.avatar_path) : undefined;
-    return { userId: row.user_id, displayName: row.display_name, avatarPath: row.avatar_path, avatarUrl };
+    return { userId: row.user_id, displayName: row.display_name, avatarPath: row.avatar_path, avatarUrl, roleLabel: row.role_label };
   },
   async saveUserProfile(session: CommercialSession, profile: UserProfile): Promise<UserProfile> {
     const response = await fetch(`${url}/rest/v1/user_profiles?on_conflict=user_id`, {
@@ -213,7 +213,7 @@ export const commercialService = {
     if (!response.ok) throw new Error(data.message ?? "No fue posible guardar tu perfil.");
     const row = data[0];
     const avatarUrl = row.avatar_path ? await commercialService.getProfileAvatarUrl(session, row.avatar_path) : undefined;
-    return { userId: row.user_id, displayName: row.display_name, avatarPath: row.avatar_path, avatarUrl };
+    return { userId: row.user_id, displayName: row.display_name, avatarPath: row.avatar_path, avatarUrl, roleLabel: row.role_label };
   },
   async uploadProfileAvatar(session: CommercialSession, file: File): Promise<string> {
     if (!session.userId) throw new Error("Vuelve a iniciar sesión para subir tu foto.");
@@ -243,13 +243,24 @@ export const commercialService = {
       if (data.code === "PGRST202" || data.code === "42883") throw new Error("Falta activar Mi red en Supabase. Ejecuta nuevamente el archivo schema.sql actualizado.");
       throw new Error(data.message || "No fue posible cargar los perfiles del equipo.");
     }
-    return Promise.all((data as Array<{ user_id: string; email: string; display_name: string; avatar_path?: string; joined_at: string }>).map(async (row) => {
+    return Promise.all((data as Array<{ user_id: string; email: string; display_name: string; avatar_path?: string; role_label?: string; joined_at: string }>).map(async (row) => {
       let avatarUrl: string | undefined;
       if (row.avatar_path) {
         try { avatarUrl = await commercialService.getProfileAvatarUrl(session, row.avatar_path); }
         catch { avatarUrl = undefined; }
       }
-      return { userId: row.user_id, email: row.email, displayName: row.display_name || "", avatarPath: row.avatar_path, avatarUrl, joinedAt: row.joined_at };
+      return { userId: row.user_id, email: row.email, displayName: row.display_name || "", avatarPath: row.avatar_path, avatarUrl, roleLabel: row.role_label, joinedAt: row.joined_at };
     }));
+  },
+  async updateTeamMember(session: CommercialSession, member: { userId: string; displayName: string; roleLabel: string }) {
+    const response = await fetch(`${url}/rest/v1/rpc/update_team_member`, {
+      method: "POST", headers: await authHeaders(session),
+      body: JSON.stringify({ target_user_id: member.userId, new_display_name: member.displayName, new_role_label: member.roleLabel })
+    });
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({})) as { code?: string; message?: string };
+      if (data.code === "PGRST202" || data.code === "42883") throw new Error("Falta activar la administración de roles en Supabase. Ejecuta nuevamente schema.sql.");
+      throw new Error(data.message || "No fue posible actualizar el perfil.");
+    }
   }
 };

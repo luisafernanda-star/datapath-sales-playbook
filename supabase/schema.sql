@@ -103,9 +103,12 @@ create table if not exists public.user_profiles (
   user_id uuid primary key references auth.users(id) on delete cascade,
   display_name text not null default '',
   avatar_path text,
+  role_label text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.user_profiles add column if not exists role_label text;
 
 alter table public.user_profiles enable row level security;
 drop policy if exists "Users can read their own profile" on public.user_profiles;
@@ -114,6 +117,20 @@ drop policy if exists "Users can create their own profile" on public.user_profil
 create policy "Users can create their own profile" on public.user_profiles for insert to authenticated with check (auth.uid() = user_id);
 drop policy if exists "Users can update their own profile" on public.user_profiles;
 create policy "Users can update their own profile" on public.user_profiles for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+create or replace function public.protect_profile_role()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_commercial_admin() then
+    if (tg_op = 'INSERT' and new.role_label is not null) or (tg_op = 'UPDATE' and new.role_label is distinct from old.role_label) then
+      raise exception 'Solo la administradora puede modificar cargos';
+    end if;
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists protect_profile_role_trigger on public.user_profiles;
+create trigger protect_profile_role_trigger before insert or update on public.user_profiles for each row execute function public.protect_profile_role();
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('profile-avatars', 'profile-avatars', false, 5242880, array['image/jpeg','image/png','image/webp','image/gif'])
@@ -126,16 +143,35 @@ drop policy if exists "Users can read their own avatar" on storage.objects;
 create policy "Users can read their own avatar" on storage.objects for select to authenticated using (bucket_id = 'profile-avatars' and (storage.foldername(name))[1] = auth.uid()::text);
 
 -- Directorio interno: incluye todas las cuentas invitadas, incluso si aún no completaron su perfil.
-create or replace function public.get_team_directory()
-returns table (user_id uuid, email text, display_name text, avatar_path text, joined_at timestamptz)
+drop function if exists public.get_team_directory();
+create function public.get_team_directory()
+returns table (user_id uuid, email text, display_name text, avatar_path text, role_label text, joined_at timestamptz)
 language sql stable security definer set search_path = public, auth as $$
-  select u.id, coalesce(u.email, ''), coalesce(p.display_name, ''), p.avatar_path, u.created_at
+  select u.id, coalesce(u.email, ''), coalesce(p.display_name, ''), p.avatar_path, p.role_label, u.created_at
   from auth.users u
   left join public.user_profiles p on p.user_id = u.id
   order by coalesce(nullif(p.display_name, ''), u.email, '') asc
 $$;
 revoke all on function public.get_team_directory() from public;
 grant execute on function public.get_team_directory() to authenticated;
+
+-- Solo la administradora puede cambiar el nombre o cargo de otro integrante.
+create or replace function public.update_team_member(target_user_id uuid, new_display_name text, new_role_label text)
+returns void language plpgsql security definer set search_path = public, auth as $$
+begin
+  if not public.is_commercial_admin() then
+    raise exception 'No tienes permiso para administrar roles';
+  end if;
+  insert into public.user_profiles (user_id, display_name, role_label, updated_at)
+  values (target_user_id, trim(coalesce(new_display_name, '')), nullif(trim(coalesce(new_role_label, '')), ''), now())
+  on conflict (user_id) do update set
+    display_name = excluded.display_name,
+    role_label = excluded.role_label,
+    updated_at = now();
+end;
+$$;
+revoke all on function public.update_team_member(uuid, text, text) from public;
+grant execute on function public.update_team_member(uuid, text, text) to authenticated;
 
 drop policy if exists "Users can read their own avatar" on storage.objects;
 drop policy if exists "Authenticated team can read profile avatars" on storage.objects;
