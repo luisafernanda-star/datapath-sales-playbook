@@ -25,11 +25,12 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
 
   // Load programs
   useEffect(() => {
+    const session = commercialService.getSession();
     Promise.all([
       contentService.getPrograms(),
-      commercialService.getSession() ? commercialService.getPrograms(commercialService.getSession()!) : Promise.resolve([])
+      session ? commercialService.getPrograms(session) : Promise.resolve([])
     ]).then(([academicPrograms, commercialPrograms]) => setPrograms(mergeCatalog(academicPrograms, commercialPrograms)))
-      .catch(() => contentService.getPrograms().then(setPrograms));
+      .catch(() => contentService.getPrograms().then((academicPrograms) => setPrograms(mergeCatalog(academicPrograms, []))));
   }, []);
 
   // Scroll highlighted program and expand it automatically
@@ -433,28 +434,81 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
 const normalizeProgramName = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\b(for developers|engineer|programa|program)\b/g, "").replace(/[^a-z0-9]/g, "");
 
 function mergeCatalog(academicPrograms: Program[], commercialPrograms: CommercialProgram[]): Program[] {
-  if (commercialPrograms.length === 0) return academicPrograms;
   const activeCommercial = commercialPrograms.filter((program) => program.status === "active");
-  return activeCommercial.map((commercial) => {
-    const commercialName = normalizeProgramName(commercial.name);
+  const usedCommercialIds = new Set<string>();
+  const usedAcademicIds = new Set<string>();
+
+  // Currículas es la fuente principal: cada familia encontrada en la hoja debe
+  // aparecer, aunque todavía no tenga precios o enlaces cargados en Supabase.
+  const curriculaPrograms = curriculaService.getPrograms().map((curriculum, curriculumIndex) => {
+    const curriculumName = normalizeProgramName(curriculum.program);
+    const commercial = activeCommercial.find((program) => {
+      const commercialName = normalizeProgramName(program.name);
+      return commercialName === curriculumName || commercialName.includes(curriculumName) || curriculumName.includes(commercialName);
+    });
+    if (commercial) usedCommercialIds.add(commercial.id);
+
     const academic = academicPrograms.find((program) => {
       const academicName = normalizeProgramName(program.name);
-      return academicName === commercialName || academicName.includes(commercialName) || commercialName.includes(academicName);
+      return academicName === curriculumName || academicName.includes(curriculumName) || curriculumName.includes(academicName);
     });
-    const prices = [...new Set(commercial.paymentLinks.map((link) => link.price).filter(Boolean))].join(" · ");
-    if (academic) return { ...academic, name: commercial.name, modality: commercial.type, description: commercial.description || academic.description, priceInfo: prices || academic.priceInfo };
-    const edition = curriculaService.getCurrentEdition(commercial.name);
+    const edition = curriculaService.getCurrentEdition(curriculum.program);
     const curriculumItems = [...new Set((edition?.sessions ?? []).map((session) => session.content || session.module).filter(Boolean))];
+    const prices = commercial
+      ? [...new Set(commercial.paymentLinks.map((link) => link.price).filter(Boolean))].join(" · ")
+      : "";
+
+    if (academic) {
+      const id = usedAcademicIds.has(academic.id)
+        ? curriculaProgramId(curriculum.program, curriculum.editions[0]?.sheetId ?? curriculumIndex)
+        : academic.id;
+      usedAcademicIds.add(academic.id);
+      return {
+        ...academic,
+        id,
+        name: curriculum.program,
+        modality: commercial?.type || edition?.format || academic.modality,
+        description: commercial?.description || academic.description,
+        keyBenefits: curriculumItems.length > 0 ? curriculumItems : academic.keyBenefits,
+        priceInfo: prices || academic.priceInfo
+      };
+    }
+
     return {
-      id: `commercial-${commercial.id}`,
-      name: commercial.name,
+      id: curriculaProgramId(curriculum.program, curriculum.editions[0]?.sheetId ?? curriculumIndex),
+      name: curriculum.program,
       duration: edition?.sessions.length ? `${edition.sessions.length} sesiones registradas` : "Consultar currícula vigente",
-      modality: commercial.type,
+      modality: commercial?.type || edition?.format || "Modalidad por confirmar",
       target: "Consulta la currícula y realiza el diagnóstico para validar si este programa corresponde al perfil del prospecto.",
-      description: commercial.description,
+      description: commercial?.description || "Programa registrado en el documento oficial de currículas de Datapath.",
       keyBenefits: curriculumItems,
-      priceInfo: prices || "Consulta los enlaces de pago vigentes.",
-      advisorSummary: "Programa activo en el catálogo comercial. Revisa su currícula vigente antes de recomendarlo."
-    };
-  }).sort((a, b) => a.name.localeCompare(b.name));
+      priceInfo: prices || "Precio y enlace de pago por confirmar en la información comercial.",
+      advisorSummary: "Programa disponible en Currículas. Revisa la edición vigente y valida el perfil del prospecto antes de recomendarlo."
+    } satisfies Program;
+  });
+
+  // Conserva también programas comerciales activos que aún no hayan sido
+  // incorporados por el área académica a la hoja de Currículas.
+  const commercialOnlyPrograms = activeCommercial
+    .filter((commercial) => !usedCommercialIds.has(commercial.id))
+    .map((commercial) => {
+      const academic = academicPrograms.find((program) => normalizeProgramName(program.name) === normalizeProgramName(commercial.name));
+      const prices = [...new Set(commercial.paymentLinks.map((link) => link.price).filter(Boolean))].join(" · ");
+      if (academic) return { ...academic, name: commercial.name, modality: commercial.type, description: commercial.description || academic.description, priceInfo: prices || academic.priceInfo };
+      return {
+        id: `commercial-${commercial.id}`,
+        name: commercial.name,
+        duration: "Consultar información comercial",
+        modality: commercial.type,
+        target: "Realiza el diagnóstico para validar si este programa corresponde al perfil del prospecto.",
+        description: commercial.description || "Programa activo en el catálogo comercial de Datapath.",
+        keyBenefits: [],
+        priceInfo: prices || "Consulta los enlaces de pago vigentes.",
+        advisorSummary: "Programa activo en el catálogo comercial."
+      } satisfies Program;
+    });
+
+  return [...curriculaPrograms, ...commercialOnlyPrograms].sort((a, b) => a.name.localeCompare(b.name));
 }
+
+const curriculaProgramId = (name: string, discriminator: number) => `curricula-${normalizeProgramName(name) || "programa"}-${discriminator}`;
