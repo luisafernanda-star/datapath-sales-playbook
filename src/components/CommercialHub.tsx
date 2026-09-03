@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Check, Copy, ExternalLink, KeyRound, LogOut, Pencil, Plus, Save, Trash2 } from "lucide-react";
 import type { CommercialProgram, Coupon, PaymentLink } from "../data/commercialTypes";
 import { commercialService } from "../services/commercialService";
+import { ADMIN_EMAIL } from "../config/access";
 import "./CommercialHub.css";
 
 const emptyProgram = (): CommercialProgram => ({
@@ -21,9 +22,8 @@ export function CommercialHub() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState("");
-  const adminEmail = import.meta.env.VITE_ADMIN_EMAIL?.toLowerCase();
   const salesEmail = import.meta.env.VITE_SALES_EMAIL;
-  const isAdmin = Boolean(session && adminEmail && session.email.toLowerCase() === adminEmail);
+  const isAdmin = Boolean(session && session.email.toLowerCase() === ADMIN_EMAIL);
 
   const loadPrograms = useCallback(async () => {
     if (!session) return;

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Bell, CalendarClock, CheckCheck, Megaphone, Plus, RefreshCw, Trash2 } from "lucide-react";
 import type { AppNotification, CommercialSession, FollowUp } from "../data/commercialTypes";
 import { commercialService } from "../services/commercialService";
+import { ADMIN_EMAIL } from "../config/access";
 import "./NotificationsView.css";
 
 interface NotificationsViewProps {
@@ -16,8 +17,7 @@ export function NotificationsView({ updateAvailable, onChanged }: NotificationsV
   const [showComposer, setShowComposer] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const adminEmail = (import.meta.env.VITE_ADMIN_EMAIL || "luisa@datapath.ai").toLowerCase();
-  const isAdmin = session?.email.toLowerCase() === adminEmail;
+  const isAdmin = session?.email.toLowerCase() === ADMIN_EMAIL;
 
   const load = useCallback(async () => {
     if (!session) return;

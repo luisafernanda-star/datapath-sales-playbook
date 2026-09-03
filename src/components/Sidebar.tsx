@@ -15,6 +15,7 @@ import {
   Bell
 } from "lucide-react";
 import { SidebarNotifications } from "./SidebarNotifications";
+import { UserProfileMenu } from "./UserProfileMenu";
 
 interface SidebarProps {
   activeTab: string;
@@ -126,15 +127,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </nav>
 
       <div className="sidebar-footer">
-        <div className="user-profile">
-          <div className="avatar">DP</div>
-          <div>
-            <div style={{ fontWeight: 600 }}>Asesora Comercial</div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-              Datapath Interno
-            </div>
-          </div>
-        </div>
+        <UserProfileMenu onNavigate={handleSelect} />
       </div>
     </aside>
   );

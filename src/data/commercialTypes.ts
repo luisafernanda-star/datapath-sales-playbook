@@ -53,3 +53,10 @@ export interface AppNotification {
   expiresAt?: string;
   read: boolean;
 }
+
+export interface UserProfile {
+  userId: string;
+  displayName: string;
+  avatarPath?: string;
+  avatarUrl?: string;
+}

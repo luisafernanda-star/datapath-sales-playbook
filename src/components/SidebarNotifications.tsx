@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Bell, CalendarDays, Megaphone, Plus, RefreshCw } from "lucide-react";
 import type { AppNotification, FollowUp } from "../data/commercialTypes";
 import { commercialService } from "../services/commercialService";
+import { ADMIN_EMAIL } from "../config/access";
 
 interface SidebarNotificationsProps {
   count: number;
@@ -16,8 +17,7 @@ export function SidebarNotifications({ count, updateAvailable, onNavigate }: Sid
   const [loading, setLoading] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const session = commercialService.getSession();
-  const adminEmail = (import.meta.env.VITE_ADMIN_EMAIL || "luisa@datapath.ai").toLowerCase();
-  const isAdmin = session?.email.toLowerCase() === adminEmail;
+  const isAdmin = session?.email.toLowerCase() === ADMIN_EMAIL;
 
   const load = useCallback(async () => {
     const activeSession = commercialService.getSession();

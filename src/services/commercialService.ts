@@ -1,4 +1,4 @@
-import type { AppNotification, CommercialProgram, CommercialSession, FollowUp } from "../data/commercialTypes";
+import type { AppNotification, CommercialProgram, CommercialSession, FollowUp, UserProfile } from "../data/commercialTypes";
 
 const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/$/, "");
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -153,5 +153,39 @@ export const commercialService = {
   async deleteNotification(session: CommercialSession, notificationId: string) {
     const response = await fetch(`${url}/rest/v1/notifications?id=eq.${notificationId}`, { method: "DELETE", headers: headers(session.accessToken) });
     if (!response.ok) throw new Error("No fue posible eliminar la notificación.");
+  },
+  async getUserProfile(session: CommercialSession): Promise<UserProfile | null> {
+    const response = await fetch(`${url}/rest/v1/user_profiles?select=*&user_id=eq.${session.userId}&limit=1`, { headers: headers(session.accessToken) });
+    if (!response.ok) throw new Error("No fue posible cargar tu perfil.");
+    const row = (await response.json())[0];
+    if (!row) return null;
+    const avatarUrl = row.avatar_path ? await commercialService.getProfileAvatarUrl(session, row.avatar_path) : undefined;
+    return { userId: row.user_id, displayName: row.display_name, avatarPath: row.avatar_path, avatarUrl };
+  },
+  async saveUserProfile(session: CommercialSession, profile: UserProfile): Promise<UserProfile> {
+    const response = await fetch(`${url}/rest/v1/user_profiles?on_conflict=user_id`, {
+      method: "POST", headers: { ...headers(session.accessToken), Prefer: "resolution=merge-duplicates,return=representation" },
+      body: JSON.stringify({ user_id: session.userId, display_name: profile.displayName.trim(), avatar_path: profile.avatarPath || null, updated_at: new Date().toISOString() })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message ?? "No fue posible guardar tu perfil.");
+    const row = data[0];
+    const avatarUrl = row.avatar_path ? await commercialService.getProfileAvatarUrl(session, row.avatar_path) : undefined;
+    return { userId: row.user_id, displayName: row.display_name, avatarPath: row.avatar_path, avatarUrl };
+  },
+  async uploadProfileAvatar(session: CommercialSession, file: File): Promise<string> {
+    if (!session.userId) throw new Error("Vuelve a iniciar sesión para subir tu foto.");
+    if (!file.type.startsWith("image/")) throw new Error("Selecciona una imagen para tu perfil.");
+    if (file.size > 5 * 1024 * 1024) throw new Error("La foto debe pesar menos de 5 MB.");
+    const path = `${session.userId}/avatar`;
+    const response = await fetch(`${url}/storage/v1/object/profile-avatars/${path}`, { method: "POST", headers: { apikey: anonKey ?? "", Authorization: `Bearer ${session.accessToken}`, "Content-Type": file.type, "x-upsert": "true" }, body: file });
+    if (!response.ok) throw new Error("No fue posible subir la foto.");
+    return path;
+  },
+  async getProfileAvatarUrl(session: CommercialSession, path: string): Promise<string> {
+    const response = await fetch(`${url}/storage/v1/object/sign/profile-avatars/${path}`, { method: "POST", headers: headers(session.accessToken), body: JSON.stringify({ expiresIn: 31536000 }) });
+    const data = await response.json();
+    if (!response.ok) throw new Error("No fue posible cargar la foto de perfil.");
+    return `${url}/storage/v1${data.signedURL}`;
   }
 };

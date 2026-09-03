@@ -206,6 +206,22 @@ body {
   color: var(--text-secondary);
 }
 
+.user-profile-button { width: 100%; position: relative; border: 1px solid transparent; border-radius: 9px; padding: 8px; background: transparent; text-align: left; cursor: pointer; font: inherit; }
+.user-profile-button:hover { background: white; border-color: var(--border-color); box-shadow: var(--shadow-sm); }
+.user-profile-button > span:not(.avatar) { min-width: 0; display: flex; flex-direction: column; }
+.user-profile-button strong { max-width: 155px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-primary); font-size: .8rem; }
+.user-profile-button small { color: var(--text-muted); font-size: .68rem; margin-top: 2px; }
+.user-profile-copy em { color: var(--color-orange); font-size: .63rem; font-style: normal; margin-top: 2px; }
+.profile-edit-icon { margin-left: auto; color: var(--text-muted); flex-shrink: 0; }
+.profile-avatar-image, .profile-avatar-fallback { width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; object-fit: cover; border: 2px solid white; box-shadow: 0 0 0 1px var(--border-color); }
+.profile-editor-modal { width: min(520px, 100%); }
+.profile-editor-modal > label { font-size: .8rem; font-weight: 600; color: var(--text-secondary); display: flex; flex-direction: column; gap: 5px; }
+.profile-editor-modal > label input { font: inherit; border: 1px solid var(--border-color); padding: 9px 10px; border-radius: 6px; outline-color: var(--color-orange); }
+.profile-photo-editor { display: flex; align-items: center; gap: 15px; padding: 14px; border-radius: 9px; background: var(--bg-secondary); }
+.profile-photo-editor .profile-avatar-image, .profile-photo-editor .profile-avatar-fallback { width: 64px; height: 64px; font-size: 1rem; }
+.profile-photo-editor label { cursor: pointer; }.profile-photo-editor input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.profile-role-preview { display: flex; align-items: center; gap: 8px; padding: 11px 12px; border-radius: 7px; color: #16784b; background: #eaf8f1; font-size: .78rem; }
+
 .avatar {
   width: 28px;
   height: 28px;
