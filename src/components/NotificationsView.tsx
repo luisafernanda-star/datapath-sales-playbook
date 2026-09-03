@@ -22,16 +22,15 @@ export function NotificationsView({ updateAvailable, onChanged }: NotificationsV
   const load = useCallback(async () => {
     if (!session) return;
     setLoading(true); setMessage("");
-    try {
-      const [general, followUpItems] = await Promise.all([
+    const [generalResult, followUpResult] = await Promise.allSettled([
         commercialService.getNotifications(session),
         commercialService.getFollowUps(session)
-      ]);
-      setNotifications(general);
-      setFollowUps(followUpItems.filter((item) => item.status === "pending"));
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "No fue posible cargar las notificaciones.");
-    } finally { setLoading(false); }
+    ]);
+    if (generalResult.status === "fulfilled") setNotifications(generalResult.value);
+    else setMessage(generalResult.reason instanceof Error ? generalResult.reason.message : "No fue posible cargar los avisos del equipo.");
+    if (followUpResult.status === "fulfilled") setFollowUps(followUpResult.value.filter((item) => item.status === "pending"));
+    else setMessage((current) => current || "No fue posible cargar los seguimientos pendientes.");
+    setLoading(false);
   }, [session]);
 
   useEffect(() => { void load(); }, [load]);

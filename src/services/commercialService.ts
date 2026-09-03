@@ -121,9 +121,14 @@ export const commercialService = {
       fetch(`${url}/rest/v1/notifications?select=*&or=(expires_at.is.null,expires_at.gte.${encodeURIComponent(now)})&order=created_at.desc`, { headers: headers(session.accessToken) }),
       fetch(`${url}/rest/v1/notification_reads?select=notification_id`, { headers: headers(session.accessToken) })
     ]);
-    if (!notificationsResponse.ok || !readsResponse.ok) throw new Error("No fue posible cargar las notificaciones.");
-    const readIds = new Set((await readsResponse.json() as Array<{ notification_id: string }>).map((row) => row.notification_id));
-    return (await notificationsResponse.json() as Array<{ id: string; title: string; message: string; created_at: string; expires_at?: string }>).map((row) => ({
+    const [notificationRows, readRows] = await Promise.all([notificationsResponse.json(), readsResponse.json()]);
+    if (!notificationsResponse.ok || !readsResponse.ok) {
+      const errorCode = notificationRows?.code || readRows?.code;
+      if (errorCode === "PGRST205" || errorCode === "42P01") throw new Error("Falta activar las tablas de notificaciones en Supabase. Ejecuta nuevamente el archivo schema.sql actualizado.");
+      throw new Error("No fue posible cargar las notificaciones. Intenta nuevamente en un momento.");
+    }
+    const readIds = new Set((readRows as Array<{ notification_id: string }>).map((row) => row.notification_id));
+    return (notificationRows as Array<{ id: string; title: string; message: string; created_at: string; expires_at?: string }>).map((row) => ({
       id: row.id, title: row.title, message: row.message, createdAt: row.created_at, expiresAt: row.expires_at, read: readIds.has(row.id)
     }));
   },

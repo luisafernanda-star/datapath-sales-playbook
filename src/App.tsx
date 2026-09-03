@@ -1,6 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
 import { Sidebar } from "./components/Sidebar";
-import { ProfileCard } from "./components/ProfileCard";
 import { ProfileContent } from "./components/ProfileContent";
 import { ProgramsView } from "./components/ProgramsView";
 import { ObjectionsView } from "./components/ObjectionsView";
@@ -8,10 +7,11 @@ import { ManualView } from "./components/ManualView";
 import { CommercialHub } from "./components/CommercialHub";
 import { FollowUpsView } from "./components/FollowUpsView";
 import { NotificationsView } from "./components/NotificationsView";
+import { HomeDashboard } from "./components/HomeDashboard";
 import { commercialService } from "./services/commercialService";
 import { contentService } from "./services/contentService";
 import type { Profile } from "./data/playbookData";
-import { Bell, Menu, Sparkles, ShieldCheck } from "lucide-react";
+import { Bell, Menu } from "lucide-react";
 
 function App() {
   const [activeTab, setActiveTabState] = useState<string>(() => window.location.hash.slice(1) || "home");
@@ -45,9 +45,10 @@ function App() {
     const session = commercialService.getSession();
     if (!session) { setNotificationCount(updateAvailable ? 1 : 0); return; }
     try {
-      const [notifications, followUps] = await Promise.all([commercialService.getNotifications(session), commercialService.getFollowUps(session)]);
-      const pendingReminders = followUps.filter((item) => item.status === "pending").length;
-      setNotificationCount(notifications.filter((item) => !item.read).length + pendingReminders + (updateAvailable ? 1 : 0));
+      const [notificationsResult, followUpsResult] = await Promise.allSettled([commercialService.getNotifications(session), commercialService.getFollowUps(session)]);
+      const unread = notificationsResult.status === "fulfilled" ? notificationsResult.value.filter((item) => !item.read).length : 0;
+      const pendingReminders = followUpsResult.status === "fulfilled" ? followUpsResult.value.filter((item) => item.status === "pending").length : 0;
+      setNotificationCount(unread + pendingReminders + (updateAvailable ? 1 : 0));
     } catch { setNotificationCount(updateAvailable ? 1 : 0); }
   }, [updateAvailable]);
 
@@ -86,85 +87,7 @@ function App() {
   // Determine what content to display in the main workspace
   const renderWorkspaceContent = () => {
     if (activeTab === "home") {
-      return (
-        <>
-          <div className="welcome-hero animate-fade-in" style={{ padding: "40px 30px", borderRadius: "12px", background: "linear-gradient(135deg, rgba(255,107,0,0.05) 0%, rgba(255,107,0,0.01) 100%)", border: "1px solid rgba(255,107,0,0.15)", marginBottom: "32px" }}>
-            <h1 className="welcome-title" style={{ fontSize: "2.2rem", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.03em" }}>
-              Datapath Sales Playbook
-            </h1>
-            <p className="welcome-subtitle" style={{ fontSize: "1.05rem", color: "var(--text-secondary)", marginTop: "8px", maxWidth: "700px" }}>
-              Guía interactiva para acompañar conversaciones comerciales en WhatsApp y canales digitales mediante un modelo de venta consultiva.
-            </p>
-          </div>
-
-          <div style={{ marginBottom: "20px" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-muted)", marginBottom: "12px" }}>
-              Identificación del Perfil
-            </h3>
-            <div className="profile-grid">
-              {Object.values(profiles).map((profile) => (
-                <ProfileCard
-                  key={profile.id}
-                  id={profile.id}
-                  title={profile.title}
-                  iconName={profile.icon}
-                  description={profile.description}
-                  onClick={() => handleSelectProfile(profile.id)}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div style={{ marginTop: "40px" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-muted)", marginBottom: "16px" }}>
-              Metodología y Filosofía de Ventas
-            </h3>
-            <div className="methodology-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-              <button type="button"
-                onClick={() => setActiveTab("manual-filosofia-comercial")}
-                style={{ 
-                  padding: "20px", 
-                  background: "var(--bg-card)", 
-                  border: "1px solid var(--border-color)", 
-                  borderRadius: "8px", 
-                  cursor: "pointer", 
-                  transition: "all 0.2s", textAlign: "left"
-                }}
-                className="hover-card-effects"
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "var(--primary-color)", fontWeight: 600, marginBottom: "8px" }}>
-                  <ShieldCheck size={18} />
-                  <span>Filosofía Comercial</span>
-                </div>
-                <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0 }}>
-                  Conoce nuestra misión, principios comerciales y los estándares esperados que debe experimentar cada prospecto en contacto con una asesora.
-                </p>
-              </button>
-
-              <button type="button"
-                onClick={() => setActiveTab("manual-reglas-de-oro")}
-                style={{ 
-                  padding: "20px", 
-                  background: "var(--bg-card)", 
-                  border: "1px solid var(--border-color)", 
-                  borderRadius: "8px", 
-                  cursor: "pointer", 
-                  transition: "all 0.2s", textAlign: "left"
-                }}
-                className="hover-card-effects"
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "var(--primary-color)", fontWeight: 600, marginBottom: "8px" }}>
-                  <Sparkles size={18} />
-                  <span>Reglas de Oro</span>
-                </div>
-                <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0 }}>
-                  El decálogo de estándares de calidad comercial de Datapath. Directrices obligatorias para estructurar el valor y generar confianza.
-                </p>
-              </button>
-            </div>
-          </div>
-        </>
-      );
+      return <HomeDashboard profiles={profiles} notificationCount={notificationCount} updateAvailable={updateAvailable} onNavigate={setActiveTab} onSelectProfile={handleSelectProfile} />;
     }
 
     if (activeTab === "programs") {
