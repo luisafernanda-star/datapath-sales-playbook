@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { contentService } from "../services/contentService";
 import { parseInlineMarkdown, stripBlockMarkdown } from "../utils/markdown";
-import { ArrowLeft, BookOpen, Sparkles } from "lucide-react";
+import { ArrowLeft, BookOpen, Brain, CheckCircle2, Compass, Route, SearchCheck, ShieldCheck, Sparkles, type LucideIcon } from "lucide-react";
+import "./ManualView.css";
 
 interface ManualViewProps {
   section: string;
@@ -13,6 +14,14 @@ interface Section {
   title: string;
   lines: string[];
 }
+
+const CHAPTERS: Record<string, { eyebrow: string; description: string; icon: LucideIcon }> = {
+  "filosofia-comercial": { eyebrow: "01 · PROPÓSITO", description: "La forma en que entendemos, orientamos y construimos confianza.", icon: Compass },
+  "mentalidad-comercial": { eyebrow: "02 · CRITERIO", description: "Cómo pensar antes de responder y recomendar soluciones con intención.", icon: Brain },
+  "flujo-comercial": { eyebrow: "03 · PROCESO", description: "El recorrido completo desde la preparación hasta el seguimiento.", icon: Route },
+  "diagnostico-comercial": { eyebrow: "04 · DESCUBRIMIENTO", description: "Las preguntas y señales que sustentan una recomendación acertada.", icon: SearchCheck },
+  "reglas-de-oro": { eyebrow: "05 · ESTÁNDAR", description: "Los comportamientos que protegen la calidad de cada conversación.", icon: ShieldCheck }
+};
 
 export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange, onGoBackHome }) => {
   const [methodology, setMethodology] = useState<{ title: string; content: string } | null>(null);
@@ -153,11 +162,11 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
     const flushList = () => {
       if (listItems.length > 0) {
         elements.push(
-          <div key={`list-${keyCounter++}`} style={{ display: "flex", flexDirection: "column", gap: "8px", margin: "12px 0 16px 6px" }}>
+          <div key={`list-${keyCounter++}`} className="manual-list">
             {listItems.map((item, idx) => (
-              <div key={`li-${idx}`} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                <span style={{ color: "var(--primary-color)", fontWeight: 700, fontSize: "0.85rem", marginTop: "2px" }}>✓</span>
-                <span style={{ color: "var(--text-color)", fontSize: "0.95rem", lineHeight: "1.5" }}>
+              <div key={`li-${idx}`} className="manual-list-item">
+                <CheckCircle2 size={17}/>
+                <span>
                   {parseInlineMarkdown(stripBlockMarkdown(item))}
                 </span>
               </div>
@@ -190,9 +199,9 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
       if (line.startsWith("### ")) {
         flushList();
         elements.push(
-          <h4 key={`h4-${keyCounter++}`} style={{ fontSize: "1.1rem", fontWeight: 700, margin: "20px 0 8px", color: "var(--text-color)" }}>
+          <h3 key={`h4-${keyCounter++}`} className="manual-subheading">
             {parseInlineMarkdown(stripBlockMarkdown(line))}
-          </h4>
+          </h3>
         );
         continue;
       }
@@ -205,19 +214,7 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
           blockquoteText += " " + lines[i].trim().replace("> ", "");
         }
         elements.push(
-          <div 
-            key={`bq-${keyCounter++}`} 
-            style={{ 
-              borderLeft: "4px solid var(--primary-color)", 
-              padding: "14px 18px", 
-              margin: "18px 0", 
-              background: "linear-gradient(135deg, rgba(255,107,0,0.05) 0%, rgba(255,107,0,0.01) 100%)", 
-              borderRadius: "0 8px 8px 0",
-              display: "flex",
-              gap: "10px",
-              alignItems: "flex-start"
-            }}
-          >
+          <div key={`bq-${keyCounter++}`} className="manual-quote">
             <Sparkles size={16} style={{ color: "var(--primary-color)", marginTop: "2px", flexShrink: 0 }} />
             <p style={{ fontStyle: "italic", color: "var(--text-color)", lineHeight: "1.6", margin: 0, fontSize: "0.95rem" }}>
               {parseInlineMarkdown(stripBlockMarkdown(blockquoteText))}
@@ -232,24 +229,11 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
       if (orderedListMatch) {
         flushList();
         elements.push(
-          <div key={`ol-item-${keyCounter++}`} style={{ display: "flex", gap: "10px", margin: "10px 0", paddingLeft: "4px" }}>
-            <span style={{ 
-              fontWeight: 700, 
-              color: "#fff", 
-              backgroundColor: "var(--primary-color)", 
-              borderRadius: "50%",
-              width: "20px",
-              height: "20px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "0.75rem",
-              flexShrink: 0,
-              marginTop: "2px"
-            }}>
+          <div key={`ol-item-${keyCounter++}`} className="manual-step">
+            <span>
               {orderedListMatch[1]}
             </span>
-            <span style={{ color: "var(--text-color)", lineHeight: "1.5", fontSize: "0.95rem" }}>
+            <span>
               {parseInlineMarkdown(orderedListMatch[2])}
             </span>
           </div>
@@ -311,7 +295,7 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
       // Regular paragraph
       flushList();
       elements.push(
-        <p key={`p-${keyCounter++}`} style={{ marginBottom: "14px", color: "var(--text-color)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+        <p key={`p-${keyCounter++}`} className="manual-paragraph">
           {parseInlineMarkdown(line)}
         </p>
       );
@@ -341,72 +325,37 @@ export const ManualView: React.FC<ManualViewProps> = ({ section, onSectionChange
     );
   }
 
+  const activeChapter = CHAPTERS[section] ?? CHAPTERS["filosofia-comercial"];
+  const ActiveIcon = activeChapter.icon;
+
   return (
-    <div className="manual-view-container animate-fade-in" style={{ maxWidth: "840px", margin: "0 auto", padding: "20px 0" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px" }}>
-        <button 
-          onClick={onGoBackHome} 
-          className="btn-back"
-          style={{ 
-            display: "flex", 
-            alignItems: "center", 
-            gap: "6px", 
-            background: "none", 
-            border: "none", 
-            color: "var(--text-muted)", 
-            cursor: "pointer",
-            fontSize: "0.9rem",
-            padding: "4px 8px",
-            borderRadius: "4px",
-            transition: "all 0.2s"
-          }}
-        >
+    <div className="manual-view-container animate-fade-in">
+      <div className="manual-topbar">
+        <button onClick={onGoBackHome} className="manual-back">
           <ArrowLeft size={16} />
           <span>Volver al Inicio</span>
         </button>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "0.85rem", color: "var(--primary-color)", fontWeight: 600 }}>
+        <div className="manual-label">
           <BookOpen size={14} />
-          <span>Metodología Comercial Unificada</span>
+          <span>Playbook de metodología comercial</span>
         </div>
       </div>
 
-      <div 
-        className="manual-paper" 
-        style={{ 
-          background: "var(--bg-card)", 
-          border: "1px solid var(--border-color)", 
-          borderRadius: "8px", 
-          padding: "36px 40px", 
-          boxShadow: "0 4px 12px rgba(0,0,0,0.03)" 
-        }}
-      >
-        <h1 style={{ fontSize: "2.2rem", fontWeight: 800, margin: "0 0 8px", color: "var(--text-color)", letterSpacing: "-0.03em" }}>
-          {methodology.title}
-        </h1>
-        <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", marginBottom: "32px" }}>
-          Estándares, procesos y técnicas de venta consultiva para el equipo de asesoras Datapath.
-        </p>
+      <header className="manual-hero"><div className="manual-hero-icon"><ActiveIcon size={25}/></div><div><span>{activeChapter.eyebrow}</span><h1>{section.split("-").map((word) => word[0]?.toUpperCase() + word.slice(1)).join(" ")}</h1><p>{activeChapter.description}</p></div><div className="manual-hero-mark">DP</div></header>
 
-        <div className="manual-content" style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+      <nav className="manual-chapters" aria-label="Capítulos de metodología">{sections.filter((sec) => cleanSectionId(sec.title) !== "introduccion").map((sec, index) => { const id = cleanSectionId(sec.title); const meta = CHAPTERS[id]; const Icon = meta?.icon ?? BookOpen; return <button key={id} className={section === id ? "active" : ""} onClick={() => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }); onSectionChange?.(id); }}><Icon size={17}/><span><small>0{index + 1}</small>{sec.title}</span></button>; })}</nav>
+
+      <div className="manual-workspace">
+        <aside className="manual-side-note"><Sparkles size={18}/><strong>Cómo usar este playbook</strong><p>No necesitas memorizarlo. Consulta el capítulo según el momento de la conversación y convierte cada principio en una acción concreta.</p></aside>
+
+        <div className="manual-content">
           {sections.map((sec) => {
             const id = cleanSectionId(sec.title);
             const isIntro = id === "introduccion";
             return (
-              <section 
-                key={id} 
-                id={id} 
-                style={{ 
-                  scrollMarginTop: "40px", 
-                  paddingTop: isIntro ? "0" : "32px",
-                  marginTop: isIntro ? "0" : "12px",
-                  borderTop: isIntro ? "none" : "1px solid var(--border-color)"
-                }}
-              >
+              <section key={id} id={id} className={`manual-section ${isIntro ? "manual-intro" : ""}`}>
                 {!isIntro && (
-                  <h2 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--primary-color)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "10px" }}>
-                    <span style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--primary-color)" }} />
-                    {sec.title}
-                  </h2>
+                  <div className="manual-section-heading"><span>{String(sections.filter((item) => cleanSectionId(item.title) !== "introduccion").findIndex((item) => cleanSectionId(item.title) === id) + 1).padStart(2, "0")}</span><div><small>CAPÍTULO</small><h2>{sec.title}</h2></div></div>
                 )}
                 {renderSectionContent(sec.lines)}
               </section>
