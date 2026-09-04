@@ -51,6 +51,7 @@ export interface Objection {
   title: string;
   commonPhrases: string[];
   rebuttalStrategy: string;
+  explorationQuestion: string;
   suggestedScript: string;
 }
 
@@ -498,8 +499,9 @@ export const OBJECTIONS: Objection[] = [
       "Trabajo hasta tarde y llego muy cansado",
       "Me da miedo matricularme y no poder asistir"
     ],
-    rebuttalStrategy: "Enfatizar la flexibilidad de las clases grabadas, el soporte continuo de los mentores fuera del horario de clase, y que los proyectos se realizan progresivamente durante el programa.",
-    suggestedScript: "\"Te entiendo perfectamente. La mayoría de nuestros alumnos son profesionales que trabajan a tiempo completo. Por eso, nuestras sesiones en vivo quedan grabadas en alta definición al día siguiente. Además, cuentas con tutorías asincrónicas vía Slack y fines de semana para que puedas resolver tus dudas a tu propio ritmo. ¿Qué horario de estudio autónomo te acomodaría mejor los fines de semana?\""
+    rebuttalStrategy: "No asumir que el problema es únicamente el horario. Primero identifica si le preocupa asistir, cumplir actividades o sostener el ritmo. Después presenta la modalidad y el acompañamiento que realmente correspondan al programa.",
+    explorationQuestion: "¿Qué sería lo más difícil para ti: conectarte a las sesiones, sacar tiempo para practicar o mantener la constancia?",
+    suggestedScript: "\"Te entiendo; antes de recomendarte una modalidad quiero asegurarme de que puedas aprovecharla. ¿Qué sería lo más difícil para ti: conectarte a las sesiones, sacar tiempo para practicar o mantener la constancia? Según lo que me cuentes, revisamos si te conviene una edición en vivo o una alternativa asincrónica.\""
   },
   {
     id: "too-expensive",
@@ -509,8 +511,9 @@ export const OBJECTIONS: Objection[] = [
       "No cuento con esa cantidad ahora",
       "Es mucha inversión en este momento"
     ],
-    rebuttalStrategy: "Cambiar el foco del 'gasto' al 'retorno de inversión' (ROI) y presentar las facilidades de pago (cuotas mensuales) y opciones de becas parciales sin intereses.",
-    suggestedScript: "\"Entiendo que representa un esfuerzo económico. Sin embargo, un profesional especializado en Datos incrementa sus ingresos en promedio entre un 40% y un 70% en los primeros 6 meses post-programa. Además, para ayudarte, podemos financiar la matrícula hasta en 6 cuotas sin intereses de [Monto], o aplicar a nuestro programa de beca por recomendación. ¿Te serviría evaluar las opciones de pago en cuotas?\""
+    rebuttalStrategy: "Validar si la dificultad es el valor total, el momento de pago o que aún no percibe suficiente valor. No inventes retornos salariales ni descuentos; utiliza únicamente precios, enlaces y cupones vigentes.",
+    explorationQuestion: "¿Lo que te frena es el valor total, pagarlo en este momento o que todavía no tienes claro si el programa vale la inversión?",
+    suggestedScript: "\"Gracias por decírmelo con claridad. ¿Lo que te frena es el valor total, pagarlo en este momento o que todavía no tienes claro si el programa vale la inversión? Con eso puedo explicarte mejor el alcance y revisar únicamente las alternativas de pago que estén disponibles.\""
   },
   {
     id: "no-experience",
@@ -520,8 +523,9 @@ export const OBJECTIONS: Objection[] = [
       "¿Es necesario saber matemáticas avanzadas?",
       "Tengo miedo de perderme en las clases"
     ],
-    rebuttalStrategy: "Resaltar el módulo de nivelación (propedéutico) gratuito que se incluye antes de iniciar el programa, diseñado específicamente para personas que parten desde cero.",
-    suggestedScript: "\"¡Es una duda muy común! El 35% de nuestros egresados exitosos venían de áreas completamente ajenas a la tecnología. Antes de que inicie la primera clase oficial, te damos acceso a un curso propedéutico gratuito de nivelación (SQL y Python básico). Esto te asegura entrar a las clases en vivo con los conceptos claros. ¿Has tenido alguna aproximación previa, aunque sea básica, con Excel o bases de datos?\""
+    rebuttalStrategy: "Diagnosticar su punto de partida antes de tranquilizarlo. Confirma los requisitos reales del programa y ofrece nivelación solamente cuando esté incluida oficialmente.",
+    explorationQuestion: "¿Qué herramientas has utilizado hasta ahora, aunque sea de forma básica: Excel, bases de datos, programación o herramientas de IA?",
+    suggestedScript: "\"No pasa nada si vienes de otra área; lo importante es recomendarte una ruta acorde con tu punto de partida. ¿Qué herramientas has utilizado hasta ahora, aunque sea de forma básica: Excel, bases de datos, programación o IA? Con eso revisamos si puedes ingresar directamente o si conviene comenzar por fundamentos.\""
   },
   {
     id: "guarantee",
@@ -530,8 +534,81 @@ export const OBJECTIONS: Objection[] = [
       "¿Me aseguran que conseguiré trabajo al terminar?",
       "¿Tienen bolsa laboral directa?"
     ],
-    rebuttalStrategy: "Explicar el funcionamiento de la bolsa de empleo y el programa de empleabilidad acelerada de Datapath (preparación de CV, simulaciones de entrevistas, y alianzas con empresas). Ser honestos sobre el compromiso del alumno.",
-    suggestedScript: "\"No te garantizamos un puesto firmado porque depende de tu desempeño y postulación, pero sí maximizamos tus oportunidades. Contamos con un portal exclusivo de empleo de Datapath y realizamos simulacros de entrevistas técnicas y de habilidades blandas con recruiters reales. Además, el 82% de nuestros alumnos que completan sus proyectos portafolio consiguen un nuevo empleo en TI dentro de los primeros 6 meses. ¿Te gustaría ver ejemplos de empresas donde ya trabajan nuestros graduados?\""
+    rebuttalStrategy: "Responder con transparencia: una formación no puede garantizar contratación. Explica los recursos de empleabilidad que estén vigentes y devuelve la conversación al objetivo, experiencia y compromiso del prospecto.",
+    explorationQuestion: "¿Estás buscando tu primer empleo, cambiar de área o mejorar las oportunidades que ya tienes?",
+    suggestedScript: "\"Sería irresponsable prometerte una contratación, porque también depende de tu experiencia, práctica y proceso de búsqueda. Lo que sí podemos hacer es ayudarte a desarrollar habilidades y proyectos relevantes. ¿Estás buscando tu primer empleo, cambiar de área o mejorar las oportunidades que ya tienes?\""
+  },
+  {
+    id: "chose-competitor",
+    title: "🤝 Elegí otra academia / Me fui con otra persona",
+    commonPhrases: ["Ya compré con otra academia", "Me decidí por otro curso", "Otra persona me ofreció algo mejor"],
+    rebuttalStrategy: "No desacreditar al competidor ni intentar revertir la decisión de inmediato. Agradece la sinceridad y busca entender el criterio de elección; esa información sirve para aprender y, si existe una brecha real, ofrecer ayuda sin presión.",
+    explorationQuestion: "Gracias por contármelo. ¿Qué fue lo que más influyó en tu decisión: el contenido, la modalidad, el precio, la fecha o la confianza que te generó la propuesta?",
+    suggestedScript: "\"Gracias por contármelo y espero que te vaya muy bien con tu elección. Para aprender y atenderte mejor en otra oportunidad, ¿qué fue lo que más influyó en tu decisión: el contenido, la modalidad, el precio, la fecha o la confianza que te generó la propuesta?\""
+  },
+  {
+    id: "need-to-think",
+    title: "🤔 Lo voy a pensar / Después te aviso",
+    commonPhrases: ["Déjame pensarlo", "Yo te aviso", "Todavía no estoy seguro"],
+    rebuttalStrategy: "Evitar perseguir al prospecto con un cierre forzado. Descubre qué necesita evaluar y acuerda un siguiente paso concreto.",
+    explorationQuestion: "Claro, ¿qué parte necesitas evaluar con más calma para tomar la decisión?",
+    suggestedScript: "\"Claro, es una decisión que vale la pena revisar bien. ¿Qué parte necesitas evaluar con más calma: el programa, el tiempo, la inversión o si realmente se ajusta a tu objetivo? Si quieres resolvemos esa duda ahora y acordamos cuándo retomarlo.\""
+  },
+  {
+    id: "ask-someone",
+    title: "👥 Debo consultarlo con alguien",
+    commonPhrases: ["Tengo que hablarlo con mi pareja", "Debo pedir autorización en la empresa", "Lo consultaré con mi familia"],
+    rebuttalStrategy: "Respeta que hay otra persona involucrada. Identifica qué información necesita el decisor y ofrece un resumen claro que el prospecto pueda compartir.",
+    explorationQuestion: "¿Qué información necesitaría esa persona para ayudarles a tomar la decisión?",
+    suggestedScript: "\"Por supuesto. ¿Qué información necesitaría esa persona para evaluar la decisión: alcance, horarios, inversión o resultados esperados? Puedo ayudarte a dejarle un resumen claro y luego retomamos la conversación.\""
+  },
+  {
+    id: "not-right-now",
+    title: "📅 Ahora no / Más adelante",
+    commonPhrases: ["Quizás el próximo mes", "Este no es un buen momento", "Prefiero esperar"],
+    rebuttalStrategy: "Diferenciar entre una fecha inconveniente y una prioridad insuficiente. Si el interés es real, acuerda una fecha de seguimiento; si no, evita insistir sin contexto.",
+    explorationQuestion: "¿Qué tendría que cambiar para que sí fuera un buen momento para comenzar?",
+    suggestedScript: "\"Entiendo. Para no insistirte sin sentido, ¿qué tendría que cambiar para que sí fuera un buen momento: tu disponibilidad, el presupuesto o la fecha de inicio? Si te parece, dejamos acordado cuándo volver a hablar.\""
+  },
+  {
+    id: "online-doubt",
+    title: "💻 No me gusta estudiar virtual / Prefiero presencial",
+    commonPhrases: ["No aprendo bien virtual", "Me distraigo en línea", "Quiero clases presenciales"],
+    rebuttalStrategy: "Indaga qué experiencia negativa tuvo y qué condición necesita para aprender. No presentes la virtualidad como perfecta para todos.",
+    explorationQuestion: "¿Qué es lo que más te preocupa de estudiar virtual: la interacción, la disciplina o poder resolver dudas?",
+    suggestedScript: "\"Es totalmente válido. ¿Qué es lo que más te preocupa de estudiar virtual: la interacción, mantener la disciplina o poder resolver dudas? Así revisamos si la metodología de este programa responde a eso o si conviene buscar otra modalidad.\""
+  },
+  {
+    id: "content-doubt",
+    title: "📚 No estoy seguro de que el contenido sea para mí",
+    commonPhrases: ["No sé si ese temario me sirve", "Busco algo más avanzado", "Creo que eso ya lo sé"],
+    rebuttalStrategy: "Volver al diagnóstico. Compara lo que ya sabe y lo que necesita lograr con módulos concretos; no recites toda la currícula.",
+    explorationQuestion: "¿Qué sabes hacer hoy y qué te gustaría poder hacer al terminar que todavía no puedes?",
+    suggestedScript: "\"Revisémoslo con algo concreto: ¿qué sabes hacer hoy y qué te gustaría poder hacer al terminar que todavía no puedes? Con esa diferencia podemos validar juntos si el contenido te aporta o si necesitas otra ruta.\""
+  },
+  {
+    id: "certificate-validity",
+    title: "🏅 ¿El certificado es válido?",
+    commonPhrases: ["¿Quién certifica?", "¿Tiene validez internacional?", "¿Es un título oficial?"],
+    rebuttalStrategy: "Explicar exactamente qué certificado se entrega y quién lo emite, sin llamarlo título profesional ni atribuirle homologaciones no confirmadas.",
+    explorationQuestion: "¿Necesitas el certificado para una empresa, una convocatoria, tu hoja de vida o como preparación para una certificación externa?",
+    suggestedScript: "\"Claro, y es importante aclararlo bien. ¿Necesitas el certificado para una empresa, una convocatoria, tu hoja de vida o como preparación para una certificación externa? Te confirmo exactamente qué documento entrega este programa y quién lo emite.\""
+  },
+  {
+    id: "trust-doubt",
+    title: "🔎 No conozco Datapath / No estoy seguro de confiar",
+    commonPhrases: ["Nunca había escuchado de ustedes", "¿Cómo sé que es real?", "Quiero referencias"],
+    rebuttalStrategy: "No responder a la defensiva. Pregunta qué evidencia le daría tranquilidad y comparte solo información verificable por canales oficiales.",
+    explorationQuestion: "¿Qué te ayudaría a sentir mayor confianza: conocer la metodología, los docentes, experiencias de estudiantes o los canales oficiales?",
+    suggestedScript: "\"Es normal que quieras verificar antes de invertir. ¿Qué te ayudaría a sentir mayor confianza: conocer la metodología, los docentes, experiencias de estudiantes o nuestros canales oficiales? Te comparto la información verificable que necesites.\""
+  },
+  {
+    id: "free-content",
+    title: "▶️ Eso lo puedo aprender gratis en internet",
+    commonPhrases: ["En YouTube está gratis", "Hay cursos más baratos", "Puedo estudiarlo por mi cuenta"],
+    rebuttalStrategy: "Reconocer que existe contenido gratuito. La comparación debe centrarse en ruta, práctica, acompañamiento y constancia, únicamente cuando el programa realmente los ofrezca.",
+    explorationQuestion: "¿Qué sientes que te ha faltado al aprender por tu cuenta: una ruta, práctica, acompañamiento o constancia?",
+    suggestedScript: "\"Sí, hoy existe muchísimo contenido gratuito y puede ser útil. La pregunta es qué necesitas para avanzar: ¿una ruta organizada, práctica, acompañamiento o mantener la constancia? Con eso podemos validar si un programa estructurado te aportaría algo diferente.\""
   }
 ];
 

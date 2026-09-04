@@ -787,6 +787,7 @@ body {
 }
 
 /* Objections View styling */
+.objection-search{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:white;color:var(--text-muted)}.objection-search input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text-primary);font:inherit}.objection-search span{font-size:.75rem;white-space:nowrap}.exploration-box{display:flex;align-items:flex-start;gap:10px;padding:15px 16px;border:1px solid #bbf7d0;border-radius:var(--radius-sm);background:#f0fdf4;color:#166534}.exploration-box svg{flex:none;margin-top:1px}.exploration-box strong{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.03em}.exploration-box p{margin-top:5px;font-size:.9rem;line-height:1.45}
 .objections-list {
   display: flex;
   flex-direction: column;

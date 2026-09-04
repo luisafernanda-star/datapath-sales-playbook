@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { contentService } from "../services/contentService";
 import { parseInlineMarkdown } from "../utils/markdown";
 import type { Objection } from "../data/playbookData";
-import { ChevronDown, ChevronUp, Copy, Check, MessageSquareCode, ShieldAlert } from "lucide-react";
+import { ChevronDown, ChevronUp, Copy, Check, HelpCircle, MessageSquareCode, Search, ShieldAlert } from "lucide-react";
 
 export const ObjectionsView: React.FC = () => {
   // Track open state for each objection (accordion style)
@@ -16,6 +16,7 @@ export const ObjectionsView: React.FC = () => {
   // Track which objection has been copied
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [objections, setObjections] = useState<Objection[]>([]);
+  const [search, setSearch] = useState("");
 
   // Carga asincrónica de objeciones (preparado para consumir Markdown en el futuro)
   useEffect(() => {
@@ -40,6 +41,7 @@ export const ObjectionsView: React.FC = () => {
       }, 2000);
     });
   };
+  const visibleObjections = objections.filter((objection) => [objection.title, ...objection.commonPhrases].join(" ").toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
@@ -52,8 +54,10 @@ export const ObjectionsView: React.FC = () => {
         </p>
       </div>
 
+      <label className="objection-search"><Search size={18}/><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Buscar: precio, tiempo, otra academia, certificado…"/><span>{visibleObjections.length} opciones</span></label>
+
       <div className="objections-list">
-        {objections.map((objection) => {
+        {visibleObjections.map((objection) => {
           const isOpen = openStates[objection.id];
           const isCopied = copiedId === objection.id;
           
@@ -84,10 +88,12 @@ export const ObjectionsView: React.FC = () => {
                   <div className="strategy-box">
                     <div className="strategy-title" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                       <ShieldAlert size={14} color="var(--text-secondary)" />
-                      <span>Estrategia de Rebatimiento</span>
+                      <span>Enfoque recomendado</span>
                     </div>
                     <p className="strategy-text">{parseInlineMarkdown(objection.rebuttalStrategy)}</p>
                   </div>
+
+                  <div className="exploration-box"><HelpCircle size={17}/><div><strong>Pregunta antes de responder</strong><p>{objection.explorationQuestion}</p></div></div>
 
                   {/* Copyable Script */}
                   <div className="script-box">
