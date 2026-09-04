@@ -140,7 +140,7 @@ export const ProgramsView: React.FC<ProgramsViewProps> = ({
             const curriculaId = curriculaService.getCatalogId(prog.name);
             const isHighlighted = prog.id === highlightedProgramId || curriculaId === highlightedProgramId;
             const isExpanded = expandedProgramId === prog.id || expandedProgramId === curriculaId;
-            const currentEdition = curriculaService.getCurrentEdition(prog.name);
+            const currentEdition = curriculaService.getCatalogLiveEdition(prog.name);
 
             return (
               <div
@@ -453,7 +453,8 @@ function mergeCatalog(academicPrograms: Program[], commercialPrograms: Commercia
       const academicName = normalizeProgramName(program.name);
       return academicName === curriculumName || academicName.includes(curriculumName) || curriculumName.includes(academicName);
     });
-    const edition = curriculaService.getCurrentEdition(curriculum.program);
+    const liveEdition = curriculaService.getCatalogLiveEdition(curriculum.program);
+    const edition = liveEdition ?? curriculaService.getCurrentEdition(curriculum.program);
     const curriculumItems = [...new Set((edition?.sessions ?? []).map((session) => session.content || session.module).filter(Boolean))];
     const prices = commercial
       ? [...new Set(commercial.paymentLinks.map((link) => link.price).filter(Boolean))].join(" · ")
@@ -468,7 +469,7 @@ function mergeCatalog(academicPrograms: Program[], commercialPrograms: Commercia
         ...academic,
         id,
         name: curriculum.program,
-        modality: commercial?.type || edition?.format || academic.modality,
+        modality: liveEdition ? "En vivo" : "Asincrónico",
         description: commercial?.description || academic.description,
         keyBenefits: curriculumItems.length > 0 ? curriculumItems : academic.keyBenefits,
         priceInfo: prices || academic.priceInfo
@@ -479,7 +480,7 @@ function mergeCatalog(academicPrograms: Program[], commercialPrograms: Commercia
       id: curriculaProgramId(curriculum.program, curriculum.editions[0]?.sheetId ?? curriculumIndex),
       name: curriculum.program,
       duration: edition?.sessions.length ? `${edition.sessions.length} sesiones registradas` : "Consultar currícula vigente",
-      modality: commercial?.type || edition?.format || "Modalidad por confirmar",
+      modality: liveEdition ? "En vivo" : "Asincrónico",
       target: "Consulta la currícula y realiza el diagnóstico para validar si este programa corresponde al perfil del prospecto.",
       description: commercial?.description || "Programa registrado en el documento oficial de currículas de Datapath.",
       keyBenefits: curriculumItems,
@@ -495,12 +496,13 @@ function mergeCatalog(academicPrograms: Program[], commercialPrograms: Commercia
     .map((commercial) => {
       const academic = academicPrograms.find((program) => normalizeProgramName(program.name) === normalizeProgramName(commercial.name));
       const prices = [...new Set(commercial.paymentLinks.map((link) => link.price).filter(Boolean))].join(" · ");
-      if (academic) return { ...academic, name: commercial.name, modality: commercial.type, description: commercial.description || academic.description, priceInfo: prices || academic.priceInfo };
+      const modality = curriculaService.getCatalogLiveEdition(commercial.name) ? "En vivo" : "Asincrónico";
+      if (academic) return { ...academic, name: commercial.name, modality, description: commercial.description || academic.description, priceInfo: prices || academic.priceInfo };
       return {
         id: `commercial-${commercial.id}`,
         name: commercial.name,
         duration: "Consultar información comercial",
-        modality: commercial.type,
+        modality,
         target: "Realiza el diagnóstico para validar si este programa corresponde al perfil del prospecto.",
         description: commercial.description || "Programa activo en el catálogo comercial de Datapath.",
         keyBenefits: [],
